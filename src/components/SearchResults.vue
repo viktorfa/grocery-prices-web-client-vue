@@ -1,24 +1,25 @@
 <template>
 <div>
+  <br/>
   <div
     v-if="offers.length > 0"
   >
-  <h3>{{offers.length}} Tilbud</h3>
-  <div
-    class="result-list"
-  >
-    <OfferListItem
-      v-for="offer in offers"
-      v-bind:offer="offer"
-      v-bind:key="offer.id"
-    />
-  </div>
-  <hr/>
+    <h1>{{offers.length}} Tilbud</h1>
+    <div
+      class="result-list"
+    >
+      <OfferListItem
+        v-for="offer in offers"
+        v-bind:offer="offer"
+        v-bind:key="offer.id"
+      />
+    </div>
+    <br/>
   </div>
   <div
     v-if="kolonialProducts.length > 0"
   >
-  <h3>{{kolonialProducts.length}} varer fra kolonial.no</h3>
+  <h1>{{kolonialProducts.length}} varer fra kolonial.no</h1>
   <div
     class="result-list"
   >

@@ -1,10 +1,7 @@
 <template>
   <div id="app">
-    <v-text-field
+    <input
       v-model='queryInput'
-      label="Søk"
-      autofocus
-      clearable
     />
     <p
       v-if="loading === true"
@@ -21,50 +18,17 @@ import Vue from "vue";
 
 import { search, objects } from "./lunr/premade";
 
-import OfferList from "./components/OfferList.vue";
-import ProductList from "./components/ProductList.vue";
 import SearchResults from "./components/SearchResults.vue";
-import products from "./assets/kolonial_product_prices.json";
-import offers from "./assets/shopgun_offers.json";
-
-const filterProducts = (products, limit = 10) => _.take(products, limit);
-const queryProducts = (query, products) => {
-  if (products && products.length > 0 && query && query.length > 0) {
-    const result = filterProducts(
-      products.filter(product => product.title.match(RegExp(query, "gi")))
-    );
-    return result;
-  } else return [];
-};
-
-const asyncQueryProducts = async (query, products) => {
-  await setTimeout(() => {}, 200);
-  return queryProducts(query, products);
-};
-
-const queryOffers = (query, offers) => {
-  if (offers && offers.length > 0 && query && query.length > 0) {
-    const result = filterProducts(
-      offers.filter(offer => offer.heading.match(RegExp(query, "gi")))
-    );
-    return result;
-  } else return [];
-};
 
 const sunrSearch = query => search(query);
 
 export default Vue.component("app", {
   components: {
-    ProductList,
-    OfferList,
     SearchResults
   },
   data: function() {
     return {
-      products,
-      offers,
       queryInput: "grand",
-      filteredProducts: [],
       filteredOffers: [],
       loading: false,
       sunrResults: []
@@ -84,10 +48,12 @@ export default Vue.component("app", {
   },
   methods: {
     queryProducts: async function(query) {
-      this.sunrResults = sunrSearch(`${query} ${query}* ${query}~1`).map(result => ({
-        ...objects[result.ref],
-        score: result.score
-      }));
+      this.sunrResults = sunrSearch(`${query} ${query}* ${query}~1`).map(
+        result => ({
+          ...objects[result.ref],
+          score: result.score
+        })
+      );
       this.loading = false;
     }
   }

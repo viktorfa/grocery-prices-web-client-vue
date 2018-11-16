@@ -1,7 +1,8 @@
 <template>
-<div>
-    <div
+<div
       v-if="offers.length > 0"
+>
+    <div
       v-for="offer in offers"
       v-bind:key="offer.id"
       v-bind:offer="offer"

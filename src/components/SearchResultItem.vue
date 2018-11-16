@@ -1,30 +1,20 @@
 <template>
-<v-card
-  width="200"
->
-  <v-img
-    v-bind:src="image_url"
-    v-bind:alt="title"
-  >
   <div
-    class="card-price-headline-container"
-    v-if="price"
+    class="result-list-item"
   >
-    <p
-      class="headline white--text card-price-headline"
-    >
-      {{price}},-
-    </p>
-  </div>
-  
-  </v-img>
-  <v-card-title primary-title class="card-title">
-    <h2>{{title}}</h2>
-  </v-card-title>
-  <v-card-title>
+    <h3>{{title}}</h3>
     <p>{{subtitle}}</p>
-  </v-card-title>
-</v-card>
+    <p
+      v-if="price"
+    >
+      <strong>{{price}},-</strong>
+    </p>
+    <img
+      class="result-list-item-image"
+      v-bind:src="image_url"
+      v-bind:alt="title"
+    />
+  </div>
 </template>
 
 
@@ -41,21 +31,15 @@ export default {
 </script>
 
 <style>
-.list-item {
-  width: 200px;
-}
-.card-price-headline {
-  background-color: rgba(20, 20, 20, 0.5);
-  width: 100%;
-  margin: 0;
-}
-.card-price-headline-container {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: flex-end;
-}
-.card-title {
-  text-align: center;
-}
+  .result-list-item {
+    width: 200px;
+    border: 0px rgba(200, 200, 200, 0.8) solid;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+  }
+  .result-list-item-image {
+    object-fit: contain;
+    object-position: center;
+    max-width: 200px;
+  }
 </style>
