@@ -10,20 +10,27 @@
       v-if="loading === true"
     >Loading ...</p>
     <SearchResults
+      v-if="sunrResults.length > 0"
       v-bind:results="sunrResults"
     />
+    <h2
+      v-if="sunrResults.length === 0 && queryInput && loading !== true"
+    >
+    Ingen treff på "{{queryInput}}"
+    </h2>
   </div>
 </template>
 
 <script>
 import _ from "lodash";
 import Vue from "vue";
+import lunr from "lunr";
 
-import { search, objects } from "./lunr/premade";
+import { getIndex, getObjects } from "./api";
 
 import SearchResults from "./components/SearchResults.vue";
 
-const sunrSearch = query => search(query);
+const sunrSearch = (query, index) => index.search(query);
 
 export default Vue.component("app", {
   components: {
@@ -33,8 +40,10 @@ export default Vue.component("app", {
     return {
       queryInput: "grand",
       filteredOffers: [],
-      loading: false,
-      sunrResults: []
+      loading: true,
+      sunrResults: [],
+      objects: [],
+      index: {}
     };
   },
   watch: {
@@ -45,18 +54,33 @@ export default Vue.component("app", {
       }
     }
   },
-  created: function() {
-    this.queryProducts(this.queryInput);
+  created: async function() {
     this.debouncedQuery = _.debounce(this.queryProducts, 500);
+    const [objectOption, indexOption] = await Promise.all([
+      getObjects(),
+      getIndex()
+    ]);
+    if (objectOption.ok && indexOption.ok) {
+      this.index = lunr.Index.load(indexOption.data);
+      this.objects = objectOption.data;
+    } else {
+      this.message = "Could not load index";
+    }
+    this.queryProducts(this.queryInput);
   },
   methods: {
     queryProducts: async function(query) {
-      this.sunrResults = sunrSearch(`${query} ${query}* ${query}~1`).map(
-        result => ({
-          ...objects[result.ref],
+      if (this.index && this.index.search) {
+        this.sunrResults = sunrSearch(
+          `${query} ${query}* ${query}~1`,
+          this.index
+        ).map(result => ({
+          ...this.objects[result.ref],
           score: result.score
-        })
-      );
+        }));
+      } else {
+      this.message = "Index is not initalized.";
+      }
       this.loading = false;
     }
   }
@@ -73,6 +97,6 @@ export default Vue.component("app", {
   margin-top: 60px;
 }
 .search-input {
-  font-size: 1.2em
+  font-size: 1.2em;
 }
 </style>
