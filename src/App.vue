@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <input
-      v-model='queryInput'
+      class="search-input"
+      v-model="queryInput"
+      label="Søk"
+      autofocus
     />
     <p
       v-if="loading === true"
@@ -68,5 +71,8 @@ export default Vue.component("app", {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.search-input {
+  font-size: 1.2em
 }
 </style>
