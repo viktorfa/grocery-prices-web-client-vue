@@ -34,12 +34,14 @@
 
 
 <script>
+import _ from "lodash";
 import OfferListItem from "./OfferListItem";
 import ProductListItem from "./ProductListItem";
 
 const isOffer = result => result.pricing !== undefined;
 const isKolonial = result => result.image_url !== undefined;
 const sortResults = results => _.sortBy(results, result => -result.score);
+const limitResults = (results, limit = 50) => _.take(results, limit);
 
 export default {
   name: "SearchResults",
@@ -52,10 +54,10 @@ export default {
   },
   computed: {
     offers: function() {
-      return sortResults(this.results.filter(isOffer));
+      return limitResults(sortResults(this.results.filter(isOffer))) || [];
     },
     kolonialProducts: function() {
-      return sortResults(this.results.filter(isKolonial));
+      return limitResults(sortResults(this.results.filter(isKolonial))) || [];
     }
   }
 };
