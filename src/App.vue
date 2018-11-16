@@ -19,7 +19,7 @@
 import _ from "lodash";
 import Vue from "vue";
 
-import { search, objects } from "./lunr";
+import { search, objects } from "./lunr/premade";
 
 import OfferList from "./components/OfferList.vue";
 import ProductList from "./components/ProductList.vue";
@@ -72,7 +72,7 @@ export default Vue.component("app", {
   },
   watch: {
     queryInput: function(newValue, oldValue) {
-      if (newValue.length > 0 && newValue !== oldValue) {
+      if (newValue && newValue.length > 0 && newValue !== oldValue) {
         this.loading = true;
         this.debouncedQuery(newValue, this.products);
       }
@@ -84,9 +84,7 @@ export default Vue.component("app", {
   },
   methods: {
     queryProducts: async function(query) {
-      this.filteredProducts = await asyncQueryProducts(query, this.products);
-      this.filteredOffers = queryOffers(query, this.offers);
-      this.sunrResults = sunrSearch(`${query}*`).map(result => ({
+      this.sunrResults = sunrSearch(`${query} ${query}* ${query}~1`).map(result => ({
         ...objects[result.ref],
         score: result.score
       }));
