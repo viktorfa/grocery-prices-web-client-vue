@@ -31,8 +31,13 @@ export default {
 </script>
 
 <style>
+  @media only screen and (max-width: 480px) {
+    .result-list-item {
+      width: 100%;
+    }
+  }
   .result-list-item {
-    width: 200px;
+    min-width: 200px;
     border: 0px rgba(200, 200, 200, 0.8) solid;
     border-bottom-width: 1px;
     border-left-width: 1px;

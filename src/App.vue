@@ -97,6 +97,8 @@ export default Vue.component("app", {
   margin-top: 60px;
 }
 .search-input {
-  font-size: 1.2em;
+  font-size: 1.4rem;
+  width: 100%;
+  max-width: 768px;
 }
 </style>
