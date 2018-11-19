@@ -5,7 +5,7 @@ import {
 const getFullFileUrl = fileName => `${staticUrl}${fileName}`
 
 export const getIndex = async () => {
-  const fileName = 'lunr_index.json'
+  const fileName = 'lunr-index-latest.json'
   const response = await fetch(getFullFileUrl(fileName))
   if (response.ok) {
     const jsonBody = await response.json()
@@ -22,7 +22,7 @@ export const getIndex = async () => {
 }
 
 export const getObjects = async () => {
-  const fileName = 'objects.json'
+  const fileName = 'objects-latest.json'
   const response = await fetch(getFullFileUrl(fileName))
   if (response.ok) {
     const jsonBody = await response.json()
