@@ -72,7 +72,7 @@ export default Vue.component("app", {
     queryProducts: async function(query) {
       if (this.index && this.index.search) {
         this.sunrResults = sunrSearch(
-          `${query} ${query}* ${query}~1`,
+          `${query}~1 *${query}* *${query.substring(0, query.length - 1)}*`,
           this.index
         ).map(result => ({
           ...this.objects[result.ref],
