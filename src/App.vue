@@ -38,7 +38,7 @@ export default Vue.component("app", {
   },
   data: function() {
     return {
-      queryInput: "grand",
+      queryInput: "grandis",
       filteredOffers: [],
       loading: true,
       sunrResults: [],
