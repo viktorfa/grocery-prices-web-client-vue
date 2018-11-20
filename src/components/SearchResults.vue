@@ -32,7 +32,7 @@
       v-bind:price="product.price"
       v-bind:title="product.title"
       v-bind:image_url="product.image_url"
-      v-bind:subtitle="product.brand"
+      v-bind:subtitle="product.product_variant"
       v-bind:href="product.product_url"
       v-bind:key="product.id"
     />
