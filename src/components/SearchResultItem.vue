@@ -2,6 +2,11 @@
   <div
     class="result-list-item"
   >
+<a
+  v-bind:href="href"
+  target="_blank"
+  class="search-result-link"
+>
     <h3>{{title}}</h3>
     <p>{{subtitle}}</p>
     <p
@@ -14,6 +19,7 @@
       v-bind:src="image_url"
       v-bind:alt="title"
     />
+</a>
   </div>
 </template>
 
@@ -25,26 +31,34 @@ export default {
     price: Number,
     title: String,
     subtitle: String,
-    image_url: String
+    image_url: String,
+    href: String
   }
 };
 </script>
 
 <style>
-  @media only screen and (max-width: 480px) {
-    .result-list-item {
-      width: 100%;
-    }
-  }
+@media only screen and (max-width: 480px) {
   .result-list-item {
-    min-width: 200px;
-    border: 0px rgba(200, 200, 200, 0.8) solid;
-    border-bottom-width: 1px;
-    border-left-width: 1px;
+    width: 100%;
   }
-  .result-list-item-image {
-    object-fit: contain;
-    object-position: center;
-    max-width: 200px;
-  }
+}
+.result-list-item {
+  min-width: 200px;
+  border: 0px rgba(200, 200, 200, 0.8) solid;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+}
+.result-list-item-image {
+  object-fit: contain;
+  object-position: center;
+  max-width: 200px;
+}
+</style>
+
+<style scoped>
+.search-result-link {
+  color: inherit;
+  text-decoration: none;
+}
 </style>
