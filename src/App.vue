@@ -71,15 +71,15 @@ export default Vue.component("app", {
   methods: {
     queryProducts: async function(query) {
       if (this.index && this.index.search) {
-        this.sunrResults = sunrSearch(
-          `${query}~1 *${query}* *${query.substring(0, query.length - 1)}*`,
-          this.index
-        ).map(result => ({
+        const lunrQuery = query.startsWith("+")
+          ? query
+          : `${query}~1 *${query}* *${query.substring(0, query.length - 1)}*`;
+        this.sunrResults = sunrSearch(lunrQuery, this.index).map(result => ({
           ...this.objects[result.ref],
           score: result.score
         }));
       } else {
-      this.message = "Index is not initalized.";
+        this.message = "Index is not initalized.";
       }
       this.loading = false;
     }
