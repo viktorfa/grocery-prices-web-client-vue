@@ -56,6 +56,24 @@
     />
   </div>
   </div>
+  <div
+    v-if="europrisProducts.length > 0"
+  >
+  <h1>{{europrisProducts.length}} varer fra europris.no</h1>
+  <div
+    class="result-list"
+  >
+    <SearchResultItem
+      v-for="product in europrisProducts"
+      v-bind:price="product.price"
+      v-bind:title="product.name"
+      v-bind:image_url="product.image_url"
+      v-bind:subtitle="product.description"
+      v-bind:href="product.link"
+      v-bind:key="product.id"
+    />
+  </div>
+  </div>
 </div>
 </template>
 
@@ -65,15 +83,19 @@ import _ from "lodash";
 import SearchResultItem from "./SearchResultItem";
 
 const isOffer = result => result.pricing !== undefined;
-const isKolonial = result => result.product_url && result.product_url.startsWith('https://kolonial.no');
-const isMeny = result => result.product_url && result.product_url.startsWith('https://meny.no');
+const isKolonial = result =>
+  result.product_url && result.product_url.startsWith("https://kolonial.no");
+const isMeny = result =>
+  result.product_url && result.product_url.startsWith("https://meny.no");
+const isEuropris = result =>
+  result.link && result.link.startsWith("https://www.europris.no");
 const sortResults = results => _.sortBy(results, result => -result.score);
 const limitResults = (results, limit = 20) => _.take(results, limit);
 
 export default {
   name: "SearchResults",
   components: {
-    SearchResultItem,
+    SearchResultItem
   },
   props: {
     results: Array
@@ -87,6 +109,9 @@ export default {
     },
     menyProducts: function() {
       return limitResults(sortResults(this.results.filter(isMeny))) || [];
+    },
+    europrisProducts: function() {
+      return limitResults(sortResults(this.results.filter(isEuropris))) || [];
     }
   }
 };
