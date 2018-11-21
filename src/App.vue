@@ -10,11 +10,11 @@
       v-if="loading === true"
     >Loading ...</p>
     <SearchResults
-      v-if="sunrResults.length > 0"
-      v-bind:results="sunrResults"
+      v-if="lunrResults.length > 0"
+      v-bind:results="lunrResults"
     />
     <h2
-      v-if="sunrResults.length === 0 && queryInput && loading !== true"
+      v-if="lunrResults.length === 0 && queryInput && loading !== true"
     >
     Ingen treff på "{{queryInput}}"
     </h2>
@@ -30,8 +30,9 @@ import { getIndex, getObjects } from "./api";
 
 import SearchResults from "./components/SearchResults.vue";
 
-const sunrSearch = (query, index) => index.search(query);
 import { parseQueryStringFromUrl } from "./lib";
+
+const lunrSearch = (query, index) => index.search(query);
 
 export default Vue.component("app", {
   components: {
@@ -42,7 +43,7 @@ export default Vue.component("app", {
       queryInput: parseQueryStringFromUrl() || "grandis",
       filteredOffers: [],
       loading: true,
-      sunrResults: [],
+      lunrResults: [],
       objects: [],
       index: {}
     };
@@ -78,7 +79,7 @@ export default Vue.component("app", {
         const lunrQuery = query.startsWith("+")
           ? query
           : `${query}~1 *${query}* *${query.substring(0, query.length - 1)}*`;
-        this.sunrResults = sunrSearch(lunrQuery, this.index).map(result => ({
+        this.lunrResults = lunrSearch(lunrQuery, this.index).map(result => ({
           ...this.objects[result.ref],
           score: result.score
         }));
