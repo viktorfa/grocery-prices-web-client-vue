@@ -10,7 +10,7 @@
     <h3>{{title}}</h3>
     <p>{{subtitle}}</p>
     <p
-      v-if="price"
+      v-if="formattedPrice"
     >
       <strong>{{formattedPrice}},-</strong>
     </p>
@@ -36,12 +36,9 @@ export default {
     href: String
   },
   data: function() {
-    return { formattedPrice: formatPrice(this.price) };
-  },
-  calculated: {
-    formattedPrice: function() {
-      formatPrice(this.price)
-    }
+    return {
+      formattedPrice: formatPrice(this.price)
+    };
   }
 };
 </script>

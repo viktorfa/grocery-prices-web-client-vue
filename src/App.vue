@@ -71,7 +71,7 @@ export default Vue.component("app", {
     }
   },
   created: async function() {
-    handleQueryChange(this.queryInput)
+    handleQueryChange(this.queryInput);
     this.debouncedQuery = _.debounce(this.queryProducts, 500);
     const [objectOption, indexOption] = await Promise.all([
       getObjects(),
@@ -94,6 +94,7 @@ export default Vue.component("app", {
           : `${query}~1 *${query}* *${query.substring(0, query.length - 1)}*`;
         this.lunrResults = lunrSearch(lunrQuery, this.index).map(result => ({
           ...this.objects[result.ref],
+          id: result.ref,
           score: result.score
         }));
       } else {
