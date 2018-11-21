@@ -31,6 +31,7 @@ import { getIndex, getObjects } from "./api";
 import SearchResults from "./components/SearchResults.vue";
 
 const sunrSearch = (query, index) => index.search(query);
+import { parseQueryStringFromUrl } from "./lib";
 
 export default Vue.component("app", {
   components: {
@@ -38,7 +39,7 @@ export default Vue.component("app", {
   },
   data: function() {
     return {
-      queryInput: "grandis",
+      queryInput: parseQueryStringFromUrl() || "grandis",
       filteredOffers: [],
       loading: true,
       sunrResults: [],
@@ -51,6 +52,8 @@ export default Vue.component("app", {
       if (newValue && newValue.length > 0 && newValue !== oldValue) {
         this.loading = true;
         this.debouncedQuery(newValue, this.products);
+      } else if (!newValue || (newValue && newValue.length === 0)) {
+        window.history.pushState({}, null, "/");
       }
     }
   },
@@ -70,6 +73,7 @@ export default Vue.component("app", {
   },
   methods: {
     queryProducts: async function(query) {
+      window.history.pushState({}, null, `/sok/${query}`);
       if (this.index && this.index.search) {
         const lunrQuery = query.startsWith("+")
           ? query
