@@ -61,7 +61,7 @@ export default Vue.component("app", {
   },
   watch: {
     queryInput: function(newValue, oldValue) {
-      if (newValue && newValue.length > 0 && newValue !== oldValue) {
+      if (newValue && newValue.length > 1 && newValue !== oldValue) {
         this.loading = true;
         handleQueryChange(newValue);
         this.debouncedQuery(newValue, this.products);
