@@ -8,7 +8,7 @@
     />
     <p
       v-if="loading === true"
-    >Loading ...</p>
+    >Henter priser ...</p>
     <SearchResults
       v-if="lunrResults.length > 0"
       v-bind:results="lunrResults"
@@ -34,6 +34,17 @@ import { parseQueryStringFromUrl } from "./lib";
 
 const lunrSearch = (query, index) => index.search(query);
 
+const intitialTitleText = document.querySelector("title").text;
+const handleQueryChange = query => {
+  if (query && query.length > 0) {
+    window.history.pushState({}, null, `/sok/${query}`);
+    document.querySelector("title").text = `Priser på "${query}"`;
+  } else {
+    window.history.pushState({}, null, "/");
+    document.querySelector("title").text = intitialTitleText;
+  }
+};
+
 export default Vue.component("app", {
   components: {
     SearchResults
@@ -52,13 +63,15 @@ export default Vue.component("app", {
     queryInput: function(newValue, oldValue) {
       if (newValue && newValue.length > 0 && newValue !== oldValue) {
         this.loading = true;
+        handleQueryChange(newValue);
         this.debouncedQuery(newValue, this.products);
       } else if (!newValue || (newValue && newValue.length === 0)) {
-        window.history.pushState({}, null, "/");
+        handleQueryChange("");
       }
     }
   },
   created: async function() {
+    handleQueryChange(this.queryInput)
     this.debouncedQuery = _.debounce(this.queryProducts, 500);
     const [objectOption, indexOption] = await Promise.all([
       getObjects(),
@@ -74,7 +87,7 @@ export default Vue.component("app", {
   },
   methods: {
     queryProducts: async function(query) {
-      window.history.pushState({}, null, `/sok/${query}`);
+      handleQueryChange(query);
       if (this.index && this.index.search) {
         const lunrQuery = query.startsWith("+")
           ? query
