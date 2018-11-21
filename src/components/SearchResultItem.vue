@@ -12,7 +12,7 @@
     <p
       v-if="price"
     >
-      <strong>{{price}},-</strong>
+      <strong>{{formattedPrice}},-</strong>
     </p>
     <img
       class="result-list-item-image"
@@ -25,6 +25,7 @@
 
 
 <script>
+import { formatPrice } from "../lib";
 export default {
   name: "SearchResultItem",
   props: {
@@ -33,6 +34,14 @@ export default {
     subtitle: String,
     image_url: String,
     href: String
+  },
+  data: function() {
+    return { formattedPrice: formatPrice(this.price) };
+  },
+  calculated: {
+    formattedPrice: function() {
+      formatPrice(this.price)
+    }
   }
 };
 </script>
@@ -43,11 +52,17 @@ export default {
     width: 100%;
   }
 }
+@media only screen and (min-width: 481px) {
+  .result-list-item {
+    width: 200px;
+  }
+}
 .result-list-item {
-  min-width: 200px;
-  border: 0px rgba(200, 200, 200, 0.8) solid;
-  border-bottom-width: 1px;
-  border-left-width: 1px;
+  border-width: 0;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.6);
+  border-bottom-width: 2px;
+  margin: 0.3rem;
 }
 .result-list-item-image {
   object-fit: contain;

@@ -23,7 +23,7 @@
   <div
     v-if="kolonialProducts.length > 0"
   >
-  <h1>{{kolonialProducts.length}} varer fra kolonial.no</h1>
+  <h1>{{kolonialProducts.length}} {{`${kolonialProducts.length > 1 ? 'varer' : 'vare'}`}} fra kolonial.no</h1>
   <div
     class="result-list"
   >
@@ -41,7 +41,7 @@
   <div
     v-if="menyProducts.length > 0"
   >
-  <h1>{{menyProducts.length}} varer fra meny.no</h1>
+  <h1>{{menyProducts.length}} {{`${menyProducts.length > 1 ? 'varer' : 'vare'}`}} fra meny.no</h1>
   <div
     class="result-list"
   >
@@ -59,7 +59,7 @@
   <div
     v-if="europrisProducts.length > 0"
   >
-  <h1>{{europrisProducts.length}} varer fra europris.no</h1>
+  <h1>{{europrisProducts.length}} {{`${europrisProducts.length > 1 ? 'varer' : 'vare'}`}} fra europris.no</h1>
   <div
     class="result-list"
   >
@@ -123,5 +123,6 @@ export default {
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-evenly;
+
 }
 </style>
