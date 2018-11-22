@@ -1,0 +1,612 @@
+{
+  "f2357IDv": {
+    "branding": {
+      "website": "http:\/\/rema.no",
+      "description": "Velkommen til REMA 1000!",
+      "name": "REMA 1000",
+      "color": "064B91",
+      "logo": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/logo\/default\/00ijculqckz9y3f4.png",
+      "pageflip": {
+        "logo": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/logo\/pageflip\/00ijculqiiyh0doj.png",
+        "color": "064B91"
+      }
+    },
+    "catalog_id": "9128Skp",
+    "catalog_page": 6,
+    "catalog_url": "https:\/\/api.etilbudsavis.dk\/v2\/catalogs\/9128Skp",
+    "category_ids": [],
+    "dealer_id": "faa0Ym",
+    "dealer_url": "https:\/\/api.etilbudsavis.dk\/v2\/dealers\/faa0Ym",
+    "description": "REMA 1000, 250 g, 47,60 pr. kg",
+    "ern": "ern:offer:f2357IDv",
+    "heading": "Eggnudler",
+    "images": {
+      "zoom": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/offer\/crop\/zoom\/f2357IDv.jpg?m=pifgvs",
+      "view": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/offer\/crop\/view\/f2357IDv.jpg?m=pifgvs",
+      "thumb": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/offer\/crop\/thumb\/f2357IDv.png?m=pifgvs"
+    },
+    "kolonial_id": "26880",
+    "links": {
+      "webshop": null
+    },
+    "price": 11.9,
+    "pricing": {
+      "pre_price": null,
+      "currency": "NOK",
+      "price": 11.9
+    },
+    "quantity": {
+      "size": {
+        "from": 250,
+        "to": 250
+      },
+      "unit": {
+        "symbol": "g",
+        "si": {
+          "symbol": "kg",
+          "factor": 0.001
+        }
+      },
+      "pieces": {
+        "from": 1,
+        "to": 1
+      }
+    },
+    "quantity_info": [250, "g"],
+    "rebate": 0.775047259,
+    "run_from": "2018-11-18T23:00:00+0000",
+    "run_till": "2018-11-25T22:59:59+0000",
+    "shopgun_id": "f2357IDv",
+    "store_id": null,
+    "store_url": null
+  },
+  "d1cer1Wl": {
+    "branding": {
+      "website": "http:\/\/europris.no",
+      "description": "I dag er vi en landets mest kjente kjeder. Over 90% av alle nordmenn sier de kjenner til Europris. Vi er ogs\u00e5 en hj\u00f8rnesteinsbedrift i Fredrikstad, hvor v\u00e5rt hovedkontor og v\u00e5rt store sentrallager er plassert.",
+      "name": "Europris",
+      "color": "339933",
+      "logo": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/logo\/default\/00icyhkb014zpw1q.png",
+      "pageflip": {
+        "logo": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/logo\/pageflip\/00imx87tykhh3h25.png",
+        "color": "339933"
+      }
+    },
+    "catalog_id": "d90b1Tp",
+    "catalog_page": 3,
+    "catalog_url": "https:\/\/api.etilbudsavis.dk\/v2\/catalogs\/d90b1Tp",
+    "category_ids": [],
+    "dealer_id": "e857Mm",
+    "dealer_url": "https:\/\/api.etilbudsavis.dk\/v2\/dealers\/e857Mm",
+    "description": "185 g Crunchy Old El Paso. 185 g. Partivare! KUN",
+    "ern": "ern:offer:d1cer1Wl",
+    "heading": "Nachips",
+    "images": {
+      "zoom": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/offer\/crop\/zoom\/d1cer1Wl.jpg?m=phvisc",
+      "view": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/offer\/crop\/view\/d1cer1Wl.jpg?m=phvisc",
+      "thumb": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/offer\/crop\/thumb\/d1cer1Wl.png?m=phvisc"
+    },
+    "kolonial_id": "7366",
+    "links": {
+      "webshop": null
+    },
+    "price": 10.0,
+    "pricing": {
+      "pre_price": null,
+      "currency": "NOK",
+      "price": 10
+    },
+    "quantity": {
+      "size": {
+        "from": 185,
+        "to": 185
+      },
+      "unit": {
+        "symbol": "g",
+        "si": {
+          "symbol": "kg",
+          "factor": 0.001
+        }
+      },
+      "pieces": {
+        "from": 1,
+        "to": 1
+      }
+    },
+    "quantity_info": [185, "g"],
+    "rebate": 0.4535519126,
+    "run_from": "2018-11-21T23:00:00+0000",
+    "run_till": "2018-11-24T22:59:59+0000",
+    "shopgun_id": "d1cer1Wl",
+    "store_id": null,
+    "store_url": null
+  },
+  "b182sfCv": {
+    "branding": {
+      "website": "http:\/\/joker.no",
+      "description": "Vi er lokalbutikken som dekker dine behov for daglige forbruksvarer og lokalt etterspurte tjenester.",
+      "name": "Joker",
+      "color": "008c58",
+      "logo": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/logo\/default\/00ijczzrytq23iqk.png",
+      "pageflip": {
+        "logo": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/logo\/pageflip\/00ijczzs61gm4ymy.png",
+        "color": "008c58"
+      }
+    },
+    "catalog_id": "d429b6p",
+    "catalog_page": 2,
+    "catalog_url": "https:\/\/api.etilbudsavis.dk\/v2\/catalogs\/d429b6p",
+    "category_ids": [],
+    "dealer_id": "b3e8Fm",
+    "dealer_url": "https:\/\/api.etilbudsavis.dk\/v2\/dealers\/b3e8Fm",
+    "description": "med vossakorv, k\u00e5lrotstappe og poteter, 665 g. Enh.pris 105,11 pr. kg",
+    "ern": "ern:offer:b182sfCv",
+    "heading": "Pinnekj\u00f8tt",
+    "images": {
+      "zoom": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/offer\/crop\/zoom\/b182sfCv.jpg?m=pig22i",
+      "view": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/offer\/crop\/view\/b182sfCv.jpg?m=pig22i",
+      "thumb": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/offer\/crop\/thumb\/b182sfCv.png?m=pig22i"
+    },
+    "kolonial_id": "16927",
+    "links": {
+      "webshop": null
+    },
+    "price": 69.9,
+    "pricing": {
+      "pre_price": null,
+      "currency": "NOK",
+      "price": 69.9
+    },
+    "quantity": {
+      "size": {
+        "from": 665,
+        "to": 665
+      },
+      "unit": {
+        "symbol": "g",
+        "si": {
+          "symbol": "kg",
+          "factor": 0.001
+        }
+      },
+      "pieces": {
+        "from": 1,
+        "to": 1
+      }
+    },
+    "quantity_info": [665, "g"],
+    "rebate": 0.4496062992,
+    "run_from": "2018-11-19T23:00:00+0000",
+    "run_till": "2018-11-24T22:59:59+0000",
+    "shopgun_id": "b182sfCv",
+    "store_id": null,
+    "store_url": null
+  },
+  "53a2NSzv": {
+    "branding": {
+      "website": "http:\/\/kiwi.no",
+      "description": "Velkommen til KIWI! Vi har i dag over 600 butikker over hele Norges land og over 90 butikker har s\u00f8ndags\u00e5pent.",
+      "name": "KIWI",
+      "color": "51B848",
+      "logo": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/logo\/default\/00ivntcvb7x00zx0.png",
+      "pageflip": {
+        "logo": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/logo\/pageflip\/00ivntcvemrp6zeq.png",
+        "color": "51B848"
+      }
+    },
+    "catalog_id": "0feasjp",
+    "catalog_page": 6,
+    "catalog_url": "https:\/\/api.etilbudsavis.dk\/v2\/catalogs\/0feasjp",
+    "category_ids": [],
+    "dealer_id": "257bxm",
+    "dealer_url": "https:\/\/api.etilbudsavis.dk\/v2\/dealers\/257bxm",
+    "description": "350 g First Price, pr, kg 71,14",
+    "ern": "ern:offer:53a2NSzv",
+    "heading": "Vossakorv",
+    "images": {
+      "zoom": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/offer\/crop\/zoom\/53a2NSzv.jpg?m=pij9t8",
+      "view": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/offer\/crop\/view\/53a2NSzv.jpg?m=pij9t8",
+      "thumb": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/offer\/crop\/thumb\/53a2NSzv.png?m=pij9t8"
+    },
+    "kolonial_id": "9581",
+    "links": {
+      "webshop": null
+    },
+    "price": 24.9,
+    "pricing": {
+      "pre_price": null,
+      "currency": "NOK",
+      "price": 24.9
+    },
+    "quantity": {
+      "size": {
+        "from": 350,
+        "to": 350
+      },
+      "unit": {
+        "symbol": "g",
+        "si": {
+          "symbol": "kg",
+          "factor": 0.001
+        }
+      },
+      "pieces": {
+        "from": 1,
+        "to": 1
+      }
+    },
+    "quantity_info": [350, "g"],
+    "rebate": 0.4441964286,
+    "run_from": "2018-11-18T23:00:00+0000",
+    "run_till": "2018-11-25T22:59:59+0000",
+    "shopgun_id": "53a2NSzv",
+    "store_id": null,
+    "store_url": null
+  },
+  "0b6ab5Av": {
+    "branding": {
+      "website": "http:\/\/europris.no",
+      "description": "I dag er vi en landets mest kjente kjeder. Over 90% av alle nordmenn sier de kjenner til Europris. Vi er ogs\u00e5 en hj\u00f8rnesteinsbedrift i Fredrikstad, hvor v\u00e5rt hovedkontor og v\u00e5rt store sentrallager er plassert.",
+      "name": "Europris",
+      "color": "339933",
+      "logo": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/logo\/default\/00icyhkb014zpw1q.png",
+      "pageflip": {
+        "logo": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/logo\/pageflip\/00imx87tykhh3h25.png",
+        "color": "339933"
+      }
+    },
+    "catalog_id": "37bdMBp",
+    "catalog_page": 2,
+    "catalog_url": "https:\/\/api.etilbudsavis.dk\/v2\/catalogs\/37bdMBp",
+    "category_ids": [],
+    "dealer_id": "e857Mm",
+    "dealer_url": "https:\/\/api.etilbudsavis.dk\/v2\/dealers\/e857Mm",
+    "description": "100 g. 150085",
+    "ern": "ern:offer:0b6ab5Av",
+    "heading": "Melkesjokolade",
+    "images": {
+      "zoom": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/offer\/crop\/zoom\/0b6ab5Av.jpg?m=pianxu",
+      "view": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/offer\/crop\/view\/0b6ab5Av.jpg?m=pianxu",
+      "thumb": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/offer\/crop\/thumb\/0b6ab5Av.png?m=pianxu"
+    },
+    "kolonial_id": "15996",
+    "links": {
+      "webshop": null
+    },
+    "price": 29.9,
+    "pricing": {
+      "pre_price": null,
+      "currency": "NOK",
+      "price": 29.9
+    },
+    "quantity": {
+      "size": {
+        "from": 100,
+        "to": 100
+      },
+      "unit": {
+        "symbol": "g",
+        "si": {
+          "symbol": "kg",
+          "factor": 0.001
+        }
+      },
+      "pieces": {
+        "from": 1,
+        "to": 1
+      }
+    },
+    "quantity_info": [100, "g"],
+    "rebate": 0.2964705882,
+    "run_from": "2018-11-18T23:00:00+0000",
+    "run_till": "2018-11-24T22:59:59+0000",
+    "shopgun_id": "0b6ab5Av",
+    "store_id": null,
+    "store_url": null
+  },
+  "9e280fCv": {
+    "branding": {
+      "website": "http:\/\/joker.no",
+      "description": "Vi er lokalbutikken som dekker dine behov for daglige forbruksvarer og lokalt etterspurte tjenester.",
+      "name": "Joker",
+      "color": "008c58",
+      "logo": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/logo\/default\/00ijczzrytq23iqk.png",
+      "pageflip": {
+        "logo": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/logo\/pageflip\/00ijczzs61gm4ymy.png",
+        "color": "008c58"
+      }
+    },
+    "catalog_id": "d429b6p",
+    "catalog_page": 2,
+    "catalog_url": "https:\/\/api.etilbudsavis.dk\/v2\/catalogs\/d429b6p",
+    "category_ids": [],
+    "dealer_id": "b3e8Fm",
+    "dealer_url": "https:\/\/api.etilbudsavis.dk\/v2\/dealers\/b3e8Fm",
+    "description": "Delikat, 200 g. Enh.pris 89,50 pr. kg",
+    "ern": "ern:offer:9e280fCv",
+    "heading": "Julesildesalat",
+    "images": {
+      "zoom": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/offer\/crop\/zoom\/9e280fCv.jpg?m=pig22d",
+      "view": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/offer\/crop\/view\/9e280fCv.jpg?m=pig22d",
+      "thumb": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/offer\/crop\/thumb\/9e280fCv.png?m=pig22d"
+    },
+    "kolonial_id": "16672",
+    "links": {
+      "webshop": null
+    },
+    "price": 17.9,
+    "pricing": {
+      "pre_price": null,
+      "currency": "NOK",
+      "price": 17.9
+    },
+    "quantity": {
+      "size": {
+        "from": 200,
+        "to": 200
+      },
+      "unit": {
+        "symbol": "g",
+        "si": {
+          "symbol": "kg",
+          "factor": 0.001
+        }
+      },
+      "pieces": {
+        "from": 1,
+        "to": 1
+      }
+    },
+    "quantity_info": [200, "g"],
+    "rebate": 0.281124498,
+    "run_from": "2018-11-19T23:00:00+0000",
+    "run_till": "2018-11-24T22:59:59+0000",
+    "shopgun_id": "9e280fCv",
+    "store_id": null,
+    "store_url": null
+  },
+  "93dcQjDv": {
+    "branding": {
+      "website": "http:\/\/rema.no",
+      "description": "Velkommen til REMA 1000!",
+      "name": "REMA 1000",
+      "color": "064B91",
+      "logo": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/logo\/default\/00ijculqckz9y3f4.png",
+      "pageflip": {
+        "logo": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/logo\/pageflip\/00ijculqiiyh0doj.png",
+        "color": "064B91"
+      }
+    },
+    "catalog_id": "2fdbnkp",
+    "catalog_page": 3,
+    "catalog_url": "https:\/\/api.etilbudsavis.dk\/v2\/catalogs\/2fdbnkp",
+    "category_ids": [],
+    "dealer_id": "faa0Ym",
+    "dealer_url": "https:\/\/api.etilbudsavis.dk\/v2\/dealers\/faa0Ym",
+    "description": ". BaRe, 125 g, 120,00 pr. kg",
+    "ern": "ern:offer:93dcQjDv",
+    "heading": "Bl\u00e5b\u00e6r",
+    "images": {
+      "zoom": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/offer\/crop\/zoom\/93dcQjDv.jpg?m=pifgax",
+      "view": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/offer\/crop\/view\/93dcQjDv.jpg?m=pifgax",
+      "thumb": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/offer\/crop\/thumb\/93dcQjDv.png?m=pifgax"
+    },
+    "kolonial_id": "9269",
+    "links": {
+      "webshop": null
+    },
+    "price": 15.0,
+    "pricing": {
+      "pre_price": null,
+      "currency": "NOK",
+      "price": 15
+    },
+    "quantity": {
+      "size": {
+        "from": 125,
+        "to": 125
+      },
+      "unit": {
+        "symbol": "g",
+        "si": {
+          "symbol": "kg",
+          "factor": 0.001
+        }
+      },
+      "pieces": {
+        "from": 1,
+        "to": 1
+      }
+    },
+    "quantity_info": [125, "g"],
+    "rebate": 0.2462311558,
+    "run_from": "2018-11-18T23:00:00+0000",
+    "run_till": "2018-11-25T22:59:59+0000",
+    "shopgun_id": "93dcQjDv",
+    "store_id": null,
+    "store_url": null
+  },
+  "aecbav0v": {
+    "branding": {
+      "website": "http:\/\/rema.no",
+      "description": "Velkommen til REMA 1000!",
+      "name": "REMA 1000",
+      "color": "064B91",
+      "logo": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/logo\/default\/00ijculqckz9y3f4.png",
+      "pageflip": {
+        "logo": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/logo\/pageflip\/00ijculqiiyh0doj.png",
+        "color": "064B91"
+      }
+    },
+    "catalog_id": "dffctPp",
+    "catalog_page": 3,
+    "catalog_url": "https:\/\/api.etilbudsavis.dk\/v2\/catalogs\/dffctPp",
+    "category_ids": [],
+    "dealer_id": "faa0Ym",
+    "dealer_url": "https:\/\/api.etilbudsavis.dk\/v2\/dealers\/faa0Ym",
+    "description": "REMA 1000, 250 g, 62,00 pr. kg",
+    "ern": "ern:offer:aecbav0v",
+    "heading": "Ostepop",
+    "images": {
+      "zoom": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/offer\/crop\/zoom\/aecbav0v.jpg?m=pifvw5",
+      "view": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/offer\/crop\/view\/aecbav0v.jpg?m=pifvw5",
+      "thumb": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/offer\/crop\/thumb\/aecbav0v.png?m=pifvw5"
+    },
+    "kolonial_id": "16362",
+    "links": {
+      "webshop": null
+    },
+    "price": 15.5,
+    "pricing": {
+      "pre_price": null,
+      "currency": "NOK",
+      "price": 15.5
+    },
+    "quantity": {
+      "size": {
+        "from": 250,
+        "to": 250
+      },
+      "unit": {
+        "symbol": "g",
+        "si": {
+          "symbol": "kg",
+          "factor": 0.001
+        }
+      },
+      "pieces": {
+        "from": 1,
+        "to": 1
+      }
+    },
+    "quantity_info": [250, "g"],
+    "rebate": 0.2401960784,
+    "run_from": "2018-11-18T23:00:00+0000",
+    "run_till": "2018-12-02T22:59:59+0000",
+    "shopgun_id": "aecbav0v",
+    "store_id": null,
+    "store_url": null
+  },
+  "81f0DfCv": {
+    "branding": {
+      "website": "http:\/\/joker.no",
+      "description": "Vi er lokalbutikken som dekker dine behov for daglige forbruksvarer og lokalt etterspurte tjenester.",
+      "name": "Joker",
+      "color": "008c58",
+      "logo": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/logo\/default\/00ijczzrytq23iqk.png",
+      "pageflip": {
+        "logo": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/logo\/pageflip\/00ijczzs61gm4ymy.png",
+        "color": "008c58"
+      }
+    },
+    "catalog_id": "d429b6p",
+    "catalog_page": 2,
+    "catalog_url": "https:\/\/api.etilbudsavis.dk\/v2\/catalogs\/d429b6p",
+    "category_ids": [],
+    "dealer_id": "b3e8Fm",
+    "dealer_url": "https:\/\/api.etilbudsavis.dk\/v2\/dealers\/b3e8Fm",
+    "description": "TINE, 380 g. Enh.pris 105,00 pr. kg",
+    "ern": "ern:offer:81f0DfCv",
+    "heading": "Gr\u00e4ddost",
+    "images": {
+      "zoom": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/offer\/crop\/zoom\/81f0DfCv.jpg?m=pig22c",
+      "view": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/offer\/crop\/view\/81f0DfCv.jpg?m=pig22c",
+      "thumb": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/offer\/crop\/thumb\/81f0DfCv.png?m=pig22c"
+    },
+    "kolonial_id": "1212",
+    "links": {
+      "webshop": null
+    },
+    "price": 39.9,
+    "pricing": {
+      "pre_price": null,
+      "currency": "NOK",
+      "price": 39.9
+    },
+    "quantity": {
+      "size": {
+        "from": 380,
+        "to": 380
+      },
+      "unit": {
+        "symbol": "g",
+        "si": {
+          "symbol": "kg",
+          "factor": 0.001
+        }
+      },
+      "pieces": {
+        "from": 1,
+        "to": 1
+      }
+    },
+    "quantity_info": [380, "g"],
+    "rebate": 0.2004008016,
+    "run_from": "2018-11-19T23:00:00+0000",
+    "run_till": "2018-11-24T22:59:59+0000",
+    "shopgun_id": "81f0DfCv",
+    "store_id": null,
+    "store_url": null
+  },
+  "1418afCv": {
+    "branding": {
+      "website": "http:\/\/joker.no",
+      "description": "Vi er lokalbutikken som dekker dine behov for daglige forbruksvarer og lokalt etterspurte tjenester.",
+      "name": "Joker",
+      "color": "008c58",
+      "logo": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/logo\/default\/00ijczzrytq23iqk.png",
+      "pageflip": {
+        "logo": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/logo\/pageflip\/00ijczzs61gm4ymy.png",
+        "color": "008c58"
+      }
+    },
+    "catalog_id": "d429b6p",
+    "catalog_page": 3,
+    "catalog_url": "https:\/\/api.etilbudsavis.dk\/v2\/catalogs\/d429b6p",
+    "category_ids": [],
+    "dealer_id": "b3e8Fm",
+    "dealer_url": "https:\/\/api.etilbudsavis.dk\/v2\/dealers\/b3e8Fm",
+    "description": "Coca-Cola, 0,5 l. Enh.pris 39,80 pr. l",
+    "ern": "ern:offer:1418afCv",
+    "heading": "Monster Energy",
+    "images": {
+      "zoom": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/offer\/crop\/zoom\/1418afCv.jpg?m=pig22o",
+      "view": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/offer\/crop\/view\/1418afCv.jpg?m=pig22o",
+      "thumb": "https:\/\/d3ikkoqs9ddhdl.cloudfront.net\/img\/offer\/crop\/thumb\/1418afCv.png?m=pig22o"
+    },
+    "kolonial_id": "23300",
+    "links": {
+      "webshop": null
+    },
+    "price": 19.9,
+    "pricing": {
+      "pre_price": null,
+      "currency": "NOK",
+      "price": 19.9
+    },
+    "quantity": {
+      "size": {
+        "from": 0.5,
+        "to": 0.5
+      },
+      "unit": {
+        "symbol": "l",
+        "si": {
+          "symbol": "l",
+          "factor": 1
+        }
+      },
+      "pieces": {
+        "from": 1,
+        "to": 1
+      }
+    },
+    "quantity_info": [0.5, "l"],
+    "rebate": 0.1673640167,
+    "run_from": "2018-11-19T23:00:00+0000",
+    "run_till": "2018-11-24T22:59:59+0000",
+    "shopgun_id": "1418afCv",
+    "store_id": null,
+    "store_url": null
+  }
+}
