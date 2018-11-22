@@ -82,13 +82,10 @@
 import _ from "lodash";
 import SearchResultItem from "./SearchResultItem";
 
-const isOffer = result => result.pricing !== undefined;
-const isKolonial = result =>
-  result.product_url && result.product_url.startsWith("https://kolonial.no");
-const isMeny = result =>
-  result.product_url && result.product_url.startsWith("https://meny.no");
-const isEuropris = result =>
-  result.link && result.link.startsWith("https://www.europris.no");
+const isOffer = result => result.source === "shopgun";
+const isKolonial = result => result.source === "kolonial";
+const isMeny = result => result.source === "meny";
+const isEuropris = result => result.source === "europris";
 const sortResults = results => _.sortBy(results, result => -result.score);
 const limitResults = (results, limit = 20) => _.take(results, limit);
 
@@ -105,10 +102,22 @@ export default {
       return limitResults(sortResults(this.results.filter(isOffer))) || [];
     },
     kolonialProducts: function() {
-      return limitResults(sortResults(this.results.filter(isKolonial))) || [];
+      console.log("kolonial computed starting");
+      const startTime = new Date().getTime();
+      const result =
+        limitResults(sortResults(this.results.filter(isKolonial))) || [];
+      console.log("kolonial computed finished");
+      console.log(`time elapsed: ${new Date().getTime() - startTime}`);
+      return result;
     },
     menyProducts: function() {
-      return limitResults(sortResults(this.results.filter(isMeny))) || [];
+      console.log("meny computed starting");
+      const startTime = new Date().getTime();
+      const result =
+        limitResults(sortResults(this.results.filter(isMeny))) || [];
+      console.log("meny computed finished");
+      console.log(`time elapsed: ${new Date().getTime() - startTime}`);
+      return result;
     },
     europrisProducts: function() {
       return limitResults(sortResults(this.results.filter(isEuropris))) || [];
@@ -123,6 +132,5 @@ export default {
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-evenly;
-
 }
 </style>
