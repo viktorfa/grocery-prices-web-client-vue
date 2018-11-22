@@ -46,7 +46,7 @@ export default {
 <style>
 @media only screen and (max-width: 480px) {
   .result-list-item {
-    width: 100%;
+    width: calc(50% - 0.6rem);
   }
 }
 @media only screen and (min-width: 481px) {
