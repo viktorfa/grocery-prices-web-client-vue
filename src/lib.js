@@ -5,6 +5,16 @@ export const parseQueryStringFromUrl = () =>
       window.location.pathname.lastIndexOf("sok/") + 4
     )
   );
+const intitialTitleText = document.querySelector("title").text;
+export const setQueryStringInPage = query => {
+  if (query && query.length > 0) {
+    window.history.pushState({}, null, `/sok/${query}`);
+    document.querySelector("title").text = `Priser på "${query}"`;
+  } else {
+    window.history.pushState({}, null, "/");
+    document.querySelector("title").text = intitialTitleText;
+  }
+};
 
 
 export const getStandardProduct = product => {
