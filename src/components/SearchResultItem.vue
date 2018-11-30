@@ -48,6 +48,9 @@ export default {
   .result-list-item {
     width: calc(50% - 0.6rem);
   }
+  .result-list-item-image {
+    width: calc(50vw - 0.6rem);
+  }
 }
 @media only screen and (min-width: 481px) {
   .result-list-item {
