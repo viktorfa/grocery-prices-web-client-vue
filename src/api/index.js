@@ -39,10 +39,10 @@ export const getObjects = async () => {
   }
 }
 
-export const getPromotedOffers = async () => {
+export const getPromotedOffers = async (offerLimit=30) => {
   const isoNow = new Date().toISOString()
   const strapiCollectionName = 'selectedoffers'
-  const strapiUrlParameterString = `run_till_gt=${isoNow}&run_from_lt=${isoNow}`
+  const strapiUrlParameterString = `run_till_gt=${isoNow}&run_from_lt=${isoNow}&_limit=${offerLimit}&_sort=updatedAt:DESC`
   const response = await fetch(`${STRAPI_URL}/${strapiCollectionName}?${strapiUrlParameterString}`)
   if (response.ok) {
     const jsonBody = await response.json()
