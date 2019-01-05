@@ -1,3 +1,7 @@
+import {
+  getShopgunOfferCatalogUrl,
+} from './helpers'
+
 export const formatPrice = price => price.toFixed(2).replace(".", ",")
 export const parseQueryStringFromUrl = () =>
   decodeURIComponent(
@@ -33,7 +37,7 @@ export const getStandardProduct = product => {
         title: product.heading,
         price: product.pricing.price,
         subtitle: product.branding.name,
-        href: product.images.zoom,
+        href: getShopgunOfferCatalogUrl(product),
         image_url: product.images.view,
         id: product.id,
       }
@@ -52,6 +56,15 @@ export const getStandardProduct = product => {
         price: product.price,
         subtitle: product.description,
         href: product.link,
+        image_url: product.image_url,
+        id: product.id,
+      }
+    case 'strapi':
+      return {
+        title: product.heading,
+        price: product.price,
+        subtitle: product.description,
+        href: getShopgunOfferCatalogUrl(product),
         image_url: product.image_url,
         id: product.id,
       }
