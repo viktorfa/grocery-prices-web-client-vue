@@ -63,7 +63,7 @@ export const getStandardProduct = product => {
       return {
         title: product.heading,
         price: product.price,
-        subtitle: product.description,
+        subtitle: product.dealer_name,
         href: getShopgunOfferCatalogUrl(product),
         image_url: product.image_url,
         id: product.id,
