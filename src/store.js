@@ -7,6 +7,7 @@ import bestOffers from './assets/best-offers.json'
 import {
   getIndex,
   getObjects,
+  getPromotedOffers,
 } from './api'
 import {
   bestOfferToOffer,
@@ -24,7 +25,7 @@ import {
 Vue.use(Vuex)
 
 const initialState = {
-  promotedProducts: Object.entries(bestOffers).map(bestOfferToOffer),
+  promotedProducts: [],
   isSearching: false,
   isLoadingProducts: true,
   queryString: '',
@@ -39,6 +40,7 @@ const productMutations = {
   setIsLoading: "setIsLoading",
   setShowPromotedProducts: "setShowPromotedProducts",
   loadSearchResults: "loadSearchResults",
+  loadPromotedProducts: "loadPromotedProducts",
   setErrorMessage: "setErrorMessage",
 }
 
@@ -58,6 +60,9 @@ const mutations = {
   [productMutations.loadSearchResults](state, searchResults) {
     state.searchResults = searchResults;
   },
+  [productMutations.loadPromotedProducts](state, promotedProducts) {
+    state.promotedProducts = promotedProducts;
+  },
   [productMutations.setErrorMessage](state, errorMessage) {
     state.errorMessage = errorMessage;
   },
@@ -67,6 +72,7 @@ const productActions = {
   FETCH_INDEX_AND_PRODUCTS: 'FETCH_INDEX_AND_PRODUCTS',
   EXECUTE_SEARCH_QUERY: 'EXECUTE_SEARCH_QUERY',
   INITIALIZE_PRODUCTS: 'INITIALIZE_PRODUCTS',
+  LOAD_PROMOTED_PRODUCTS: 'LOAD_PROMOTED_PRODUCTS',
 }
 
 const actions = {
@@ -87,6 +93,22 @@ const actions = {
       })
     }
     console.log('INITIALIZE_PRODUCTS finish')
+  },
+  async [productActions.LOAD_PROMOTED_PRODUCTS]({
+    commit,
+  }) {
+    console.log('LOAD_PROMOTED_PRODUCTS')
+    const {
+      ok,
+      data,
+      error,
+    } = await getPromotedOffers()
+    if (ok) {
+      commit(productMutations.loadPromotedProducts, data);
+    } else {
+      commit(productMutations.setErrorMessage(error));
+    }
+    console.log('LOAD_PROMOTED_PRODUCTS finish')
   },
   async [productActions.FETCH_INDEX_AND_PRODUCTS]({
     commit
