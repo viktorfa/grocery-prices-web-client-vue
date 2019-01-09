@@ -3,16 +3,12 @@ import Vuex, {
   Store,
 } from 'vuex'
 
-import bestOffers from './assets/best-offers.json'
 import {
   getIndex,
   getObjects,
   getPromotedOffers,
   searchCustomOffers,
 } from './api'
-import {
-  bestOfferToOffer,
-} from './helpers'
 import {
   lunrSearch,
   loadIndex,
