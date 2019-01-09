@@ -1,8 +1,15 @@
+import _ from 'lodash'
 import {
   getShopgunOfferCatalogUrl,
 } from './helpers'
 
-export const formatPrice = price => price.toFixed(2).replace(".", ",")
+export const formatPrice = price => {
+  if (_.isNumber(price)) {
+    return `${price.toFixed(2).replace(".", ",")},-`
+  } else {
+    return price
+  }
+}
 export const parseQueryStringFromUrl = () =>
   decodeURIComponent(
     window.location.pathname.substring(
@@ -65,6 +72,15 @@ export const getStandardProduct = product => {
         price: product.price,
         subtitle: product.dealer_name,
         href: getShopgunOfferCatalogUrl(product),
+        image_url: product.image_url,
+        id: product.id,
+      }
+    case 'custom':
+      return {
+        title: product.heading,
+        price: product.price || product.price_text || '',
+        subtitle: product.dealer_name,
+        href: '#',
         image_url: product.image_url,
         id: product.id,
       }

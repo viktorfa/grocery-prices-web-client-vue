@@ -12,7 +12,7 @@
     <p
       v-if="formattedPrice"
     >
-      <strong>{{formattedPrice}},-</strong>
+      <strong>{{formattedPrice}}</strong>
     </p>
     <img
       class="result-list-item-image"

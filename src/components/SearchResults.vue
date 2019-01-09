@@ -42,7 +42,7 @@ import _ from "lodash";
 import SearchResultItem from "./SearchResultItem";
 import SearchResultList from "./SearchResultList";
 
-const isOffer = result => result.source === "shopgun";
+const isOffer = result => result.source === "shopgun" || result.source === "custom";
 const isKolonial = result => result.source === "kolonial";
 const isMeny = result => result.source === "meny";
 const isEuropris = result => result.source === "europris";
