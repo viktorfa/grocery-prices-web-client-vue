@@ -8,6 +8,7 @@ import {
   getIndex,
   getObjects,
   getPromotedOffers,
+  searchCustomOffers,
 } from './api'
 import {
   bestOfferToOffer,
@@ -40,6 +41,7 @@ const productMutations = {
   setIsLoading: "setIsLoading",
   setShowPromotedProducts: "setShowPromotedProducts",
   loadSearchResults: "loadSearchResults",
+  clearSearchResults: "clearSearchResults",
   loadPromotedProducts: "loadPromotedProducts",
   setErrorMessage: "setErrorMessage",
 }
@@ -57,8 +59,11 @@ const mutations = {
   [productMutations.setShowPromotedProducts](state, showPromotedProducts) {
     state.showPromotedProducts = showPromotedProducts;
   },
+  [productMutations.clearSearchResults](state) {
+    state.searchResults = [];
+  },
   [productMutations.loadSearchResults](state, searchResults) {
-    state.searchResults = searchResults;
+    state.searchResults = [...state.searchResults, ...searchResults];
   },
   [productMutations.loadPromotedProducts](state, promotedProducts) {
     state.promotedProducts = promotedProducts;
@@ -140,22 +145,35 @@ const actions = {
     queryString
   }) {
     commit(productMutations.setIsSearching, true);
+    commit(productMutations.clearSearchResults);
     console.log('EXECUTE_SEARCH_QUERY')
     console.log(queryString)
-    const {
-      ok,
-      data,
-      error
-    } = await lunrSearch(queryString)
-    if (ok) {
-      commit(productMutations.setShowPromotedProducts, false);
-      commit(productMutations.loadSearchResults, data);
-      setQueryStringInPage(queryString)
-    } else {
-      commit(productMutations.setErrorMessage, error);
-    }
-    commit(productMutations.setIsSearching, false);
 
+    const lunrPromise = lunrSearch(queryString)
+    const strapiPromise = searchCustomOffers(queryString)
+
+    lunrPromise.then(({ok, data, error}) => {
+      if (ok) {
+        commit(productMutations.setShowPromotedProducts, false);
+        commit(productMutations.loadSearchResults, data);
+        setQueryStringInPage(queryString)
+      } else {
+        commit(productMutations.setErrorMessage, error);
+      }
+    })
+    strapiPromise.then(({ok, data, error}) => {
+      if (ok) {
+        commit(productMutations.setShowPromotedProducts, false);
+        commit(productMutations.loadSearchResults, data);
+        setQueryStringInPage(queryString)
+      } else {
+        commit(productMutations.setErrorMessage, error);
+      }
+    })
+
+    Promise.all([lunrPromise, strapiPromise]).then(() => {
+      commit(productMutations.setIsSearching, false);
+    })
   },
 }
 
