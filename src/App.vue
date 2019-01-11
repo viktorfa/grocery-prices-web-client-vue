@@ -1,21 +1,25 @@
 <template>
-  <div id="app">
-    <form v-on:submit="executeQuery">
-      <input class="search-input" v-model="queryInput" label="Søk" type="search" autofocus>
-    </form>
-    <p v-if="isSearching === true">
-      søker etter
-      <strong>{{queryInput}}</strong> ...
-    </p>
-    <SearchResults v-if="searchResults.length > 0" v-bind:results="searchResults"/>
-    <div v-if="showPromotedProducts">
-      <h1>Utvalgte tilbud</h1>
-      <SearchResultList v-bind:results="promotedProducts"/>
-    </div>
-    <h2
-      v-if="searchResults.length === 0 && queryInput && isSearching !== true"
-    >Ingen treff på "{{queryInput}}"</h2>
-  </div>
+  <v-app class='app'>
+    <v-content>
+      <div>
+        <v-form v-on:submit="executeQuery">
+          <v-text-field v-model="queryInput" label="Søk" type="search" autofocus outline clearable loading="isSearching"></v-text-field>
+        </v-form>
+        <p v-if="isSearching === true">
+          søker etter
+          <strong>{{queryInput}}</strong> ...
+        </p>
+        <SearchResults v-if="searchResults.length > 0" v-bind:results="searchResults"/>
+        <div v-if="showPromotedProducts" class="text-xs-center offer-search-results">
+          <h1 class="offer-search-results-header">Utvalgte tilbud</h1>
+          <SearchResultList v-bind:results="promotedProducts"/>
+        </div>
+        <h2
+          v-if="searchResults.length === 0 && queryInput && isSearching !== true"
+        >Ingen treff på "{{queryInput}}"</h2>
+      </div>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
@@ -49,9 +53,6 @@ export default Vue.component("app", {
     queryInput: function(newValue, oldValue) {
       if (newValue && newValue.length > 0 && newValue !== oldValue) {
         this.$store.commit("setQueryString", newValue);
-        //this.loading = true;
-        //handleQueryChange(newValue);
-        //this.debouncedQuery(newValue, this.products);
       } else if (!newValue || (newValue && newValue.length === 0)) {
         setQueryStringInPage("");
       }
@@ -61,6 +62,7 @@ export default Vue.component("app", {
     executeQuery: async function(event) {
       event.preventDefault();
       if (this.queryInput && this.queryInput.length > 0) {
+        event.target[0].blur()
         this.$store.dispatch("EXECUTE_SEARCH_QUERY", {
           queryString: this.queryInput
         });
@@ -70,20 +72,52 @@ export default Vue.component("app", {
 });
 </script>
 
+
 <style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-  max-width: 1024px;
-  margin: auto;
+:root {
+  --kolonial-color: #f19500;
+  --offer-color: rgb(189, 27, 189);
+  --meny-color: #ce0029;
+  --europris-color: #393;
+  --max-width: 1024px;
 }
-.search-input {
-  font-size: 1.4rem;
-  width: 100%;
-  max-width: 768px;
+.app {
+  margin: auto;
+  max-width: var(--max-width);
+}
+.result-list {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.offer-search-results-header {
+  background-color: var(--offer-color);
+  color: white;
+}
+.offer-search-results .result-list-item {
+  border-color: var(--offer-color);
+}
+.kolonial-search-results-header {
+  background-color: var(--kolonial-color);
+  color: white;
+}
+.kolonial-search-results .result-list-item {
+  border-color: var(--kolonial-color);
+}
+.meny-search-results-header {
+  background-color: var(--meny-color);
+  color: white;
+}
+.meny-search-results .result-list-item {
+  border-color: var(--meny-color);
+}
+.europris-search-results-header {
+  background-color: var(--europris-color);
+  color: white;
+}
+.europris-search-results .result-list-item {
+  border-color: var(--europris-color);
 }
 </style>

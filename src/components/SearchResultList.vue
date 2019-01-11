@@ -13,13 +13,15 @@
       v-bind:href="result.href"
     />
     </div>
-    <button
+    <v-btn
       @click="showMore"
       v-if="isMore"
-      class="load-more-button"
+      color='info'
+      block
+      flat
     >
     mer
-    </button>
+    </v-btn>
   </div>
 </template>
 
@@ -56,20 +58,3 @@ export default {
   }
 };
 </script>
-
-<style>
-.result-list {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
-.load-more-button {
-  border: blue solid 1px;
-  border-radius: 4px;
-  color: blue;
-  background-color: transparent;
-  font-size: 1.6rem;
-  padding: 0.4rem 1.2rem;
-}
-</style>

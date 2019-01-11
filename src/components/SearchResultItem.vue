@@ -60,7 +60,7 @@ export default {
 .result-list-item {
   border-width: 0;
   border-style: solid;
-  border-color: rgba(0, 0, 0, 0.6);
+  /*border-color: rgba(0, 0, 0, 0.6);*/
   border-bottom-width: 2px;
   margin: 0.3rem;
 }
