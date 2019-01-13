@@ -8,7 +8,7 @@
             </v-list-tile-avatar>
 
             <v-list-tile-content>
-              <v-list-tile-title>matpriser.no</v-list-tile-title>
+              <v-list-tile-title>allematpriser.no</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
         <template v-for="(item, i) in items">
