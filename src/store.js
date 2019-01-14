@@ -86,30 +86,11 @@ const mutations = {
 const productActions = {
   FETCH_INDEX_AND_PRODUCTS: 'FETCH_INDEX_AND_PRODUCTS',
   EXECUTE_SEARCH_QUERY: 'EXECUTE_SEARCH_QUERY',
-  INITIALIZE_PRODUCTS: 'INITIALIZE_PRODUCTS',
   LOAD_PROMOTED_PRODUCTS: 'LOAD_PROMOTED_PRODUCTS',
   LOAD_DETAIL_PRODUCT: 'LOAD_DETAIL_PRODUCT',
 }
 
 const actions = {
-  async [productActions.INITIALIZE_PRODUCTS]({
-    dispatch,
-    commit
-  }) {
-    console.log('INITIALIZE_PRODUCTS')
-    const urlQueryString = parseQueryStringFromUrl()
-    if (urlQueryString && urlQueryString.length > 0) {
-      commit(productMutations.setQueryString, urlQueryString)
-      commit(productMutations.setIsSearching, true)
-    }
-    await dispatch(productActions.FETCH_INDEX_AND_PRODUCTS);
-    if (urlQueryString && urlQueryString.length > 0) {
-      dispatch(productActions.EXECUTE_SEARCH_QUERY, {
-        queryString: urlQueryString
-      })
-    }
-    console.log('INITIALIZE_PRODUCTS finish')
-  },
   async [productActions.LOAD_PROMOTED_PRODUCTS]({
     commit,
   }) {
