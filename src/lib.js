@@ -10,12 +10,16 @@ export const formatPrice = price => {
     return price
   }
 }
-export const parseQueryStringFromUrl = () =>
-  decodeURIComponent(
-    window.location.pathname.substring(
-      window.location.pathname.lastIndexOf("sok/") + 4
-    )
-  );
+export const parseQueryStringFromUrl = () => {
+  if (window.location.pathname.indexOf("sok/") !== -1) {
+    return decodeURIComponent(
+      window.location.pathname.substring(
+        window.location.pathname.lastIndexOf("sok/") + 4
+      )
+    );
+  }
+  return null;
+}
 const intitialTitleText = document.querySelector("title").text;
 export const setQueryStringInPage = query => {
   if (query && query.length > 0) {
@@ -73,7 +77,7 @@ export const getStandardProduct = product => {
         subtitle: product.dealer_name,
         href: getShopgunOfferCatalogUrl(product),
         image_url: product.image_url,
-        id: product.id,
+        id: product.shopgun_id,
       }
     case 'custom':
       return {

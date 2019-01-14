@@ -29,7 +29,6 @@
 
 <script>
 import _ from "lodash";
-import SearchResultItem from "./SearchResultItem";
 import SearchResultList from "./SearchResultList";
 
 const isOffer = result =>
@@ -43,7 +42,6 @@ const limitResults = (results, limit = 20) => _.take(results, limit);
 export default {
   name: "SearchResults",
   components: {
-    SearchResultItem,
     SearchResultList
   },
   props: {

@@ -11,6 +11,7 @@
       v-bind:subtitle="result.subtitle"
       v-bind:image_url="result.image_url"
       v-bind:href="result.href"
+      v-bind:id="result.id"
     />
     </div>
     <v-btn
