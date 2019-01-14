@@ -112,8 +112,9 @@ const actions = {
     console.log('LOAD_PROMOTED_PRODUCTS finish')
   },
   async [productActions.FETCH_INDEX_AND_PRODUCTS]({
-    commit
-  }) {
+    commit,
+    dispatch,
+  }, payload) {
     commit(productMutations.setIsLoading, true);
     let startTime = new Date().getTime();
     const [objectOption, indexOption] = await Promise.all([
@@ -130,7 +131,14 @@ const actions = {
       console.log("finish parsing objects");
       console.log(`time elapsed: ${new Date().getTime() - startTime}`);
     } else {
-      commit(productMutations.setErrorMessage, "Could not load index")
+      if (payload && payload.isRetry) {
+        commit(productMutations.setErrorMessage, "Could not load index")
+      } else {
+        console.warn('fail reading json output')
+        dispatch(productActions.FETCH_INDEX_AND_PRODUCTS, {
+          isRetry: true
+        })
+      }
     }
     commit(productMutations.setIsLoading, false);
     return;
@@ -148,7 +156,11 @@ const actions = {
     const lunrPromise = lunrSearch(queryString)
     const strapiPromise = searchCustomOffers(queryString)
 
-    lunrPromise.then(({ok, data, error}) => {
+    lunrPromise.then(({
+      ok,
+      data,
+      error
+    }) => {
       if (ok) {
         commit(productMutations.setShowPromotedProducts, false);
         commit(productMutations.loadSearchResults, data);
@@ -157,7 +169,11 @@ const actions = {
         commit(productMutations.setErrorMessage, error);
       }
     })
-    strapiPromise.then(({ok, data, error}) => {
+    strapiPromise.then(({
+      ok,
+      data,
+      error
+    }) => {
       if (ok) {
         commit(productMutations.setShowPromotedProducts, false);
         commit(productMutations.loadSearchResults, data);
