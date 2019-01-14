@@ -12,7 +12,8 @@ import {
 import {
   lunrSearch,
   loadIndex,
-  loadObjects
+  loadObjects,
+  getProduct,
 } from './lunr'
 import {
   parseQueryStringFromUrl,
@@ -29,6 +30,8 @@ const initialState = {
   searchResults: [],
   showPromotedProducts: true,
   errorMessage: '',
+  showDrawer: false,
+  detailProduct: {},
 };
 
 const productMutations = {
@@ -40,6 +43,11 @@ const productMutations = {
   clearSearchResults: "clearSearchResults",
   loadPromotedProducts: "loadPromotedProducts",
   setErrorMessage: "setErrorMessage",
+  setDetailProduct: 'setDetailProduct',
+}
+
+const uiMutations = {
+  setShowDrawer: 'setShowDrawer',
 }
 
 const mutations = {
@@ -67,6 +75,12 @@ const mutations = {
   [productMutations.setErrorMessage](state, errorMessage) {
     state.errorMessage = errorMessage;
   },
+  [productMutations.setDetailProduct](state, detailProduct) {
+    state.detailProduct = detailProduct;
+  },
+  [uiMutations.setShowDrawer](state, showDrawer) {
+    state.showDrawer = showDrawer;
+  },
 }
 
 const productActions = {
@@ -74,6 +88,7 @@ const productActions = {
   EXECUTE_SEARCH_QUERY: 'EXECUTE_SEARCH_QUERY',
   INITIALIZE_PRODUCTS: 'INITIALIZE_PRODUCTS',
   LOAD_PROMOTED_PRODUCTS: 'LOAD_PROMOTED_PRODUCTS',
+  LOAD_DETAIL_PRODUCT: 'LOAD_DETAIL_PRODUCT',
 }
 
 const actions = {
@@ -146,7 +161,8 @@ const actions = {
   async [productActions.EXECUTE_SEARCH_QUERY]({
     commit,
   }, {
-    queryString
+    queryString,
+    setUrl,
   }) {
     commit(productMutations.setIsSearching, true);
     commit(productMutations.clearSearchResults);
@@ -164,7 +180,9 @@ const actions = {
       if (ok) {
         commit(productMutations.setShowPromotedProducts, false);
         commit(productMutations.loadSearchResults, data);
-        setQueryStringInPage(queryString)
+        if (setUrl !== false) {
+          setQueryStringInPage(queryString)
+        }
       } else {
         commit(productMutations.setErrorMessage, error);
       }
@@ -177,7 +195,9 @@ const actions = {
       if (ok) {
         commit(productMutations.setShowPromotedProducts, false);
         commit(productMutations.loadSearchResults, data);
-        setQueryStringInPage(queryString)
+        if (setUrl !== false) {
+          setQueryStringInPage(queryString)
+        }
       } else {
         commit(productMutations.setErrorMessage, error);
       }
@@ -186,6 +206,22 @@ const actions = {
     Promise.all([lunrPromise, strapiPromise]).then(() => {
       commit(productMutations.setIsSearching, false);
     })
+  },
+  async [productActions.LOAD_DETAIL_PRODUCT]({
+    commit
+  }, {
+    id
+  }) {
+    const {
+      ok,
+      data,
+      error,
+    } = await getProduct(id);
+    if (ok) {
+      commit(productMutations.setDetailProduct, data)
+    } else {
+      commit(productMutations.setErrorMessage, error)
+    }
   },
 }
 

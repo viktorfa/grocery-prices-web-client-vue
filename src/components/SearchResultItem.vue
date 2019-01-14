@@ -2,9 +2,8 @@
   <div
     class="result-list-item"
   >
-<a
-  v-bind:href="href"
-  target="_blank"
+<router-link
+  :to="`/tilbud/${id}`"
   class="search-result-link"
 >
     <h3>{{title}}</h3>
@@ -19,7 +18,7 @@
       v-bind:src="image_url"
       v-bind:alt="title"
     />
-</a>
+</router-link>
   </div>
 </template>
 
@@ -33,7 +32,8 @@ export default {
     title: String,
     subtitle: String,
     image_url: String,
-    href: String
+    href: String,
+    id: String,
   },
   data: function() {
     return {

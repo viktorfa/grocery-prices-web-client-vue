@@ -1,16 +1,16 @@
 <template>
   <v-app class="app">
-    <v-navigation-drawer v-model="drawer" fixed clipped class="grey lighten-4" app>
+    <v-navigation-drawer v-model="showDrawer" fixed clipped class="grey lighten-4" app>
       <v-list dense class="grey lighten-4">
         <v-list-tile avatar>
-            <v-list-tile-avatar>
-              <img src="/logo-256x256.png">
-            </v-list-tile-avatar>
+          <v-list-tile-avatar>
+            <img src="/logo-256x256.png">
+          </v-list-tile-avatar>
 
-            <v-list-tile-content>
-              <v-list-tile-title>allematpriser.no</v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile>
+          <v-list-tile-content>
+            <v-list-tile-title><router-link to="/">allematpriser.no</router-link></v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
         <template v-for="(item, i) in items">
           <v-layout v-if="item.heading" :key="i" row align-center>
             <v-flex xs6>
@@ -21,7 +21,7 @@
             </v-flex>
           </v-layout>
           <v-divider v-else-if="item.divider" :key="i" dark class="my-3"></v-divider>
-          <v-list-tile v-else :key="i" @click>
+          <v-list-tile v-else :key="i">
             <v-list-tile-action>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-tile-action>
@@ -33,97 +33,28 @@
       </v-list>
     </v-navigation-drawer>
     <v-content>
-      <div>
-        <v-form v-on:submit="executeQuery">
-          <v-text-field
-            ref="searchInput"
-            v-model="queryInput"
-            label="Søk"
-            type="search"
-            autofocus
-            solo
-            clearable
-            prepend-inner-icon="menu"
-            @click:prepend-inner="handleClickMenu"
-            loading="isSearching"
-            class="search-input"
-          ></v-text-field>
-        </v-form>
-        <p v-if="isSearching === true">
-          søker etter
-          <strong>{{queryInput}}</strong> ...
-        </p>
-        <SearchResults v-if="searchResults.length > 0" v-bind:results="searchResults"/>
-        <div v-if="showPromotedProducts" class="text-xs-center offer-search-results">
-          <h1 class="offer-search-results-header">Utvalgte tilbud</h1>
-          <SearchResultList v-bind:results="promotedProducts"/>
-        </div>
-        <h2
-          v-if="searchResults.length === 0 && queryInput && isSearching !== true"
-        >Ingen treff på "{{queryInput}}"</h2>
-      </div>
+      <router-view></router-view>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import _ from "lodash";
 import Vue from "vue";
-import lunr from "lunr";
-import { mapState } from "vuex";
-import { setQueryStringInPage } from "./lib";
-
-import SearchResults from "./components/SearchResults.vue";
-import SearchResultList from "./components/SearchResultList.vue";
 
 export default Vue.component("app", {
-  components: {
-    SearchResults,
-    SearchResultList
-  },
   data() {
     return {
-      queryInput: this.$store.state.queryString,
       items: [
         { icon: "settings", text: "Instillinger" },
-        { icon: "add", text: "Legg til tilbud" },
+        { icon: "add", text: "Legg til tilbud" }
       ],
-      drawer: null
     };
   },
   computed: {
-    ...mapState([
-      "promotedProducts",
-      "showPromotedProducts",
-      "searchResults",
-      "isSearching",
-      "isLoadingProducts"
-    ])
-  },
-  watch: {
-    queryInput: function(newValue, oldValue) {
-      if (newValue && newValue.length > 0 && newValue !== oldValue) {
-        this.$store.commit("setQueryString", newValue);
-      } else if (!newValue || (newValue && newValue.length === 0)) {
-        setQueryStringInPage("");
-      }
-    }
-  },
-  methods: {
-    executeQuery: async function(event) {
-      event.preventDefault();
-      if (this.queryInput && this.queryInput.length > 0) {
-        this.$refs.searchInput.blur();
-        this.$store.dispatch("EXECUTE_SEARCH_QUERY", {
-          queryString: this.queryInput
-        });
-      }
+    showDrawer: {
+      get() {return this.$store.state.showDrawer},
+      set(newValue) {return this.$store.commit('setShowDrawer', newValue)},
     },
-    handleClickMenu: function(event) {
-      console.log("menuClick");
-      this.drawer = !this.drawer;
-      this.$refs.searchInput.blur();
-    }
   }
 });
 </script>
