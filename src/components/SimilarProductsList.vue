@@ -1,11 +1,13 @@
 <template>
-  <ProductList :products="this._results">
-    <SearchResultItem
+  <ProductList :products="this._products">
+    <SimilarProductsListItem
       slot-scope="{product}"
       :title="product.title"
-      :subtitle="product.subtitle"
+      :description="product.description"
+      :dealer="product.dealer"
       :price="product.price"
       :image_url="product.image_url"
+      :href="product.href"
       :id="product.id"
     />
   </ProductList>
@@ -13,22 +15,22 @@
 
 <script>
 import _ from "lodash";
-import SearchResultItem from "./SearchResultItem";
+import SimilarProductsListItem from "./SimilarProductsListItem";
 import ProductList from "./ProductList";
 import { getStandardProduct } from "../lib";
 
 export default {
-  name: "SearchResultList",
+  name: "SimilarProductsList",
   components: {
     ProductList,
-    SearchResultItem
+    SimilarProductsListItem
   },
   props: {
-    results: Array
+    products: Array
   },
   computed: {
-    _results: function() {
-      return this.results.map(getStandardProduct);
+    _products: function() {
+      return this.products.map(getStandardProduct);
     }
   }
 };

@@ -1,13 +1,25 @@
 <template>
-  <div class="result-list-item">
-    <router-link :to="`/tilbud/${id}`" class="search-result-link">
-      <h3>{{title}}</h3>
-      <p>{{subtitle}}</p>
-      <p v-if="formattedPrice">
-        <strong>{{formattedPrice}}</strong>
-      </p>
-      <img class="result-list-item-image" v-bind:src="image_url" v-bind:alt="title">
-    </router-link>
+  <div
+    class="result-list-item"
+  >
+<router-link
+  :to="`/tilbud/${id}`"
+  class="search-result-link"
+>
+    <h3>{{title}}</h3>
+    <p>{{description}}</p>
+    <p
+      v-if="formattedPrice"
+    >
+      <strong>{{formattedPrice}}</strong>
+    </p>
+    <img
+      class="result-list-item-image"
+      v-bind:src="image_url"
+      v-bind:alt="title"
+    />
+    <p>{{dealer}}</p>
+</router-link>
   </div>
 </template>
 
@@ -15,14 +27,15 @@
 <script>
 import { formatPrice } from "../lib";
 export default {
-  name: "SearchResultItem",
+  name: "SimilarProductsListItem",
   props: {
     price: [Number, String],
     title: String,
-    subtitle: String,
+    description: String,
+    dealer: String,
     image_url: String,
     href: String,
-    id: String
+    id: String,
   },
   data: function() {
     return {

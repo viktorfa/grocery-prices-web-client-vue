@@ -15,7 +15,8 @@
               <v-card-title primary-title>
                 <v-flex>
                   <h3 class="headline mb-0">{{formatPrice(product.price)}}</h3>
-                  <div>{{product.subtitle}}</div>
+                  <div>{{product.description}}</div>
+                  <div>{{product.dealer}}</div>
                 </v-flex>
               </v-card-title>
               <v-card-actions>
@@ -29,7 +30,7 @@
         <h2>Lignende varer</h2>
       </v-flex>
       <v-flex xs12>
-        <SearchResultList :results="searchResults.filter(offer => offer.id !== offerId)"/>
+        <SimilarProductsList :products="searchResults.filter(offer => offer.id !== offerId)"/>
       </v-flex>
     </v-layout>
   </div>
@@ -39,12 +40,12 @@
 import { mapState } from "vuex";
 
 import { getStandardProduct, formatPrice } from "../lib";
-import SearchResultList from "./SearchResultList";
+import SimilarProductsList from "./SimilarProductsList";
 
 export default {
   name: "OfferDetail",
   components: {
-    SearchResultList
+    SimilarProductsList,
   },
   data() {
     return {
@@ -53,9 +54,13 @@ export default {
   },
   computed: {
     ...mapState(["detailProduct", "searchResults", "queryString"]),
-    product() {
+  product: {
+    get() {
       return getStandardProduct(this.detailProduct);
+    },
+    set(newValue) {
     }
+  }
   },
   methods: {
     handleClickMenu: function() {
