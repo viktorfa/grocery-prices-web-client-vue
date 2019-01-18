@@ -6,7 +6,7 @@
       <p v-if="formattedPrice">
         <strong>{{formattedPrice}}</strong>
       </p>
-      <img class="result-list-item-image" v-bind:src="image_url" v-bind:alt="title">
+      <v-img class="result-list-item-image" v-bind:src="image_url" v-bind:alt="title"/>
       <p>{{value}}</p>
     </router-link>
   </div>
@@ -52,7 +52,6 @@ export default {
   border-width: 0;
   border-style: solid;
   border-bottom-width: 2px;
-  margin: 0.3rem;
 }
 .result-list-item-image {
   object-fit: contain;
