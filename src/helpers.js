@@ -1,10 +1,16 @@
 const SHOPGUN_URL = 'https://shopgun.com'
 
-export const getProductFromSearchResult = (result, objects) => ({
-  ...objects[result.ref],
-  id: result.ref,
-  score: result.score
-})
+export const getProductFromSearchResult = (result, objects) => {
+  const product = objects[result.ref]
+  if (product) {
+    return {
+      ...product,
+      id: result.ref,
+      score: result.score
+    }
+  }
+  console.warn('getProductFromSearchResult could not find product from search result')
+}
 
 export const bestOfferToOffer = ([id, offer]) => ({
   ...offer,
