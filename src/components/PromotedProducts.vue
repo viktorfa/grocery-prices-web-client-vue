@@ -14,7 +14,6 @@
 </template>
 
 <script>
-import _ from "lodash";
 import SearchResultItem from "./SearchResultItem";
 import ProductList from "./ProductList";
 import { getStandardProduct } from "../lib";
@@ -30,7 +29,11 @@ export default {
   },
   computed: {
     _products: function() {
-      return this.products.map(getStandardProduct);
+      return this.products.map(getStandardProduct).filter(
+        // unique by id
+        ({ id }, index, arr) =>
+          !arr.slice(index + 1).find(({ id: _id }) => id === _id)
+      );
     }
   }
 };
