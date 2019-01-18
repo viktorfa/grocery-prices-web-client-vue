@@ -107,4 +107,7 @@ export default {
 </script>
 
 <style>
+.v-autocomplete__content {
+  top: 56px !important; /* Autocomplete for type-ahead covers all screen on mobile so we push it down */
+}
 </style>
