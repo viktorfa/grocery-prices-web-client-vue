@@ -11,32 +11,33 @@
       clearable
       prepend-inner-icon="menu"
       @click:prepend-inner="handleClickMenu"
-      loading="isSearching"
+      :loading="isSearching === true"
       class="search-input"
       :items="autocomplete"
       @change="handleAutocompleteChange"
+      :menu-props="{closeOnClick:false, closeOnContentClick:false, openOnClick:false,}"
     ></v-combobox>
     <p v-if="isSearching === true">
       søker etter
       <strong>{{queryInput}}</strong> ...
     </p>
-    <SearchResults v-if="searchResults.length > 0" v-bind:results="searchResults"/>
-    <div v-if="showPromotedProducts" class="text-xs-center offer-search-results">
+    <div v-if="searchResults.length > 0 && !showPromotedProducts">
+      <SearchResults v-bind:results="searchResults"/>
+      <h2
+        v-if="searchResults.length === 0 && queryInput && isSearching !== true"
+      >Ingen treff på "{{queryInput}}"</h2>
+    </div>
+    <div v-else class="text-xs-center offer-search-results">
       <h1 class="offer-search-results-header">Utvalgte tilbud</h1>
       <PromotedProducts v-bind:products="promotedProducts"/>
     </div>
-    <h2
-      v-if="searchResults.length === 0 && queryInput && isSearching !== true"
-    >Ingen treff på "{{queryInput}}"</h2>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
 import { setQueryStringInPage } from "../lib";
-import { isMobileOrTablet } from "../helpers";
 import { getHints } from "@/autocomplete";
-import _ from "lodash";
 
 import SearchResults from "./SearchResults.vue";
 import PromotedProducts from "./PromotedProducts.vue";
@@ -71,6 +72,7 @@ export default {
           queryString: newValue
         });
       } else if (!newValue || (newValue && newValue.length === 0)) {
+        this.$store.commit("setShowPromotedProducts", true);
         setQueryStringInPage("");
       }
     },
