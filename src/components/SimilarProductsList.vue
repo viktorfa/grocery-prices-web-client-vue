@@ -6,6 +6,7 @@
       :description="product.description"
       :dealer="product.dealer"
       :price="product.price"
+      :value="product.value"
       :image_url="product.image_url"
       :href="product.href"
       :id="product.id"
@@ -14,7 +15,6 @@
 </template>
 
 <script>
-import _ from "lodash";
 import SimilarProductsListItem from "./SimilarProductsListItem";
 import ProductList from "./ProductList";
 import { getStandardProduct } from "../lib";

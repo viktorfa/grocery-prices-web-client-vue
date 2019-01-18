@@ -17,6 +17,7 @@
                   <h3 class="headline mb-0">{{formatPrice(product.price)}}</h3>
                   <div>{{product.description}}</div>
                   <div>{{product.dealer}}</div>
+                  <div>{{product.value}}</div>
                 </v-flex>
               </v-card-title>
               <v-card-actions>
@@ -58,7 +59,7 @@ export default {
     get() {
       return getStandardProduct(this.detailProduct);
     },
-    set(newValue) {
+    set() {
     }
   }
   },

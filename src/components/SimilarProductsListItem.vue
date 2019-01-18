@@ -19,6 +19,7 @@
       v-bind:alt="title"
     />
     <p>{{dealer}}</p>
+    <p>{{value}}</p>
 </router-link>
   </div>
 </template>
@@ -31,6 +32,7 @@ export default {
   props: {
     price: [Number, String],
     title: String,
+    value: String,
     description: String,
     dealer: String,
     image_url: String,
