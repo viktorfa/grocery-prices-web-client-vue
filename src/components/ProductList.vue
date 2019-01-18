@@ -6,6 +6,7 @@
       </div>
     </div>
     <v-btn @click="showMore" v-if="isMore" color="info" block flat>mer</v-btn>
+    <br v-else/>
   </div>
 </template>
 

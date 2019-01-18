@@ -70,7 +70,7 @@ export default {
 .result-list-item-image {
   object-fit: contain;
   object-position: center;
-  max-width: 200px;
+  width: 200px;
 }
 </style>
 

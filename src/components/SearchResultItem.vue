@@ -52,11 +52,14 @@ export default {
   border-width: 0;
   border-style: solid;
   border-bottom-width: 2px;
+  margin: 0.3rem;
+  height: 100%;
+  display: flex;
 }
 .result-list-item-image {
   object-fit: contain;
   object-position: center;
-  max-width: 200px;
+  width: 200px;
 }
 </style>
 
