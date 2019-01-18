@@ -15,7 +15,6 @@
       class="search-input"
       :items="autocomplete"
       @change="handleAutocompleteChange"
-      append-icon="null"
     ></v-combobox>
     <p v-if="isSearching === true">
       søker etter
@@ -109,5 +108,9 @@ export default {
 <style>
 .v-autocomplete__content {
   top: 56px !important; /* Autocomplete for type-ahead covers all screen on mobile so we push it down */
+}
+.v-input__append-inner:last-child {
+  /* Remove the dropdown icon on search bar */
+  display: none;
 }
 </style>
