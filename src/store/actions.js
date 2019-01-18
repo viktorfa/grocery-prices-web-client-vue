@@ -1,96 +1,31 @@
-import Vue from 'vue'
-import Vuex, {
-  Store,
-} from 'vuex'
-
 import {
   getIndex,
   getObjects,
   getPromotedOffers,
   searchCustomOffers,
-} from './api'
+} from '@/api'
 import {
   lunrSearch,
   loadIndex,
   loadObjects,
   getProduct,
-} from './lunr'
+} from '@/lunr'
 import {
-  parseQueryStringFromUrl,
   setQueryStringInPage
-} from './lib'
+} from '@/lib'
 
-Vue.use(Vuex)
+import {
+  productMutations,
+} from './mutations'
 
-const initialState = {
-  promotedProducts: [],
-  isSearching: false,
-  isLoadingProducts: true,
-  queryString: '',
-  searchResults: [],
-  showPromotedProducts: true,
-  errorMessage: '',
-  showDrawer: false,
-  detailProduct: {},
-};
-
-const productMutations = {
-  setQueryString: "setQueryString",
-  setIsSearching: "setIsSearching",
-  setIsLoading: "setIsLoading",
-  setShowPromotedProducts: "setShowPromotedProducts",
-  loadSearchResults: "loadSearchResults",
-  clearSearchResults: "clearSearchResults",
-  loadPromotedProducts: "loadPromotedProducts",
-  setErrorMessage: "setErrorMessage",
-  setDetailProduct: 'setDetailProduct',
-}
-
-const uiMutations = {
-  setShowDrawer: 'setShowDrawer',
-}
-
-const mutations = {
-  [productMutations.setQueryString](state, queryString) {
-    state.queryString = queryString;
-  },
-  [productMutations.setIsSearching](state, isSearching) {
-    state.isSearching = isSearching;
-  },
-  [productMutations.setIsLoading](state, isLoading) {
-    state.isLoading = isLoading;
-  },
-  [productMutations.setShowPromotedProducts](state, showPromotedProducts) {
-    state.showPromotedProducts = showPromotedProducts;
-  },
-  [productMutations.clearSearchResults](state) {
-    state.searchResults = [];
-  },
-  [productMutations.loadSearchResults](state, searchResults) {
-    state.searchResults = [...state.searchResults, ...searchResults];
-  },
-  [productMutations.loadPromotedProducts](state, promotedProducts) {
-    state.promotedProducts = promotedProducts;
-  },
-  [productMutations.setErrorMessage](state, errorMessage) {
-    state.errorMessage = errorMessage;
-  },
-  [productMutations.setDetailProduct](state, detailProduct) {
-    state.detailProduct = detailProduct;
-  },
-  [uiMutations.setShowDrawer](state, showDrawer) {
-    state.showDrawer = showDrawer;
-  },
-}
-
-const productActions = {
+export const productActions = {
   FETCH_INDEX_AND_PRODUCTS: 'FETCH_INDEX_AND_PRODUCTS',
   EXECUTE_SEARCH_QUERY: 'EXECUTE_SEARCH_QUERY',
   LOAD_PROMOTED_PRODUCTS: 'LOAD_PROMOTED_PRODUCTS',
   LOAD_DETAIL_PRODUCT: 'LOAD_DETAIL_PRODUCT',
 }
 
-const actions = {
+export const actions = {
   async [productActions.LOAD_PROMOTED_PRODUCTS]({
     commit,
   }) {
@@ -205,9 +140,3 @@ const actions = {
     }
   },
 }
-
-export default new Store({
-  state: initialState,
-  mutations,
-  actions,
-});
