@@ -37,7 +37,6 @@ const isKolonial = result => result.source === "kolonial";
 const isMeny = result => result.source === "meny";
 const isEuropris = result => result.source === "europris";
 const sortResults = results => _.sortBy(results, result => -result.score);
-const limitResults = (results, limit = 20) => _.take(results, limit);
 
 export default {
   name: "SearchResults",

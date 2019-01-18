@@ -7,6 +7,7 @@
         <strong>{{formattedPrice}}</strong>
       </p>
       <img class="result-list-item-image" v-bind:src="image_url" v-bind:alt="title">
+      <p>{{value}}</p>
     </router-link>
   </div>
 </template>
@@ -22,6 +23,7 @@ export default {
     subtitle: String,
     image_url: String,
     href: String,
+    value: String,
     id: String
   },
   data: function() {

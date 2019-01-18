@@ -3,9 +3,9 @@ import {
   getShopgunOfferCatalogUrl,
 } from './helpers'
 
-export const formatPrice = price => {
+export const formatPrice = (price, suffix = ',-') => {
   if (_.isNumber(price)) {
-    return `${price.toFixed(2).replace(".", ",")},-`
+    return `${price.toFixed(2).replace(".", ",")}${suffix}`
   } else {
     return price
   }
@@ -20,7 +20,7 @@ export const parseQueryStringFromUrl = () => {
   }
   return null;
 }
-const intitialTitleText = document.querySelector("title").text;
+const intitialTitleText = document.querySelector("title") && document.querySelector("title").text;
 export const setQueryStringInPage = query => {
   if (query && query.length > 0) {
     window.history.pushState({}, null, `/sok/${query}`);
@@ -31,54 +31,72 @@ export const setQueryStringInPage = query => {
   }
 };
 
+export const getProductValue = ({
+  quantity_value,
+  piece_value,
+  quantity,
+  pricing
+}) => {
+  if (_.isNil(quantity)) return ''
+  if (quantity_value) return formatPrice(quantity_value.value, ` kr/${quantity_value.unit.symbol}`)
+  if (piece_value) return formatPrice(piece_value.value, ` kr/${piece_value.unit.symbol}`)
+  else if (quantity.size.max) return formatPrice(pricing.price / (quantity.size.max * quantity.unit.si.factor), ` kr/${quantity.unit.si.symbol}`)
+  else if (quantity.pieces.max) return formatPrice(pricing.price / quantity.pieces.max, ' kr/stk')
+  return ''
+}
+
 
 export const getStandardProduct = product => {
   switch (product.source) {
     case 'kolonial':
       return {
-        title: product.title,
-        price: product.price,
-        subtitle: product.product_variant,
-        description: product.product_variant,
-        dealer: 'kolonial.no',
-        href: product.product_url,
-        image_url: product.image_url,
-        id: product.id,
-      }
-    case 'shopgun':
-      return {
         title: product.heading,
         price: product.pricing.price,
-        subtitle: product.branding.name,
+        subtitle: product.description,
         description: product.description,
-        dealer: product.branding.name,
-        href: getShopgunOfferCatalogUrl(product),
-        image_url: product.images.view,
-        id: product.id,
-      }
-    case 'meny':
-      return {
-        title: product.title,
-        price: product.price,
-        subtitle: product.product_variant,
-        description: product.product_variant,
-        dealer: 'meny.no',
-        href: product.product_url,
+        dealer: product.dealer,
+        href: product.href,
         image_url: product.image_url,
-        id: product.id,
+        id: product.uri,
+        value: getProductValue(product),
+      }
+      case 'shopgun':
+      return {
+        value: getProductValue(product),
+        title: product.heading,
+        price: product.pricing.price,
+        subtitle: product.dealer,
+        description: product.description,
+        dealer: product.dealer,
+        href: product.href,
+        image_url: product.image_url,
+        id: product.uri,
+      }
+      case 'meny':
+      return {
+        value: getProductValue(product),
+        title: product.heading,
+        price: product.pricing.price,
+        subtitle: product.description,
+        description: product.description,
+        dealer: product.dealer,
+        href: product.href,
+        image_url: product.image_url,
+        id: product.uri,
       }
     case 'europris':
-      return {
-        title: product.name,
-        price: product.price,
-        subtitle: product.description,
-        dealer: 'europris.no',
-        description: product.description,
-        href: product.link,
+    return {
+      value: getProductValue(product),
+      title: product.heading,
+      price: product.pricing.price,
+      subtitle: product.description,
+      description: product.description,
+      dealer: product.dealer,
+      href: product.href,
         image_url: product.image_url,
-        id: product.id,
+        id: product.uri,
       }
-    case 'strapi':
+      case 'strapi':
       return {
         title: product.heading,
         price: product.price,

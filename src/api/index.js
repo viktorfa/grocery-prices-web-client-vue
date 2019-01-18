@@ -5,7 +5,7 @@ import {
 } from './util'
 
 export const getIndex = async () => {
-  const fileName = 'lunr-index-latest.json'
+  const fileName = 'product-lunr-index-latest.json'
   const response = await fetch(getFullFileUrl(fileName))
   return getJsonFetchOption(response)
 }
@@ -17,7 +17,7 @@ export const getAutocompleteData = async () => {
 }
 
 export const getObjects = async () => {
-  const fileName = 'objects-latest.json'
+  const fileName = 'product-map-latest.json'
   const response = await fetch(getFullFileUrl(fileName))
   return getJsonFetchOption(response)
 }

@@ -24,7 +24,7 @@
     <SearchResults v-if="searchResults.length > 0" v-bind:results="searchResults"/>
     <div v-if="showPromotedProducts" class="text-xs-center offer-search-results">
       <h1 class="offer-search-results-header">Utvalgte tilbud</h1>
-      <SearchResultList v-bind:results="promotedProducts"/>
+      <PromotedProducts v-bind:products="promotedProducts"/>
     </div>
     <h2
       v-if="searchResults.length === 0 && queryInput && isSearching !== true"
@@ -40,13 +40,13 @@ import { getHints } from "@/autocomplete";
 import _ from "lodash";
 
 import SearchResults from "./SearchResults.vue";
-import SearchResultList from "./SearchResultList.vue";
+import PromotedProducts from "./PromotedProducts.vue";
 
 export default {
   name: "MainPage",
   components: {
     SearchResults,
-    SearchResultList
+    PromotedProducts
   },
   data() {
     return {

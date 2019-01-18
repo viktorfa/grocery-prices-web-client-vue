@@ -1,13 +1,14 @@
 <template>
-  <ProductList :products="this._results">
+  <ProductList :products="this._products">
     <SearchResultItem
       slot-scope="{product}"
       :title="product.title"
-      :subtitle="product.subtitle"
+      :description="product.description"
+      :dealer="product.dealer"
       :price="product.price"
       :image_url="product.image_url"
-      :id="product.id"
-      :value="product.value"
+      :href="product.href"
+      :id="`${'shopgun'}:product:${product.id}`"
     />
   </ProductList>
 </template>
@@ -19,17 +20,17 @@ import ProductList from "./ProductList";
 import { getStandardProduct } from "../lib";
 
 export default {
-  name: "SearchResultList",
+  name: "PromotedProducts",
   components: {
     ProductList,
     SearchResultItem
   },
   props: {
-    results: Array
+    products: Array
   },
   computed: {
-    _results: function() {
-      return this.results.map(getStandardProduct);
+    _products: function() {
+      return this.products.map(getStandardProduct);
     }
   }
 };
