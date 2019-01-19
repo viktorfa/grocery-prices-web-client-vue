@@ -19,10 +19,7 @@ const indexLoaded = new Promise((resolve) => {
 
 export const getLunrQueryString = query => query.startsWith("+") ?
   query :
-  `${query} ${query}~1 ${query}* *${query.substring(
-    0,
-    query.length - 1
-  )}`;
+  `${query} ${query}~1 ${query}* *${query}`;
 
 export const loadIndex = storedIndex => {
   index = lunr.Index.load(storedIndex)
@@ -32,7 +29,14 @@ export const loadObjects = storedObjects => {
   objects = storedObjects
   document.dispatchEvent(objectsLoadedEvent)
 };
-export const lunrSearch = async query => {
+export const lunrSearch = async (query) => {
+  if (!query || query === '') {
+    console.warn('Empty search string')
+    return {
+      ok: false,
+      error: 'empty search string'
+    }
+  }
   await Promise.all([indexLoaded, objectsLoaded])
   if (index && index.search && objects) {
     const searchResults = index.search(getLunrQueryString(query))

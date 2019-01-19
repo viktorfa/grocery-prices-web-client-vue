@@ -9,7 +9,7 @@ import {
   loadIndex,
   loadObjects,
   getProduct,
-} from '@/lunr'
+} from '@/search'
 import {
   setQueryStringInPage
 } from '@/lib'
