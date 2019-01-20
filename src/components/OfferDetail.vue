@@ -27,11 +27,11 @@
           </v-flex>
         </v-layout>
       </v-flex>
-      <v-flex xs12>
+      <v-flex xs12 v-if="similarProducts.length > 0">
         <h2>Lignende varer</h2>
       </v-flex>
       <v-flex xs12>
-        <SimilarProductsList :products="searchResults.filter(offer => offer.id !== offerId)"/>
+        <SimilarProductsList :products="similarProducts"/>
       </v-flex>
     </v-layout>
   </div>
@@ -46,7 +46,7 @@ import SimilarProductsList from "./SimilarProductsList";
 export default {
   name: "OfferDetail",
   components: {
-    SimilarProductsList,
+    SimilarProductsList
   },
   data() {
     return {
@@ -55,13 +55,15 @@ export default {
   },
   computed: {
     ...mapState(["detailProduct", "searchResults", "queryString"]),
-  product: {
-    get() {
-      return getStandardProduct(this.detailProduct);
+    product: {
+      get() {
+        return getStandardProduct(this.detailProduct);
+      },
+      set() {}
     },
-    set() {
+    similarProducts() {
+      return this.searchResults.filter(offer => offer.id !== this.offerId);
     }
-  }
   },
   methods: {
     handleClickMenu: function() {
