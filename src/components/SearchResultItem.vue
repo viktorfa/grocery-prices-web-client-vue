@@ -1,20 +1,26 @@
 <template>
-  <div class="result-list-item">
-    <router-link :to="`/tilbud/${id}`" class="search-result-link">
-      <h3>{{title}}</h3>
-      <p>{{subtitle}}</p>
-      <p v-if="formattedPrice">
-        <strong>{{formattedPrice}}</strong>
-      </p>
-      <v-img class="result-list-item-image" v-bind:src="image_url" v-bind:alt="title"/>
-      <p>{{value}}</p>
-    </router-link>
-  </div>
+  <router-link :to="`/tilbud/${id}`" class="search-result-link">
+    <v-layout class="result-list-item" column>
+      <div>
+        <h3>{{title}}</h3>
+        <p>{{subtitle}}</p>
+        <p v-if="formattedPrice">
+          <strong>{{formattedPrice}}</strong>
+        </p>
+      </div>
+      <v-layout column justify-center>
+        <v-img class="result-list-item-image" contain v-bind:src="image_url" v-bind:alt="title"/>
+      </v-layout>
+      <div>
+        <p>{{value}}</p>
+      </div>
+    </v-layout>
+  </router-link>
 </template>
 
 
 <script>
-import { formatPrice } from "../lib";
+import { formatPrice } from "@/lib";
 export default {
   name: "SearchResultItem",
   props: {

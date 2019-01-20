@@ -1,27 +1,22 @@
 <template>
-  <div
-    class="result-list-item"
-  >
-<router-link
-  :to="`/tilbud/${id}`"
-  class="search-result-link"
->
-    <h3>{{title}}</h3>
-    <p>{{description}}</p>
-    <p
-      v-if="formattedPrice"
-    >
-      <strong>{{formattedPrice}}</strong>
-    </p>
-    <img
-      class="result-list-item-image"
-      v-bind:src="image_url"
-      v-bind:alt="title"
-    />
-    <p>{{dealer}}</p>
-    <p>{{value}}</p>
-</router-link>
-  </div>
+  <router-link :to="`/tilbud/${id}`" class="search-result-link">
+    <v-layout class="result-list-item" column>
+      <div>
+        <h3>{{title}}</h3>
+        <p>{{description}}</p>
+        <p v-if="formattedPrice">
+          <strong>{{formattedPrice}}</strong>
+        </p>
+      </div>
+      <v-layout column justify-center>
+        <v-img class="result-list-item-image" contain v-bind:src="image_url" v-bind:alt="title"/>
+      </v-layout>
+      <div>
+        <p>{{dealer}}</p>
+        <p>{{value}}</p>
+      </div>
+    </v-layout>
+  </router-link>
 </template>
 
 
@@ -37,7 +32,7 @@ export default {
     dealer: String,
     image_url: String,
     href: String,
-    id: String,
+    id: String
   },
   data: function() {
     return {
