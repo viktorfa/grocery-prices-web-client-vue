@@ -8,7 +8,9 @@
           </v-list-tile-avatar>
 
           <v-list-tile-content>
-            <v-list-tile-title><router-link to="/">allematpriser.no</router-link></v-list-tile-title>
+            <v-list-tile-title>
+              <router-link to="/">allematpriser.no</router-link>
+            </v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
         <template v-for="(item, i) in items">
@@ -47,14 +49,18 @@ export default Vue.component("app", {
       items: [
         { icon: "settings", text: "Instillinger" },
         { icon: "add", text: "Legg til tilbud" }
-      ],
+      ]
     };
   },
   computed: {
     showDrawer: {
-      get() {return this.$store.state.showDrawer},
-      set(newValue) {return this.$store.commit('setShowDrawer', newValue)},
-    },
+      get() {
+        return this.$store.state.showDrawer;
+      },
+      set(newValue) {
+        return this.$store.commit("setShowDrawer", newValue);
+      }
+    }
   }
 });
 </script>
@@ -77,12 +83,6 @@ body {
 .app {
   margin: auto;
   max-width: var(--max-width);
-}
-.result-list {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: space-evenly;
 }
 
 .offer-search-results-header {
@@ -120,5 +120,38 @@ body {
 }
 .v-input__slot {
   border-radius: 12px !important;
+}
+
+@media only screen and (max-width: 480px) {
+  .result-list-item {
+    width: calc(50vw - 0.6rem);
+    margin: 0.3rem 0.5rem;
+  }
+  .result-list-item-image {
+    width: calc(50vw - 0.6rem);
+  }
+}
+@media only screen and (min-width: 481px) {
+  .result-list-item {
+    width: 200px;
+  }
+}
+.result-list-item {
+  border-width: 0;
+  border-style: solid;
+  border-bottom-width: 2px;
+  margin: 0.3rem;
+  height: 100%;
+  display: flex;
+}
+.result-list-item-image {
+  object-fit: contain;
+  object-position: center;
+  width: 200px;
+}
+
+.search-result-link {
+  color: inherit;
+  text-decoration: none;
 }
 </style>

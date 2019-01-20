@@ -46,39 +46,3 @@ export default {
   }
 };
 </script>
-
-<style>
-@media only screen and (max-width: 480px) {
-  .result-list-item {
-    width: calc(50vw - 0.6rem);
-  }
-  .result-list-item-image {
-    width: calc(50vw - 0.6rem);
-  }
-}
-@media only screen and (min-width: 481px) {
-  .result-list-item {
-    width: 200px;
-  }
-}
-.result-list-item {
-  border-width: 0;
-  border-style: solid;
-  border-bottom-width: 2px;
-  margin: 0.3rem;
-  height: 100%;
-  display: flex;
-}
-.result-list-item-image {
-  object-fit: contain;
-  object-position: center;
-  width: 200px;
-}
-</style>
-
-<style scoped>
-.search-result-link {
-  color: inherit;
-  text-decoration: none;
-}
-</style>

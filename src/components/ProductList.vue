@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div class="result-list">
+    <v-layout row wrap justify-start>
       <div v-for="product in _products" :key="product.id">
         <slot :product="product"></slot>
       </div>
-    </div>
+    </v-layout>
     <v-btn @click="showMore" v-if="isMore" color="info" block flat>mer</v-btn>
-    <br v-else/>
+    <br v-else>
   </div>
 </template>
 
