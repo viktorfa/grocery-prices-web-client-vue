@@ -21,11 +21,11 @@
       søker etter
       <strong>{{queryInput}}</strong> ...
     </p>
+    <h2
+      v-if="searchResults.length === 0 && queryInput && !isSearching"
+    >Ingen treff på "{{queryInput}}"</h2>
     <div v-if="searchResults.length > 0 && !showPromotedProducts">
       <SearchResults v-bind:results="searchResults"/>
-      <h2
-        v-if="searchResults.length === 0 && queryInput && isSearching !== true"
-      >Ingen treff på "{{queryInput}}"</h2>
     </div>
     <div v-else class="text-xs-center offer-search-results">
       <h1 class="offer-search-results-header">Utvalgte tilbud</h1>
