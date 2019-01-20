@@ -89,10 +89,12 @@ export default {
     },
     offerId(newValue) {
       this.$store.dispatch("LOAD_DETAIL_PRODUCT", { id: newValue });
+      window.scrollTo(0, 0);
     }
   },
   created() {
     this.$store.dispatch("LOAD_DETAIL_PRODUCT", { id: this.offerId });
+    window.scrollTo(0, 0);
   }
 };
 </script>
