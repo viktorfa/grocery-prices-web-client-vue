@@ -3,7 +3,7 @@
     <SearchResultItem
       slot-scope="{product}"
       :title="product.title"
-      :description="product.description"
+      :subtitle="product.subtitle"
       :dealer="product.dealer"
       :price="product.price"
       :image_url="product.image_url"
