@@ -17,17 +17,15 @@
       @change="handleAutocompleteChange"
       :menu-props="{closeOnClick:false, closeOnContentClick:false, openOnClick:false,}"
     ></v-combobox>
-    <p v-if="isSearching === true">
+    <p v-show="isSearching === true">
       søker etter
       <strong>{{queryInput}}</strong> ...
     </p>
-    <h2
-      v-if="searchResults.length === 0 && queryInput && !isSearching"
-    >Ingen treff på "{{queryInput}}"</h2>
-    <div v-if="searchResults.length > 0 && !showPromotedProducts">
+    <h2 v-show="searchResults.length === 0 && showSearchResults">Ingen treff på "{{queryInput}}"</h2>
+    <div v-show="showSearchResults">
       <SearchResults v-bind:results="searchResults"/>
     </div>
-    <div v-else class="text-xs-center offer-search-results">
+    <div v-show="!showSearchResults" class="text-xs-center offer-search-results">
       <h1 class="offer-search-results-header">Utvalgte tilbud</h1>
       <PromotedProducts v-bind:products="promotedProducts"/>
     </div>
@@ -62,7 +60,10 @@ export default {
       "searchResults",
       "isSearching",
       "isLoadingProducts"
-    ])
+    ]),
+    showSearchResults() {
+      return !!this.queryInput;
+    }
   },
   watch: {
     queryInput: function(newValue, oldValue) {
@@ -73,6 +74,7 @@ export default {
         });
       } else if (!newValue || (newValue && newValue.length === 0)) {
         this.$store.commit("setShowPromotedProducts", true);
+        this.$store.commit("setQueryString", '');
         setQueryStringInPage("");
       }
     },
