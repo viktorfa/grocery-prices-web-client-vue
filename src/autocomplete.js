@@ -27,7 +27,7 @@ const initalize = async () => {
   }
 }
 
-const defaultAutocomplete = ['pepsi max', 'grandiosa', 'avokado', 'cola', 'sjokolade', 'smågodt', 'laks', ...autocompleteData.tokens]
+const defaultAutocomplete = ['pepsi max', 'grandiosa', 'avokado', 'cola', 'sjokolade', 'norvegia', 'smågodt', 'laks', ...autocompleteData.tokens]
 
 
 export const getHints = (query, {

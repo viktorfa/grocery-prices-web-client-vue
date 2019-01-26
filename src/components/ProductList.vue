@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-layout row wrap justify-start>
+    <v-layout row wrap justify-space-around>
       <div v-for="product in _products" :key="product.id">
         <slot :product="product"></slot>
       </div>

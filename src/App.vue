@@ -23,7 +23,7 @@
             </v-flex>
           </v-layout>
           <v-divider v-else-if="item.divider" :key="i" dark class="my-3"></v-divider>
-          <v-list-tile v-else :key="i">
+          <v-list-tile v-else :key="i" :href="item.href">
             <v-list-tile-action>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-tile-action>
@@ -48,7 +48,11 @@ export default Vue.component("app", {
     return {
       items: [
         { icon: "settings", text: "Instillinger" },
-        { icon: "add", text: "Legg til tilbud" }
+        {
+          icon: "add",
+          text: "Legg til tilbud",
+          href: "https://crowdsource.allematpriser.no/"
+        }
       ]
     };
   },

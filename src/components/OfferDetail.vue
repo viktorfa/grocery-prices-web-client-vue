@@ -85,7 +85,9 @@ export default {
       });
     },
     $route(to) {
-      this.offerId = to.params.id;
+      if (to.params.id) {
+        this.offerId = to.params.id;
+      }
     },
     offerId(newValue) {
       this.$store.dispatch("LOAD_DETAIL_PRODUCT", { id: newValue });
