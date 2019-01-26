@@ -67,7 +67,7 @@ export default {
   },
   methods: {
     handleClickMenu: function() {
-      const query = this.queryString || this.product.title;
+      const query = this.queryString;
       if (query) {
         this.$router.push({ name: "search", params: { query } });
       } else {
