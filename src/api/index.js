@@ -21,6 +21,11 @@ export const getObjects = async () => {
   const response = await fetch(getFullFileUrl(fileName))
   return getJsonFetchOption(response)
 }
+export const getCustomProduct = async (id) => {
+  const strapiCollectionName = 'customoffers'
+  const response = await fetch(`${STRAPI_URL}/${strapiCollectionName}/${id}`)
+  return getJsonFetchOption(response)
+}
 
 export const getPromotedOffers = async (offerLimit = 30) => {
   const isoNow = new Date().toISOString()

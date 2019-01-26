@@ -3,6 +3,7 @@ import {
   getObjects,
   getPromotedOffers,
   searchCustomOffers,
+  getCustomProduct,
 } from '@/api'
 import {
   lunrSearch,
@@ -13,6 +14,9 @@ import {
 import {
   setQueryStringInPage
 } from '@/lib'
+import {
+  isProductUri,
+} from '@/helpers'
 
 import {
   productMutations,
@@ -128,15 +132,30 @@ export const actions = {
   }, {
     id
   }) {
-    const {
-      ok,
-      data,
-      error,
-    } = await getProduct(id);
-    if (ok) {
-      commit(productMutations.setDetailProduct, data)
+    if (isProductUri(id)) {
+      // This is a product URI, should be in loaded products
+      const {
+        ok,
+        data,
+        error,
+      } = await getProduct(id);
+      if (ok) {
+        commit(productMutations.setDetailProduct, data)
+      } else {
+        commit(productMutations.setErrorMessage, error)
+      }
     } else {
-      commit(productMutations.setErrorMessage, error)
+      // Not product uri, needs to be fetched from Strapi
+      const {
+        ok,
+        data,
+        error,
+      } = await getCustomProduct(id);
+      if (ok) {
+        commit(productMutations.setDetailProduct, data)
+      } else {
+        commit(productMutations.setErrorMessage, error)
+      }
     }
   },
 }
