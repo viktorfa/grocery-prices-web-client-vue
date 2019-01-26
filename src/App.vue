@@ -125,7 +125,7 @@ body {
 @media only screen and (max-width: 480px) {
   .result-list-item {
     width: calc(50vw - 0.6rem);
-    margin: 0.3rem 0.5rem;
+    margin: 0.5rem 0.3rem;
   }
   .result-list-item-image {
     width: calc(50vw - 0.6rem);
@@ -133,6 +133,9 @@ body {
 }
 @media only screen and (min-width: 481px) {
   .result-list-item {
+    width: 200px;
+  }
+  .result-list-item-image {
     width: 200px;
   }
 }
@@ -147,7 +150,6 @@ body {
 .result-list-item-image {
   object-fit: contain;
   object-position: center;
-  width: 200px;
 }
 
 .search-result-link {
