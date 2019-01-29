@@ -21,7 +21,7 @@
       søker etter
       <strong>{{queryInput}}</strong> ...
     </p>
-    <h2 v-show="searchResults.length === 0 && showSearchResults">Ingen treff på "{{queryInput}}"</h2>
+    <h2 v-show="searchResults.length === 0 && showSearchResults && !isSearching">Ingen treff på "{{queryInput}}"</h2>
     <div v-show="showSearchResults">
       <SearchResults v-bind:results="searchResults"/>
     </div>
