@@ -7,7 +7,6 @@ import App from './App.vue'
 
 Vue.config.productionTip = false
 
-store.dispatch('FETCH_INDEX_AND_PRODUCTS')
 store.dispatch('LOAD_PROMOTED_PRODUCTS')
 
 new Vue({

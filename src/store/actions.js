@@ -2,11 +2,11 @@ import {
   getIndex,
   getObjects,
   getPromotedOffers,
-  searchCustomOffers,
   getCustomProduct,
+  getGroceryOffer,
+  searchGroceryOffers,
 } from '@/api'
 import {
-  lunrSearch,
   loadIndex,
   loadObjects,
   getProduct,
@@ -89,25 +89,9 @@ export const actions = {
     console.log('EXECUTE_SEARCH_QUERY')
     console.log(queryString)
 
-    const lunrPromise = lunrSearch(queryString)
-    const strapiPromise = searchCustomOffers(queryString)
+    const lambdaPromise = searchGroceryOffers(queryString)
 
-    lunrPromise.then(({
-      ok,
-      data,
-      error
-    }) => {
-      if (ok) {
-        commit(productMutations.setShowPromotedProducts, false);
-        commit(productMutations.loadSearchResults, data);
-        if (setUrl !== false) {
-          setQueryStringInPage(queryString)
-        }
-      } else {
-        commit(productMutations.setErrorMessage, error);
-      }
-    })
-    strapiPromise.then(({
+    lambdaPromise.then(({
       ok,
       data,
       error
@@ -123,7 +107,7 @@ export const actions = {
       }
     })
 
-    Promise.all([lunrPromise, strapiPromise]).then(() => {
+    Promise.all([lambdaPromise]).then(() => {
       commit(productMutations.setIsSearching, false);
     })
   },
@@ -134,16 +118,33 @@ export const actions = {
   }) {
     if (isProductUri(id)) {
       // This is a product URI, should be in loaded products
-      const {
+      const localPromise = getProduct(id)
+      const apiPromise = getGroceryOffer(id)
+      localPromise.then(({
         ok,
         data,
-        error,
-      } = await getProduct(id);
-      if (ok) {
-        commit(productMutations.setDetailProduct, data)
-      } else {
-        commit(productMutations.setErrorMessage, error)
-      }
+        error
+      }) => {
+        if (ok) {
+          commit(productMutations.setDetailProduct, data)
+          return;
+        } else {
+          commit(productMutations.setErrorMessage, error)
+        }
+      })
+      apiPromise.then(({
+        ok,
+        data,
+        error
+      }) => {
+        if (ok) {
+          commit(productMutations.setDetailProduct, data)
+          return
+        } else {
+          console.warn(`Could not fetch product with uri: ${id}`)
+          commit(productMutations.setErrorMessage, error)
+        }
+      })
     } else {
       // Not product uri, needs to be fetched from Strapi
       const {

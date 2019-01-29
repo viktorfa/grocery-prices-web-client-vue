@@ -13,7 +13,6 @@
 </template>
 
 <script>
-import _ from "lodash";
 import SearchResultItem from "./SearchResultItem";
 import ProductList from "./ProductList";
 import { getStandardProduct } from "../lib";
