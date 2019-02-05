@@ -1,16 +1,10 @@
-import Vue from 'vue'
-import Vuex, {
-  Store,
-} from 'vuex'
+import Vue from 'vue';
+import Vuex, { Store } from 'vuex';
 
-import {
-  actions
-} from './actions'
-import {
-  mutations
-} from './mutations'
+import { actions } from './actions';
+import { mutations } from './mutations';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 const initialState = {
   promotedProducts: [],
@@ -23,10 +17,6 @@ const initialState = {
   showDrawer: false,
   detailProduct: {},
 };
-
-
-
-
 
 export default new Store({
   state: initialState,

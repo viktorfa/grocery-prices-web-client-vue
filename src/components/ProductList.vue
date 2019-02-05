@@ -6,21 +6,21 @@
       </div>
     </v-layout>
     <v-btn @click="showMore" v-if="isMore" color="info" block flat>mer</v-btn>
-    <br v-else>
+    <br v-else />
   </div>
 </template>
 
 <script>
-import _ from "lodash";
+import _ from 'lodash';
 
 export default {
-  name: "ProductList",
+  name: 'ProductList',
   props: {
-    products: Array
+    products: Array,
   },
   data: function() {
     return {
-      limit: 10
+      limit: 10,
     };
   },
   computed: {
@@ -29,12 +29,12 @@ export default {
     },
     _products() {
       return _.take(this.products, this.limit);
-    }
+    },
   },
   methods: {
     showMore: function() {
       this.limit += 10;
-    }
-  }
+    },
+  },
 };
 </script>

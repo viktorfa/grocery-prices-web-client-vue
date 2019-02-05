@@ -15,74 +15,85 @@
       class="search-input"
       :items="autocomplete"
       @change="handleAutocompleteChange"
-      :menu-props="{closeOnClick:false, closeOnContentClick:false, openOnClick:false,}"
+      :menu-props="{
+        closeOnClick: false,
+        closeOnContentClick: false,
+        openOnClick: false,
+      }"
     ></v-combobox>
     <p v-show="isSearching === true">
       søker etter
-      <strong>{{queryInput}}</strong> ...
+      <strong>{{ queryInput }}</strong> ...
     </p>
-    <h2 v-show="searchResults.length === 0 && showSearchResults && !isSearching">Ingen treff på "{{queryInput}}"</h2>
+    <h2
+      v-show="searchResults.length === 0 && showSearchResults && !isSearching"
+    >
+      Ingen treff på "{{ queryInput }}"
+    </h2>
     <div v-show="showSearchResults">
-      <SearchResults v-bind:results="searchResults"/>
+      <SearchResults v-bind:results="searchResults" />
     </div>
-    <div v-show="!showSearchResults" class="text-xs-center offer-search-results">
+    <div
+      v-show="!showSearchResults"
+      class="text-xs-center offer-search-results"
+    >
       <h1 class="offer-search-results-header">Utvalgte tilbud</h1>
-      <PromotedProducts v-bind:products="promotedProducts"/>
+      <PromotedProducts v-bind:products="promotedProducts" />
     </div>
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
-import { setQueryStringInPage } from "../lib";
-import { getHints } from "@/autocomplete";
+import { mapState } from 'vuex';
+import { setQueryStringInPage } from '../lib';
+import { getHints } from '@/autocomplete';
 
-import SearchResults from "./SearchResults.vue";
-import PromotedProducts from "./PromotedProducts.vue";
+import SearchResults from './SearchResults.vue';
+import PromotedProducts from './PromotedProducts.vue';
 
 export default {
-  name: "MainPage",
+  name: 'MainPage',
   components: {
     SearchResults,
-    PromotedProducts
+    PromotedProducts,
   },
   data() {
     return {
       queryInput: this.$route.params.query || this.$store.state.queryString,
-      searchInput: "",
-      autocomplete: getHints()
+      searchInput: '',
+      autocomplete: getHints(),
     };
   },
   computed: {
     ...mapState([
-      "promotedProducts",
-      "showPromotedProducts",
-      "searchResults",
-      "isSearching",
-      "isLoadingProducts"
+      'promotedProducts',
+      'showPromotedProducts',
+      'searchResults',
+      'isSearching',
+      'isLoadingProducts',
     ]),
     showSearchResults() {
       return !!this.queryInput;
-    }
+    },
   },
   watch: {
     queryInput: function(newValue, oldValue) {
       if (newValue && newValue.length > 0 && newValue !== oldValue) {
-        this.$store.commit("setQueryString", newValue);
-        this.$store.dispatch("EXECUTE_SEARCH_QUERY", {
-          queryString: newValue
+        this.$store.commit('setQueryString', newValue);
+        this.$store.dispatch('EXECUTE_SEARCH_QUERY', {
+          queryString: newValue,
         });
       } else if (!newValue || (newValue && newValue.length === 0)) {
-        this.$store.commit("setShowPromotedProducts", true);
-        this.$store.commit("setQueryString", '');
-        setQueryStringInPage("");
+        this.$store.commit('setShowPromotedProducts', true);
+        this.$store.commit('setQueryString', '');
+        setQueryStringInPage('');
       }
     },
     searchInput(newValue, oldValue) {
       if (newValue !== oldValue) {
         this.autocomplete = getHints(newValue);
       }
-    }
+    },
   },
   methods: {
     handleAutocompleteChange(newValue, oldValue) {
@@ -95,17 +106,17 @@ export default {
       }
     },
     handleClickMenu: function() {
-      this.$store.commit("setShowDrawer", !this.$store.state.showDrawer);
+      this.$store.commit('setShowDrawer', !this.$store.state.showDrawer);
       this.$refs.searchInput.blur();
-    }
+    },
   },
   mounted() {
     if (this.queryInput && this.queryInput.length > 0) {
-      this.$store.dispatch("EXECUTE_SEARCH_QUERY", {
-        queryString: this.queryInput
+      this.$store.dispatch('EXECUTE_SEARCH_QUERY', {
+        queryString: this.queryInput,
       });
     }
-  }
+  },
 };
 </script>
 

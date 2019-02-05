@@ -1,7 +1,7 @@
 <template>
   <ProductList :products="this._products">
     <SearchResultItem
-      slot-scope="{product}"
+      slot-scope="{ product }"
       :title="product.title"
       :subtitle="product.subtitle"
       :dealer="product.dealer"
@@ -14,18 +14,18 @@
 </template>
 
 <script>
-import SearchResultItem from "./SearchResultItem";
-import ProductList from "./ProductList";
-import { getStandardProduct } from "../lib";
+import SearchResultItem from './SearchResultItem';
+import ProductList from './ProductList';
+import { getStandardProduct } from '../lib';
 
 export default {
-  name: "PromotedProducts",
+  name: 'PromotedProducts',
   components: {
     ProductList,
-    SearchResultItem
+    SearchResultItem,
   },
   props: {
-    products: Array
+    products: Array,
   },
   computed: {
     _products: function() {
@@ -34,7 +34,7 @@ export default {
         ({ id }, index, arr) =>
           !arr.slice(index + 1).find(({ id: _id }) => id === _id)
       );
-    }
-  }
+    },
+  },
 };
 </script>

@@ -1,18 +1,18 @@
 export const productMutations = {
-  setQueryString: "setQueryString",
-  setIsSearching: "setIsSearching",
-  setIsLoading: "setIsLoading",
-  setShowPromotedProducts: "setShowPromotedProducts",
-  loadSearchResults: "loadSearchResults",
-  clearSearchResults: "clearSearchResults",
-  loadPromotedProducts: "loadPromotedProducts",
-  setErrorMessage: "setErrorMessage",
+  setQueryString: 'setQueryString',
+  setIsSearching: 'setIsSearching',
+  setIsLoading: 'setIsLoading',
+  setShowPromotedProducts: 'setShowPromotedProducts',
+  loadSearchResults: 'loadSearchResults',
+  clearSearchResults: 'clearSearchResults',
+  loadPromotedProducts: 'loadPromotedProducts',
+  setErrorMessage: 'setErrorMessage',
   setDetailProduct: 'setDetailProduct',
-}
+};
 
 export const uiMutations = {
   setShowDrawer: 'setShowDrawer',
-}
+};
 
 export const mutations = {
   [productMutations.setQueryString](state, queryString) {
@@ -45,4 +45,4 @@ export const mutations = {
   [uiMutations.setShowDrawer](state, showDrawer) {
     state.showDrawer = showDrawer;
   },
-}
+};

@@ -1,10 +1,16 @@
 <template>
   <v-app class="app">
-    <v-navigation-drawer v-model="showDrawer" fixed clipped class="grey lighten-4" app>
+    <v-navigation-drawer
+      v-model="showDrawer"
+      fixed
+      clipped
+      class="grey lighten-4"
+      app
+    >
       <v-list dense class="grey lighten-4">
         <v-list-tile avatar>
           <v-list-tile-avatar>
-            <img src="/logo-256x256.png">
+            <img src="/logo-256x256.png" />
           </v-list-tile-avatar>
 
           <v-list-tile-content>
@@ -22,13 +28,20 @@
               <v-btn small flat>edit</v-btn>
             </v-flex>
           </v-layout>
-          <v-divider v-else-if="item.divider" :key="i" dark class="my-3"></v-divider>
+          <v-divider
+            v-else-if="item.divider"
+            :key="i"
+            dark
+            class="my-3"
+          ></v-divider>
           <v-list-tile v-else :key="i" :href="item.href">
             <v-list-tile-action>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
-              <v-list-tile-title class="grey--text">{{ item.text }}</v-list-tile-title>
+              <v-list-tile-title class="grey--text">{{
+                item.text
+              }}</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
         </template>
@@ -41,19 +54,19 @@
 </template>
 
 <script>
-import Vue from "vue";
+import Vue from 'vue';
 
-export default Vue.component("app", {
+export default Vue.component('app', {
   data() {
     return {
       items: [
-        { icon: "settings", text: "Instillinger" },
+        { icon: 'settings', text: 'Instillinger' },
         {
-          icon: "add",
-          text: "Legg til tilbud",
-          href: "https://crowdsource.allematpriser.no/"
-        }
-      ]
+          icon: 'add',
+          text: 'Legg til tilbud',
+          href: 'https://crowdsource.allematpriser.no/',
+        },
+      ],
     };
   },
   computed: {
@@ -62,13 +75,12 @@ export default Vue.component("app", {
         return this.$store.state.showDrawer;
       },
       set(newValue) {
-        return this.$store.commit("setShowDrawer", newValue);
-      }
-    }
-  }
+        return this.$store.commit('setShowDrawer', newValue);
+      },
+    },
+  },
 });
 </script>
-
 
 <style>
 :root {

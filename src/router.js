@@ -1,9 +1,9 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Home from './views/Home.vue'
-import Detail from './views/Detail.vue'
+import Vue from 'vue';
+import Router from 'vue-router';
+import Home from './views/Home.vue';
+import Detail from './views/Detail.vue';
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   mode: 'history',
@@ -12,17 +12,17 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
     },
     {
       path: '/sok/:query',
       name: 'search',
-      component: Home
+      component: Home,
     },
     {
       path: '/tilbud/:id',
       name: 'detail',
-      component: Detail
+      component: Detail,
     },
     {
       path: '/about',
@@ -30,7 +30,8 @@ export default new Router({
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-    }
-  ]
-})
+      component: () =>
+        import(/* webpackChunkName: "about" */ './views/About.vue'),
+    },
+  ],
+});
