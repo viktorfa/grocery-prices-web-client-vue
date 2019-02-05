@@ -8,7 +8,7 @@
       :price="product.price"
       :image_url="product.image_url"
       :href="product.href"
-      :id="`${'shopgun'}:product:${product.id}`"
+      :id="product.id"
     />
   </ProductList>
 </template>

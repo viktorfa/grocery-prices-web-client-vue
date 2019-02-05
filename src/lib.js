@@ -119,12 +119,12 @@ export const getStandardProduct = (product) => {
       return {
         title: product.heading,
         price: product.price || product.price_text || '',
-        subtitle: product.dealer_name,
-        dealer: product.dealer_name,
+        subtitle: product.dealer,
+        dealer: product.dealer,
         description: product.description,
         href: '#',
         image_url: product.image_url,
-        id: product.id,
+        id: product.id || product._id,
       };
     default:
       return product;
