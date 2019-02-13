@@ -118,7 +118,7 @@ export const getStandardProduct = (product) => {
     case 'custom':
       return {
         title: product.heading,
-        price: product.price || product.price_text || '',
+        price: product.pricing.price || product.pricing.text || '',
         subtitle: product.dealer,
         dealer: product.dealer,
         description: product.description,
