@@ -1,3 +1,5 @@
+import { dealerLogos } from './constants/images';
+
 const SHOPGUN_URL = 'https://shopgun.com';
 
 export const getProductFromSearchResult = (result, objects) => {
@@ -40,4 +42,8 @@ export const isMobileOrTablet = () => {
     check = true;
   }
   return check;
+};
+
+export const getDealerLogoSrc = (dealerName) => {
+  return dealerLogos[dealerName];
 };
