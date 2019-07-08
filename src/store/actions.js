@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import {
   getIndex,
   getObjects,
@@ -24,7 +25,11 @@ export const actions = {
     console.log('LOAD_PROMOTED_PRODUCTS');
     const { ok, data, error } = await getPromotedOffers();
     if (ok) {
-      commit(productMutations.loadPromotedProducts, data);
+      const filteredProducts = _.uniqBy(
+        data,
+        (offer) => offer.heading + offer.dealer + offer.pricing.price
+      );
+      commit(productMutations.loadPromotedProducts, filteredProducts);
     } else {
       commit(productMutations.setErrorMessage(error));
     }
