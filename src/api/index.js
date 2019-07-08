@@ -1,6 +1,4 @@
-const strapiUrl = 'https://strapi.vikfand.com';
-const apiUrl =
-  'https://1fxqk9odl5.execute-api.eu-central-1.amazonaws.com/dev/v1';
+import { strapiUrl, apiUrl } from '@/config/vars';
 import { getJsonFetchOption, getFullFileUrl } from './util';
 
 export const getIndex = async () => {
