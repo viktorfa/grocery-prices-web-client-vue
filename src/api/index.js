@@ -61,7 +61,7 @@ export const searchCustomOffers = async (query, offerLimit = 10) => {
   return getJsonFetchOption(response);
 };
 export const searchGroceryOffers = async (query) => {
-  const url = `${apiUrl}/offers/search/${query}`;
+  const url = `${apiUrl}/offers/search/${encodeURIComponent(query)}`;
   const response = await fetch(url);
   return getJsonFetchOption(response);
 };
