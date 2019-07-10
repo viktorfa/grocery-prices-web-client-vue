@@ -5,10 +5,7 @@
       <SearchResultList v-bind:results="offers" />
       <br />
     </div>
-    <div
-      v-if="kolonialProducts.length > 0"
-      class="text-xs-center kolonial-search-results"
-    >
+    <div v-if="kolonialProducts.length > 0" class="text-xs-center kolonial-search-results">
       <h1 class="kolonial-search-results-header">
         {{ kolonialProducts.length }}
         {{ `${kolonialProducts.length > 1 ? 'varer' : 'vare'}` }} fra
@@ -16,20 +13,14 @@
       </h1>
       <SearchResultList v-bind:results="kolonialProducts" />
     </div>
-    <div
-      v-if="menyProducts.length > 0"
-      class="text-xs-center meny-search-results"
-    >
+    <div v-if="menyProducts.length > 0" class="text-xs-center meny-search-results">
       <h1 class="meny-search-results-header">
         {{ menyProducts.length }}
         {{ `${menyProducts.length > 1 ? 'varer' : 'vare'}` }} fra meny.no
       </h1>
       <SearchResultList v-bind:results="menyProducts" />
     </div>
-    <div
-      v-if="europrisProducts.length > 0"
-      class="text-xs-center europris-search-results"
-    >
+    <div v-if="europrisProducts.length > 0" class="text-xs-center europris-search-results">
       <h1 class="europris-search-results-header">
         {{ europrisProducts.length }}
         {{ `${europrisProducts.length > 1 ? 'varer' : 'vare'}` }} fra
@@ -45,10 +36,10 @@ import _ from 'lodash';
 import SearchResultList from './SearchResultList';
 
 const isOffer = (result) =>
-  result.source === 'shopgun' || result.source === 'custom';
-const isKolonial = (result) => result.source === 'kolonial';
-const isMeny = (result) => result.source === 'meny';
-const isEuropris = (result) => result.source === 'europris';
+  result.provenance === 'shopgun' || result.provenance === 'custom';
+const isKolonial = (result) => result.provenance === 'kolonial';
+const isMeny = (result) => result.provenance === 'meny';
+const isEuropris = (result) => result.provenance === 'europris';
 const sortResults = (results) => _.sortBy(results, (result) => -result.score);
 
 export default {

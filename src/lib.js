@@ -55,7 +55,7 @@ export const getProductValue = ({
 };
 
 export const getStandardProduct = (product) => {
-  switch (product.source) {
+  switch (product.provenance) {
     case 'kolonial':
       return {
         title: product.heading,
