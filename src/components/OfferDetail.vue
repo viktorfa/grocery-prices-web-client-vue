@@ -11,31 +11,26 @@
         <v-layout row wrap>
           <v-flex xs12>
             <v-card flat>
-              <v-img
-                :src="product.image_url"
-                aspect-ratio="2.0"
-                contain
-                :alt="product.title"
-              ></v-img>
+              <v-img :src="product.image_url" aspect-ratio="2.0" contain :alt="product.title"></v-img>
               <v-card-title primary-title>
                 <v-flex>
-                  <h3 class="headline mb-0">
-                    {{ formatPrice(product.price) }}
-                  </h3>
+                  <h3 class="headline mb-0">{{ formatPrice(product.price) }}</h3>
                   <div>{{ product.description }}</div>
-                  <div>{{ product.dealer }}</div>
                   <div>{{ product.value }}</div>
+                  <v-img
+                    v-if="dealerLogoSrc"
+                    class="dealer-logo-image"
+                    :src="dealerLogoSrc"
+                    :alt="dealer"
+                    contain
+                    max-width="160"
+                    max-height="32"
+                  />
+                  <div v-else>{{ product.dealer }}</div>
                 </v-flex>
               </v-card-title>
               <v-card-actions>
-                <v-btn
-                  outline
-                  flat
-                  color="orange"
-                  :href="product.href"
-                  target="_blank"
-                  >Se annonse</v-btn
-                >
+                <v-btn outline flat color="orange" :href="product.href" target="_blank">Se annonse</v-btn>
               </v-card-actions>
             </v-card>
           </v-flex>
@@ -52,13 +47,14 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 
-import { getStandardProduct, formatPrice } from '../lib';
-import SimilarProductsList from './SimilarProductsList';
+import { getStandardProduct, formatPrice } from "../lib";
+import SimilarProductsList from "./SimilarProductsList";
+import { getDealerLogoSrc } from "@/helpers";
 
 export default {
-  name: 'OfferDetail',
+  name: "OfferDetail",
   components: {
     SimilarProductsList,
   },
@@ -68,7 +64,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(['detailProduct', 'searchResults', 'queryString']),
+    ...mapState(["detailProduct", "searchResults", "queryString"]),
     product: {
       get() {
         return getStandardProduct(this.detailProduct);
@@ -78,14 +74,19 @@ export default {
     similarProducts() {
       return this.searchResults.filter((offer) => offer.id !== this.offerId);
     },
+    dealerLogoSrc: {
+      get() {
+        return this.product ? getDealerLogoSrc(this.product.dealer) : null;
+      },
+    },
   },
   methods: {
     handleClickMenu: function() {
       const query = this.queryString;
       if (query) {
-        this.$router.push({ name: 'search', params: { query } });
+        this.$router.push({ name: "search", params: { query } });
       } else {
-        this.$router.push({ name: 'home' });
+        this.$router.push({ name: "home" });
       }
     },
     formatPrice,
@@ -93,7 +94,7 @@ export default {
   watch: {
     detailProduct(newValue) {
       this.product = getStandardProduct(newValue);
-      this.$store.dispatch('EXECUTE_SEARCH_QUERY', {
+      this.$store.dispatch("EXECUTE_SEARCH_QUERY", {
         queryString: this.product.title,
         setUrl: false,
       });
@@ -104,12 +105,12 @@ export default {
       }
     },
     offerId(newValue) {
-      this.$store.dispatch('LOAD_DETAIL_PRODUCT', { id: newValue });
+      this.$store.dispatch("LOAD_DETAIL_PRODUCT", { id: newValue });
       window.scrollTo(0, 0);
     },
   },
   created() {
-    this.$store.dispatch('LOAD_DETAIL_PRODUCT', { id: this.offerId });
+    this.$store.dispatch("LOAD_DETAIL_PRODUCT", { id: this.offerId });
     window.scrollTo(0, 0);
   },
 };

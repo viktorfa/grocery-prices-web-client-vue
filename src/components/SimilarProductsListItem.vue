@@ -13,12 +13,13 @@
           max-width="160"
           max-height="32"
         />
+        <div v-else>{{ dealer }}</div>
         <p v-if="formattedPrice">
           <strong>{{ formattedPrice }}</strong>
         </p>
       </div>
       <v-layout column justify-center>
-        <v-img class="result-list-item-image" contain v-bind:src="image_url" v-bind:alt="title"/>
+        <v-img class="result-list-item-image" contain v-bind:src="image_url" v-bind:alt="title" />
       </v-layout>
       <div>
         <p>{{ dealer }}</p>
@@ -29,11 +30,11 @@
 </template>
 
 <script>
-import { formatPrice } from '@/lib';
-import { getDealerLogoSrc } from '@/helpers';
+import { formatPrice } from "@/lib";
+import { getDealerLogoSrc } from "@/helpers";
 
 export default {
-  name: 'SimilarProductsListItem',
+  name: "SimilarProductsListItem",
   props: {
     price: [Number, String],
     title: String,
