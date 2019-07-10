@@ -31,7 +31,7 @@ export const actions = {
       );
       commit(productMutations.loadPromotedProducts, filteredProducts);
     } else {
-      commit(productMutations.setErrorMessage(error));
+      commit(productMutations.setErrorMessage, error);
     }
     console.log('LOAD_PROMOTED_PRODUCTS finish');
   },
