@@ -44,15 +44,15 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import { setQueryStringInPage } from '../lib';
-import { getHints } from '@/autocomplete';
+import { mapState } from "vuex";
+import { setQueryStringInPage } from "../lib";
+import { getHints } from "@/autocomplete";
 
-import SearchResults from './SearchResults.vue';
-import PromotedProducts from './PromotedProducts.vue';
+import SearchResults from "./SearchResults.vue";
+import PromotedProducts from "./PromotedProducts.vue";
 
 export default {
-  name: 'MainPage',
+  name: "MainPage",
   components: {
     SearchResults,
     PromotedProducts,
@@ -60,17 +60,17 @@ export default {
   data() {
     return {
       queryInput: this.$route.params.query || this.$store.state.queryString,
-      searchInput: '',
+      searchInput: "",
       autocomplete: getHints(),
     };
   },
   computed: {
     ...mapState([
-      'promotedProducts',
-      'showPromotedProducts',
-      'searchResults',
-      'isSearching',
-      'isLoadingProducts',
+      "promotedProducts",
+      "showPromotedProducts",
+      "searchResults",
+      "isSearching",
+      "isLoadingProducts",
     ]),
     showSearchResults() {
       return !!this.queryInput;
@@ -79,14 +79,14 @@ export default {
   watch: {
     queryInput: function(newValue, oldValue) {
       if (newValue && newValue.length > 0 && newValue !== oldValue) {
-        this.$store.commit('setQueryString', newValue);
-        this.$store.dispatch('EXECUTE_SEARCH_QUERY', {
+        this.$store.commit("setQueryString", newValue);
+        this.$store.dispatch("EXECUTE_SEARCH_QUERY", {
           queryString: newValue,
         });
       } else if (!newValue || (newValue && newValue.length === 0)) {
-        this.$store.commit('setShowPromotedProducts', true);
-        this.$store.commit('setQueryString', '');
-        setQueryStringInPage('');
+        this.$store.commit("setShowPromotedProducts", true);
+        this.$store.commit("setQueryString", "");
+        setQueryStringInPage("");
       }
     },
     searchInput(newValue, oldValue) {
@@ -106,13 +106,13 @@ export default {
       }
     },
     handleClickMenu: function() {
-      this.$store.commit('setShowDrawer', !this.$store.state.showDrawer);
+      this.$store.commit("setShowDrawer", !this.$store.state.showDrawer);
       this.$refs.searchInput.blur();
     },
   },
   mounted() {
     if (this.queryInput && this.queryInput.length > 0) {
-      this.$store.dispatch('EXECUTE_SEARCH_QUERY', {
+      this.$store.dispatch("EXECUTE_SEARCH_QUERY", {
         queryString: this.queryInput,
       });
     }

@@ -14,12 +14,12 @@
 </template>
 
 <script>
-import SearchResultItem from './SearchResultItem';
-import ProductList from './ProductList';
-import { getStandardProduct } from '../lib';
+import SearchResultItem from "./SearchResultItem";
+import ProductList from "./ProductList";
+import { getStandardProduct } from "../lib";
 
 export default {
-  name: 'PromotedProducts',
+  name: "PromotedProducts",
   components: {
     ProductList,
     SearchResultItem,
@@ -32,7 +32,7 @@ export default {
       return this.products.map(getStandardProduct).filter(
         // unique by id
         ({ id }, index, arr) =>
-          !arr.slice(index + 1).find(({ id: _id }) => id === _id)
+          !arr.slice(index + 1).find(({ id: _id }) => id === _id),
       );
     },
   },

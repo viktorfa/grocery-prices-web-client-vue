@@ -13,12 +13,12 @@
 </template>
 
 <script>
-import SearchResultItem from './SearchResultItem';
-import ProductList from './ProductList';
-import { getStandardProduct } from '../lib';
+import SearchResultItem from "./SearchResultItem";
+import ProductList from "./ProductList";
+import { getStandardProduct } from "../lib";
 
 export default {
-  name: 'SearchResultList',
+  name: "SearchResultList",
   components: {
     ProductList,
     SearchResultItem,

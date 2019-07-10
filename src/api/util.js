@@ -1,4 +1,4 @@
-import { staticUrl } from '../config/vars';
+import { staticUrl } from "../config/vars";
 
 export const getFullFileUrl = (fileName) => `${staticUrl}${fileName}`;
 

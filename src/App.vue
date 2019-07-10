@@ -39,9 +39,9 @@
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
-              <v-list-tile-title class="grey--text">{{
-                item.text
-              }}</v-list-tile-title>
+              <v-list-tile-title class="grey--text">
+                {{ item.text }}
+              </v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
         </template>
@@ -54,17 +54,17 @@
 </template>
 
 <script>
-import Vue from 'vue';
+import Vue from "vue";
 
-export default Vue.component('app', {
+export default Vue.component("app", {
   data() {
     return {
       items: [
-        { icon: 'settings', text: 'Instillinger' },
+        { icon: "settings", text: "Instillinger" },
         {
-          icon: 'add',
-          text: 'Legg til tilbud',
-          href: 'https://crowdsource.allematpriser.no/',
+          icon: "add",
+          text: "Legg til tilbud",
+          href: "https://crowdsource.allematpriser.no/",
         },
       ],
     };
@@ -75,7 +75,7 @@ export default Vue.component('app', {
         return this.$store.state.showDrawer;
       },
       set(newValue) {
-        return this.$store.commit('setShowDrawer', newValue);
+        return this.$store.commit("setShowDrawer", newValue);
       },
     },
   },
@@ -138,6 +138,15 @@ body {
   border-radius: 12px !important;
 }
 
+.result-list-item {
+  width: calc(50vw - 0.6rem);
+  margin: 0.5rem 0.3rem;
+}
+.result-list-item-image {
+  width: calc(50vw - 0.6rem);
+  height: calc((50vw - 0.6rem) * 1.4);
+}
+
 @media only screen and (max-width: 480px) {
   .result-list-item {
     width: calc(50vw - 0.6rem);
@@ -145,14 +154,17 @@ body {
   }
   .result-list-item-image {
     width: calc(50vw - 0.6rem);
+    height: calc((50vw - 0.6rem) * 1.4);
   }
 }
 @media only screen and (min-width: 481px) {
   .result-list-item {
-    width: 200px;
+    width: 160px;
+    height: 240px;
   }
   .result-list-item-image {
-    width: 200px;
+    width: 160px;
+    height: 240px;
   }
 }
 .result-list-item {

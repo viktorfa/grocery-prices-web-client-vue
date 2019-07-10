@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _ from "lodash";
 import {
   getIndex,
   getObjects,
@@ -6,38 +6,38 @@ import {
   getCustomProduct,
   getGroceryOffer,
   searchGroceryOffers,
-} from '@/api';
-import { loadIndex, loadObjects, getProduct } from '@/search';
-import { setQueryStringInPage } from '@/lib';
-import { isProductUri } from '@/helpers';
+} from "@/api";
+import { loadIndex, loadObjects, getProduct } from "@/search";
+import { setQueryStringInPage } from "@/lib";
+import { isProductUri } from "@/helpers";
 
-import { productMutations } from './mutations';
+import { productMutations } from "./mutations";
 
 export const productActions = {
-  FETCH_INDEX_AND_PRODUCTS: 'FETCH_INDEX_AND_PRODUCTS',
-  EXECUTE_SEARCH_QUERY: 'EXECUTE_SEARCH_QUERY',
-  LOAD_PROMOTED_PRODUCTS: 'LOAD_PROMOTED_PRODUCTS',
-  LOAD_DETAIL_PRODUCT: 'LOAD_DETAIL_PRODUCT',
+  FETCH_INDEX_AND_PRODUCTS: "FETCH_INDEX_AND_PRODUCTS",
+  EXECUTE_SEARCH_QUERY: "EXECUTE_SEARCH_QUERY",
+  LOAD_PROMOTED_PRODUCTS: "LOAD_PROMOTED_PRODUCTS",
+  LOAD_DETAIL_PRODUCT: "LOAD_DETAIL_PRODUCT",
 };
 
 export const actions = {
   async [productActions.LOAD_PROMOTED_PRODUCTS]({ commit }) {
-    console.log('LOAD_PROMOTED_PRODUCTS');
+    console.log("LOAD_PROMOTED_PRODUCTS");
     const { ok, data, error } = await getPromotedOffers();
     if (ok) {
       const filteredProducts = _.uniqBy(
         data,
-        (offer) => offer.heading + offer.dealer + offer.pricing.price
+        (offer) => offer.heading + offer.dealer + offer.pricing.price,
       );
       commit(productMutations.loadPromotedProducts, filteredProducts);
     } else {
       commit(productMutations.setErrorMessage, error);
     }
-    console.log('LOAD_PROMOTED_PRODUCTS finish');
+    console.log("LOAD_PROMOTED_PRODUCTS finish");
   },
   async [productActions.FETCH_INDEX_AND_PRODUCTS](
     { commit, dispatch },
-    payload
+    payload,
   ) {
     commit(productMutations.setIsLoading, true);
     let startTime = new Date().getTime();
@@ -45,20 +45,20 @@ export const actions = {
       getObjects(),
       getIndex(),
     ]);
-    console.log('finish fetching objects');
+    console.log("finish fetching objects");
     console.log(`time elapsed: ${new Date().getTime() - startTime}`);
     if (objectOption.ok && indexOption.ok) {
       startTime = new Date().getTime();
-      console.log('start parsing objects');
+      console.log("start parsing objects");
       loadIndex(indexOption.data);
       loadObjects(objectOption.data);
-      console.log('finish parsing objects');
+      console.log("finish parsing objects");
       console.log(`time elapsed: ${new Date().getTime() - startTime}`);
     } else {
       if (payload && payload.isRetry) {
-        commit(productMutations.setErrorMessage, 'Could not load index');
+        commit(productMutations.setErrorMessage, "Could not load index");
       } else {
-        console.warn('fail reading json output');
+        console.warn("fail reading json output");
         dispatch(productActions.FETCH_INDEX_AND_PRODUCTS, {
           isRetry: true,
         });
@@ -69,11 +69,11 @@ export const actions = {
   },
   async [productActions.EXECUTE_SEARCH_QUERY](
     { commit },
-    { queryString, setUrl }
+    { queryString, setUrl },
   ) {
     commit(productMutations.setIsSearching, true);
     commit(productMutations.clearSearchResults);
-    console.log('EXECUTE_SEARCH_QUERY');
+    console.log("EXECUTE_SEARCH_QUERY");
     console.log(queryString);
 
     const lambdaPromise = searchGroceryOffers(queryString);

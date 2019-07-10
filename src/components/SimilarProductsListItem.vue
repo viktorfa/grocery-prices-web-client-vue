@@ -3,7 +3,7 @@
     <v-layout class="result-list-item" column>
       <div>
         <h3>{{ title }}</h3>
-        <p>{{description}}</p>
+        <p>{{ description }}</p>
         <v-img
           v-if="dealerLogoSrc"
           class="dealer-logo-image"
@@ -19,7 +19,12 @@
         </p>
       </div>
       <v-layout column justify-center>
-        <v-img class="result-list-item-image" contain v-bind:src="image_url" v-bind:alt="title" />
+        <v-img
+          class="result-list-item-image"
+          contain
+          v-bind:src="image_url"
+          v-bind:alt="title"
+        />
       </v-layout>
       <div>
         <p>{{ dealer }}</p>

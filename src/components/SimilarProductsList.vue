@@ -15,12 +15,12 @@
 </template>
 
 <script>
-import SimilarProductsListItem from './SimilarProductsListItem';
-import ProductList from './ProductList';
-import { getStandardProduct } from '../lib';
+import SimilarProductsListItem from "./SimilarProductsListItem";
+import ProductList from "./ProductList";
+import { getStandardProduct } from "../lib";
 
 export default {
-  name: 'SimilarProductsList',
+  name: "SimilarProductsList",
   components: {
     ProductList,
     SimilarProductsListItem,

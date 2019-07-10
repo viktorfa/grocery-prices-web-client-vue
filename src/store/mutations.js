@@ -1,17 +1,17 @@
 export const productMutations = {
-  setQueryString: 'setQueryString',
-  setIsSearching: 'setIsSearching',
-  setIsLoading: 'setIsLoading',
-  setShowPromotedProducts: 'setShowPromotedProducts',
-  loadSearchResults: 'loadSearchResults',
-  clearSearchResults: 'clearSearchResults',
-  loadPromotedProducts: 'loadPromotedProducts',
-  setErrorMessage: 'setErrorMessage',
-  setDetailProduct: 'setDetailProduct',
+  setQueryString: "setQueryString",
+  setIsSearching: "setIsSearching",
+  setIsLoading: "setIsLoading",
+  setShowPromotedProducts: "setShowPromotedProducts",
+  loadSearchResults: "loadSearchResults",
+  clearSearchResults: "clearSearchResults",
+  loadPromotedProducts: "loadPromotedProducts",
+  setErrorMessage: "setErrorMessage",
+  setDetailProduct: "setDetailProduct",
 };
 
 export const uiMutations = {
-  setShowDrawer: 'setShowDrawer',
+  setShowDrawer: "setShowDrawer",
 };
 
 export const mutations = {

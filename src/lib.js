@@ -1,32 +1,32 @@
-import _ from 'lodash';
-import { getShopgunOfferCatalogUrl } from './helpers';
+import _ from "lodash";
+import { getShopgunOfferCatalogUrl } from "./helpers";
 
-export const formatPrice = (price, suffix = ',-') => {
+export const formatPrice = (price, suffix = ",-") => {
   if (_.isNumber(price)) {
-    return `${price.toFixed(2).replace('.', ',')}${suffix}`;
+    return `${price.toFixed(2).replace(".", ",")}${suffix}`;
   } else {
     return price;
   }
 };
 export const parseQueryStringFromUrl = () => {
-  if (window.location.pathname.indexOf('sok/') !== -1) {
+  if (window.location.pathname.indexOf("sok/") !== -1) {
     return decodeURIComponent(
       window.location.pathname.substring(
-        window.location.pathname.lastIndexOf('sok/') + 4
-      )
+        window.location.pathname.lastIndexOf("sok/") + 4,
+      ),
     );
   }
   return null;
 };
 const intitialTitleText =
-  document.querySelector('title') && document.querySelector('title').text;
+  document.querySelector("title") && document.querySelector("title").text;
 export const setQueryStringInPage = (query) => {
   if (query && query.length > 0) {
     window.history.pushState({}, null, `/sok/${query}`);
-    document.querySelector('title').text = `Priser på "${query}"`;
+    document.querySelector("title").text = `Priser på "${query}"`;
   } else {
-    window.history.pushState({}, null, '/');
-    document.querySelector('title').text = intitialTitleText;
+    window.history.pushState({}, null, "/");
+    document.querySelector("title").text = intitialTitleText;
   }
 };
 
@@ -36,27 +36,27 @@ export const getProductValue = ({
   quantity,
   pricing,
 }) => {
-  if (_.isNil(quantity)) return '';
+  if (_.isNil(quantity)) return "";
   if (quantity_value)
     return formatPrice(
       quantity_value.value,
-      ` kr/${quantity_value.unit.symbol}`
+      ` kr/${quantity_value.unit.symbol}`,
     );
   if (piece_value)
     return formatPrice(piece_value.value, ` kr/${piece_value.unit.symbol}`);
   else if (quantity.size.max)
     return formatPrice(
       pricing.price / (quantity.size.max * quantity.unit.si.factor),
-      ` kr/${quantity.unit.si.symbol}`
+      ` kr/${quantity.unit.si.symbol}`,
     );
   else if (quantity.pieces.max)
-    return formatPrice(pricing.price / quantity.pieces.max, ' kr/stk');
-  return '';
+    return formatPrice(pricing.price / quantity.pieces.max, " kr/stk");
+  return "";
 };
 
 export const getStandardProduct = (product) => {
   switch (product.provenance) {
-    case 'kolonial':
+    case "kolonial":
       return {
         title: product.heading,
         price: product.pricing.price,
@@ -68,7 +68,7 @@ export const getStandardProduct = (product) => {
         id: product.uri,
         value: getProductValue(product),
       };
-    case 'shopgun':
+    case "shopgun":
       return {
         value: getProductValue(product),
         title: product.heading,
@@ -80,7 +80,7 @@ export const getStandardProduct = (product) => {
         image_url: product.image_url,
         id: product.uri,
       };
-    case 'meny':
+    case "meny":
       return {
         value: getProductValue(product),
         title: product.heading,
@@ -92,7 +92,7 @@ export const getStandardProduct = (product) => {
         image_url: product.image_url,
         id: product.uri,
       };
-    case 'europris':
+    case "europris":
       return {
         value: getProductValue(product),
         title: product.heading,
@@ -104,7 +104,7 @@ export const getStandardProduct = (product) => {
         image_url: product.image_url,
         id: product.uri,
       };
-    case 'strapi':
+    case "strapi":
       return {
         title: product.heading,
         price: product.price,
@@ -115,14 +115,14 @@ export const getStandardProduct = (product) => {
         image_url: product.image_url,
         id: product.shopgun_id,
       };
-    case 'custom':
+    case "custom":
       return {
         title: product.heading,
-        price: product.pricing.price || product.pricing.text || '',
+        price: product.pricing.price || product.pricing.text || "",
         subtitle: product.dealer,
         dealer: product.dealer,
         description: product.description,
-        href: '#',
+        href: "#",
         image_url: product.image_url,
         id: product.id || product._id,
       };

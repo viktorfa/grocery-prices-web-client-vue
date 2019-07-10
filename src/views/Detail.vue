@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import OfferDetail from '@/components/OfferDetail';
+import OfferDetail from "@/components/OfferDetail";
 
 export default {
   components: {

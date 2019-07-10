@@ -11,10 +11,10 @@
 </template>
 
 <script>
-import _ from 'lodash';
+import _ from "lodash";
 
 export default {
-  name: 'ProductList',
+  name: "ProductList",
   props: {
     products: Array,
   },
