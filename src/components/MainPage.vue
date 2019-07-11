@@ -27,16 +27,11 @@
     </p>
     <h2
       v-show="searchResults.length === 0 && showSearchResults && !isSearching"
-    >
-      Ingen treff på "{{ queryInput }}"
-    </h2>
+    >Ingen treff på "{{ queryInput }}"</h2>
     <div v-show="showSearchResults">
       <SearchResults v-bind:results="searchResults" />
     </div>
-    <div
-      v-show="!showSearchResults"
-      class="text-xs-center offer-search-results"
-    >
+    <div v-show="!showSearchResults" class="text-xs-center offer-search-results">
       <h1 class="offer-search-results-header">Utvalgte tilbud</h1>
       <PromotedProducts v-bind:products="promotedProducts" />
     </div>

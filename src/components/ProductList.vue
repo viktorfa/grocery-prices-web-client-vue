@@ -1,15 +1,14 @@
 <template>
   <div>
-    <v-layout row wrap justify-space-around>
-      <div v-for="product in _products" :key="product.id">
-        <slot v-if="hasSlot" :product="product" v-bind="$props"></slot>
+    <v-layout row wrap justify-space-around align-end>
+      <template v-for="product in _products">
         <ProductListItem
-          v-else
+          :key="product.id"
           v-bind="product"
           :showDealerLogo="showDealerLogo"
           :showSubtitle="showSubtitle"
         />
-      </div>
+      </template>
     </v-layout>
     <v-btn @click="showMore" v-if="isMore" color="info" block flat>mer</v-btn>
     <br v-else />
@@ -39,9 +38,6 @@ export default {
     },
     _products() {
       return _.take(this.products, this.limit);
-    },
-    hasSlot() {
-      return !!this.$slots.default;
     },
   },
   methods: {

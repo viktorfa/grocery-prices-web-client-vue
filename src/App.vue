@@ -146,36 +146,4 @@ body {
 .v-input__slot {
   border-radius: 12px !important;
 }
-
-.result-list-item {
-  width: calc(50vw - 0.6rem);
-  margin: 0.5rem 0.3rem;
-  border-width: 0;
-  border-style: solid;
-  border-bottom-width: 2px;
-  height: 100%;
-  display: flex;
-}
-.result-list-item-image {
-  width: calc(50vw - 0.6rem);
-  height: calc((50vw - 0.6rem) * 1.4);
-  object-fit: contain;
-  object-position: center;
-}
-
-@media only screen and (min-width: 481px) {
-  .result-list-item {
-    width: 160px;
-    margin: 0.5rem;
-  }
-  .result-list-item-image {
-    width: 160px;
-    height: 240px;
-  }
-}
-
-.search-result-link {
-  color: inherit;
-  text-decoration: none;
-}
 </style>

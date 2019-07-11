@@ -1,6 +1,6 @@
 <template>
-  <router-link :to="`/tilbud/${id}`" class="search-result-link">
-    <v-layout class="result-list-item" column>
+  <v-layout class="result-list-item" column>
+    <router-link :to="`/tilbud/${id}`" class="search-result-link">
       <div>
         <v-img
           v-if="dealerLogoSrc"
@@ -23,8 +23,8 @@
       <div>
         <p>{{ value }}</p>
       </div>
-    </v-layout>
-  </router-link>
+    </router-link>
+  </v-layout>
 </template>
 
 <script>
@@ -64,5 +64,37 @@ export default {
 <style>
 .dealer-logo-image {
   margin: auto;
+}
+.result-list-item {
+  width: calc(50vw - 0.6rem);
+  margin: 0.5rem 0.3rem;
+  border-width: 0;
+  border-style: solid;
+  border-bottom-width: 2px;
+  height: 100%;
+  display: flex;
+  flex-grow: initial;
+}
+.result-list-item-image {
+  width: calc(50vw - 0.6rem);
+  height: calc((50vw - 0.6rem) * 1.4);
+  object-fit: contain;
+  object-position: center;
+}
+
+@media only screen and (min-width: 481px) {
+  .result-list-item {
+    width: 160px;
+    margin: 0.5rem;
+  }
+  .result-list-item-image {
+    width: 160px;
+    height: 240px;
+  }
+}
+
+.search-result-link {
+  color: inherit;
+  text-decoration: none;
 }
 </style>
