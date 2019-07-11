@@ -6,32 +6,29 @@
           <v-list-tile-avatar>
             <img src="/logo-256x256.png" />
           </v-list-tile-avatar>
-
           <v-list-tile-content>
             <v-list-tile-title>
               <router-link to="/">allematpriser.no</router-link>
             </v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-        <template v-for="(item, i) in items">
-          <v-layout v-if="item.heading" :key="i" row align-center>
-            <v-flex xs6>
-              <v-subheader v-if="item.heading">{{ item.heading }}</v-subheader>
-            </v-flex>
-            <v-flex xs6 class="text-xs-right">
-              <v-btn small flat>edit</v-btn>
-            </v-flex>
-          </v-layout>
-          <v-divider v-else-if="item.divider" :key="i" dark class="my-3"></v-divider>
-          <v-list-tile v-else :key="i" :href="item.href">
-            <v-list-tile-action>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-tile-action>
-            <v-list-tile-content>
-              <v-list-tile-title class="grey--text">{{ item.text }}</v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile>
-        </template>
+        <v-divider />
+        <v-list-tile>
+          <v-list-tile-action>
+            <v-icon>settings</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title class="grey--text">Instillinger</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-list-tile href="https://crowdsource.allematpriser.no">
+          <v-list-tile-action>
+            <v-icon>add</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title class="grey--text text--darken-4">Legg til tilbud</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
       </v-list>
       <div>
         <v-list dense>
@@ -62,14 +59,6 @@ export default Vue.component("app", {
     return {
       now: new Date(),
       commitSha,
-      items: [
-        { icon: "settings", text: "Instillinger" },
-        {
-          icon: "add",
-          text: "Legg til tilbud",
-          href: "https://crowdsource.allematpriser.no/",
-        },
-      ],
     };
   },
   computed: {
