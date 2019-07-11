@@ -15,7 +15,7 @@ const initialState = {
   showPromotedProducts: true,
   errorMessage: "",
   showDrawer: false,
-  detailProduct: {},
+  detailProduct: null,
 };
 
 export default new Store({
