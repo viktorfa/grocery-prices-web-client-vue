@@ -1,20 +1,16 @@
-import _ from "lodash";
+import uniqBy from "lodash/uniqBy";
 import {
-  getIndex,
-  getObjects,
   getPromotedOffers,
   getCustomProduct,
   getGroceryOffer,
   searchGroceryOffers,
 } from "@/api";
-import { loadIndex, loadObjects, getProduct } from "@/search";
 import { setQueryStringInPage } from "@/lib";
 import { isProductUri } from "@/helpers";
 
 import { productMutations } from "./mutations";
 
 export const productActions = {
-  FETCH_INDEX_AND_PRODUCTS: "FETCH_INDEX_AND_PRODUCTS",
   EXECUTE_SEARCH_QUERY: "EXECUTE_SEARCH_QUERY",
   LOAD_PROMOTED_PRODUCTS: "LOAD_PROMOTED_PRODUCTS",
   LOAD_DETAIL_PRODUCT: "LOAD_DETAIL_PRODUCT",
@@ -25,7 +21,7 @@ export const actions = {
     console.log("LOAD_PROMOTED_PRODUCTS");
     const { ok, data, error } = await getPromotedOffers();
     if (ok) {
-      const filteredProducts = _.uniqBy(
+      const filteredProducts = uniqBy(
         data,
         (offer) => offer.heading + offer.dealer + offer.pricing.price,
       );
@@ -34,38 +30,6 @@ export const actions = {
       commit(productMutations.setErrorMessage, error);
     }
     console.log("LOAD_PROMOTED_PRODUCTS finish");
-  },
-  async [productActions.FETCH_INDEX_AND_PRODUCTS](
-    { commit, dispatch },
-    payload,
-  ) {
-    commit(productMutations.setIsLoading, true);
-    let startTime = new Date().getTime();
-    const [objectOption, indexOption] = await Promise.all([
-      getObjects(),
-      getIndex(),
-    ]);
-    console.log("finish fetching objects");
-    console.log(`time elapsed: ${new Date().getTime() - startTime}`);
-    if (objectOption.ok && indexOption.ok) {
-      startTime = new Date().getTime();
-      console.log("start parsing objects");
-      loadIndex(indexOption.data);
-      loadObjects(objectOption.data);
-      console.log("finish parsing objects");
-      console.log(`time elapsed: ${new Date().getTime() - startTime}`);
-    } else {
-      if (payload && payload.isRetry) {
-        commit(productMutations.setErrorMessage, "Could not load index");
-      } else {
-        console.warn("fail reading json output");
-        dispatch(productActions.FETCH_INDEX_AND_PRODUCTS, {
-          isRetry: true,
-        });
-      }
-    }
-    commit(productMutations.setIsLoading, false);
-    return;
   },
   async [productActions.EXECUTE_SEARCH_QUERY](
     { commit },
@@ -96,18 +60,8 @@ export const actions = {
   },
   async [productActions.LOAD_DETAIL_PRODUCT]({ commit }, { id }) {
     if (isProductUri(id)) {
-      // This is a product URI, should be in loaded products
-      const localPromise = getProduct(id);
       const apiPromise = getGroceryOffer(id);
-      commit(productMutations.setDetailProduct, null);
-      localPromise.then(({ ok, data, error }) => {
-        if (ok) {
-          commit(productMutations.setDetailProduct, data);
-          return;
-        } else {
-          commit(productMutations.setErrorMessage, error);
-        }
-      });
+
       apiPromise.then(({ ok, data, error }) => {
         if (ok) {
           commit(productMutations.setDetailProduct, data);
