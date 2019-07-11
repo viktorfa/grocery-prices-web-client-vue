@@ -4,7 +4,7 @@ import "./plugins/vuetify";
 import store from "./store";
 import router from "./router";
 import App from "./App.vue";
-
+import "./main.css";
 Vue.config.productionTip = false;
 
 store.dispatch("LOAD_PROMOTED_PRODUCTS");
