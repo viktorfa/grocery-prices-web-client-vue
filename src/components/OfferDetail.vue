@@ -11,17 +11,10 @@
         <v-layout row wrap>
           <v-flex xs12>
             <v-card flat>
-              <v-img
-                :src="product.image_url"
-                aspect-ratio="2.0"
-                contain
-                :alt="product.title"
-              ></v-img>
+              <v-img :src="product.image_url" aspect-ratio="2.0" contain :alt="product.title"></v-img>
               <v-card-title primary-title>
                 <v-flex>
-                  <h3 class="headline mb-0">
-                    {{ formatPrice(product.price) }}
-                  </h3>
+                  <h3 class="headline mb-0">{{ formatPrice(product.price) }}</h3>
                   <div>{{ product.description }}</div>
                   <div>{{ product.value }}</div>
                   <v-img
@@ -37,14 +30,7 @@
                 </v-flex>
               </v-card-title>
               <v-card-actions>
-                <v-btn
-                  outline
-                  flat
-                  color="orange"
-                  :href="product.href"
-                  target="_blank"
-                  >Se annonse</v-btn
-                >
+                <v-btn outline flat color="orange" :href="product.href" target="_blank">Se annonse</v-btn>
               </v-card-actions>
             </v-card>
           </v-flex>
@@ -86,7 +72,7 @@ export default {
       set() {},
     },
     similarProducts() {
-      return this.searchResults.filter((offer) => offer.id !== this.offerId);
+      return this.searchResults.filter((offer) => offer.uri !== this.offerId);
     },
     dealerLogoSrc: {
       get() {
