@@ -21,13 +21,17 @@
         openOnClick: false,
       }"
     ></v-combobox>
-    <p v-show="isSearching === true">
-      søker etter
-      <strong>{{ queryInput }}</strong> ...
-    </p>
-    <h2
+    <div v-show="isSearching === true" class="center-box fixed display-1">
+      <p>søker etter</p>
+      <strong>{{ queryInput }}</strong>
+    </div>
+    <div
       v-show="searchResults.length === 0 && showSearchResults && !isSearching"
-    >Ingen treff på "{{ queryInput }}"</h2>
+      class="center-box fixed display-1"
+    >
+      <p>Ingen treff på</p>
+      <strong>{{ queryInput }}</strong>
+    </div>
     <div v-show="showSearchResults">
       <SearchResults v-bind:results="searchResults" />
     </div>

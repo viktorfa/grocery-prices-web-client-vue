@@ -135,4 +135,11 @@ body {
 .v-input__slot {
   border-radius: 12px !important;
 }
+
+.center-box {
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
 </style>
