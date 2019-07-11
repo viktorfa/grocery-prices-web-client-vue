@@ -2,7 +2,13 @@
   <div>
     <v-layout row wrap justify-space-around>
       <div v-for="product in _products" :key="product.id">
-        <slot :product="product"></slot>
+        <slot v-if="hasSlot" :product="product" v-bind="$props"></slot>
+        <ProductListItem
+          v-else
+          v-bind="product"
+          :showDealerLogo="showDealerLogo"
+          :showSubtitle="showSubtitle"
+        />
       </div>
     </v-layout>
     <v-btn @click="showMore" v-if="isMore" color="info" block flat>mer</v-btn>
@@ -12,11 +18,15 @@
 
 <script>
 import _ from "lodash";
+import ProductListItem from "./ProductListItem";
 
 export default {
   name: "ProductList",
+  components: { ProductListItem },
   props: {
     products: Array,
+    showSubtitle: { type: Boolean, default: true },
+    showDealerLogo: { type: Boolean, default: true },
   },
   data: function() {
     return {
@@ -29,6 +39,9 @@ export default {
     },
     _products() {
       return _.take(this.products, this.limit);
+    },
+    hasSlot() {
+      return !!this.$slots.default;
     },
   },
   methods: {

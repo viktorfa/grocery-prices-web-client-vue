@@ -2,32 +2,25 @@
   <router-link :to="`/tilbud/${id}`" class="search-result-link">
     <v-layout class="result-list-item" column>
       <div>
-        <h3>{{ title }}</h3>
-        <p>{{ description }}</p>
         <v-img
           v-if="dealerLogoSrc"
           class="dealer-logo-image"
           :src="dealerLogoSrc"
-          :alt="dealer"
+          :alt="subtitle"
           contain
           max-width="160"
           max-height="32"
         />
-        <div v-else>{{ dealer }}</div>
+        <h3>{{ title }}</h3>
+        <p v-if="showSubtitle">{{ subtitle }}</p>
         <p v-if="formattedPrice">
           <strong>{{ formattedPrice }}</strong>
         </p>
       </div>
       <v-layout column justify-center>
-        <v-img
-          class="result-list-item-image"
-          contain
-          v-bind:src="image_url"
-          v-bind:alt="title"
-        />
+        <v-img class="result-list-item-image" contain v-bind:src="image_url" v-bind:alt="title" />
       </v-layout>
       <div>
-        <p>{{ dealer }}</p>
         <p>{{ value }}</p>
       </div>
     </v-layout>
@@ -37,28 +30,39 @@
 <script>
 import { formatPrice } from "@/lib";
 import { getDealerLogoSrc } from "@/helpers";
-
 export default {
-  name: "SimilarProductsListItem",
+  name: "ProductListItem",
   props: {
-    price: [Number, String],
-    title: String,
-    value: String,
-    description: String,
-    dealer: String,
+    price: { type: [Number, String], required: true },
+    title: { type: String, required: true },
+    subtitle: String,
     image_url: String,
     href: String,
-    id: String,
+    value: String,
+    id: { type: String, required: true },
+    dealer: String,
+    description: String,
+    showDealerLogo: { type: Boolean, default: true },
+    showSubtitle: { type: Boolean, default: true },
+  },
+  computed: {
+    dealerLogoSrc() {
+      if (this.showDealerLogo) {
+        return getDealerLogoSrc(this.dealer);
+      }
+      return "";
+    },
   },
   data: function() {
     return {
       formattedPrice: formatPrice(this.price),
     };
   },
-  computed: {
-    dealerLogoSrc() {
-      return getDealerLogoSrc(this.dealer);
-    },
-  },
 };
 </script>
+
+<style>
+.dealer-logo-image {
+  margin: auto;
+}
+</style>

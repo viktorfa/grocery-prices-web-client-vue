@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="product">
     <v-toolbar color="indigo" dark fixed app>
       <v-btn icon @click.stop="handleClickMenu">
         <v-icon>arrow_back</v-icon>
@@ -40,7 +40,7 @@
         <h2>Lignende varer</h2>
       </v-flex>
       <v-flex xs12>
-        <SimilarProductsList :products="similarProducts" />
+        <ProductList :products="similarProducts" />
       </v-flex>
     </v-layout>
   </div>
@@ -49,14 +49,14 @@
 <script>
 import { mapState } from "vuex";
 
+import ProductList from "./ProductList";
 import { getStandardProduct, formatPrice } from "../lib";
-import SimilarProductsList from "./SimilarProductsList";
 import { getDealerLogoSrc } from "@/helpers";
 
 export default {
   name: "OfferDetail",
   components: {
-    SimilarProductsList,
+    ProductList,
   },
   data() {
     return {
@@ -67,17 +67,22 @@ export default {
     ...mapState(["detailProduct", "searchResults", "queryString"]),
     product: {
       get() {
-        return getStandardProduct(this.detailProduct);
+        return (
+          (this.detailProduct && getStandardProduct(this.detailProduct)) || null
+        );
       },
       set() {},
     },
     similarProducts() {
-      return this.searchResults.filter((offer) => offer.uri !== this.offerId);
+      return this.searchResults
+        .filter((offer) => offer.uri !== this.offerId)
+        .map(getStandardProduct);
     },
     dealerLogoSrc: {
       get() {
-        return this.product ? getDealerLogoSrc(this.product.dealer) : null;
+        return this.product ? getDealerLogoSrc(this.product.dealer) : "";
       },
+      set() {},
     },
   },
   methods: {
