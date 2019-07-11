@@ -1,12 +1,6 @@
 <template>
   <v-app class="app">
-    <v-navigation-drawer
-      v-model="showDrawer"
-      fixed
-      clipped
-      class="grey lighten-4"
-      app
-    >
+    <v-navigation-drawer v-model="showDrawer" fixed clipped class="grey lighten-4" app>
       <v-list dense class="grey lighten-4">
         <v-list-tile avatar>
           <v-list-tile-avatar>
@@ -28,24 +22,29 @@
               <v-btn small flat>edit</v-btn>
             </v-flex>
           </v-layout>
-          <v-divider
-            v-else-if="item.divider"
-            :key="i"
-            dark
-            class="my-3"
-          ></v-divider>
+          <v-divider v-else-if="item.divider" :key="i" dark class="my-3"></v-divider>
           <v-list-tile v-else :key="i" :href="item.href">
             <v-list-tile-action>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
-              <v-list-tile-title class="grey--text">
-                {{ item.text }}
-              </v-list-tile-title>
+              <v-list-tile-title class="grey--text">{{ item.text }}</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
         </template>
       </v-list>
+      <div>
+        <v-list dense>
+          <v-list-tile>
+            <v-list-tile-content :style="{'align-items': 'center'}">{{commitSha.substring(0, 8)}}</v-list-tile-content>
+          </v-list-tile>
+          <v-list-tile>
+            <v-list-tile-content
+              :style="{'align-items': 'center'}"
+            >© allematpriser.no {{now.getUTCFullYear()}}</v-list-tile-content>
+          </v-list-tile>
+        </v-list>
+      </div>
     </v-navigation-drawer>
     <v-content>
       <router-view></router-view>
@@ -56,9 +55,13 @@
 <script>
 import Vue from "vue";
 
+import { commitSha } from "@/config/vars";
+
 export default Vue.component("app", {
   data() {
     return {
+      now: new Date(),
+      commitSha,
       items: [
         { icon: "settings", text: "Instillinger" },
         {
@@ -90,6 +93,12 @@ export default Vue.component("app", {
   --europris-color: #393;
   --max-width: 1024px;
   --background-color: #fafafa;
+}
+
+.v-navigation-drawer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 body {
@@ -141,43 +150,28 @@ body {
 .result-list-item {
   width: calc(50vw - 0.6rem);
   margin: 0.5rem 0.3rem;
-}
-.result-list-item-image {
-  width: calc(50vw - 0.6rem);
-  height: calc((50vw - 0.6rem) * 1.4);
-}
-
-@media only screen and (max-width: 480px) {
-  .result-list-item {
-    width: calc(50vw - 0.6rem);
-    margin: 0.5rem 0.3rem;
-  }
-  .result-list-item-image {
-    width: calc(50vw - 0.6rem);
-    height: calc((50vw - 0.6rem) * 1.4);
-  }
-}
-@media only screen and (min-width: 481px) {
-  .result-list-item {
-    width: 160px;
-    height: 240px;
-  }
-  .result-list-item-image {
-    width: 160px;
-    height: 240px;
-  }
-}
-.result-list-item {
   border-width: 0;
   border-style: solid;
   border-bottom-width: 2px;
-  margin: 0.3rem;
   height: 100%;
   display: flex;
 }
 .result-list-item-image {
+  width: calc(50vw - 0.6rem);
+  height: calc((50vw - 0.6rem) * 1.4);
   object-fit: contain;
   object-position: center;
+}
+
+@media only screen and (min-width: 481px) {
+  .result-list-item {
+    width: 160px;
+    margin: 0.5rem;
+  }
+  .result-list-item-image {
+    width: 160px;
+    height: 240px;
+  }
 }
 
 .search-result-link {
