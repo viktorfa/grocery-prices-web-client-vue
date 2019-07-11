@@ -1,0 +1,45 @@
+image: node:latest
+
+variables:
+  DOCKER_DRIVER: overlay2 # supposed to speed up things (https://blog.sparksuite.com/7-ways-to-speed-up-gitlab-ci-cd-times-29f60aab69f9)
+  VUE_APP_COMMIT_SHA: $CI_COMMIT_SHA
+
+stages:
+  - install
+  - build
+  - test
+  - deploy
+
+install_dependencies:
+  stage: install
+  script:
+    - yarn install
+  artifacts:
+    paths:
+      - node_modules/
+
+build:
+  stage: build
+  dependencies:
+    - install_dependencies
+  artifacts:
+    paths:
+      - dist/
+  script:
+    - yarn build
+
+test:
+  stage: test
+  dependencies:
+    - install_dependencies
+  script:
+    - yarn test:unit
+
+deploy:
+  stage: deploy
+  dependencies:
+    - build
+  script:
+    - yarn global add firebase-tools
+    - firebase use --token $FIREBASE_DEPLOY_TOKEN
+    - firebase deploy --only hosting --token $FIREBASE_DEPLOY_TOKEN --non-interactive
