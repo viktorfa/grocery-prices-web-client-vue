@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { getShopgunOfferCatalogUrl } from "./helpers";
+import { provenanceTypes } from "./enums";
 
 export const formatPrice = (price, suffix = ",-") => {
   if (_.isNumber(price)) {
@@ -56,66 +56,7 @@ export const getProductValue = ({
 
 export const getStandardProduct = (product) => {
   switch (product.provenance) {
-    case "kolonial":
-      return {
-        title: product.heading,
-        price: product.pricing.price,
-        subtitle: product.description,
-        description: product.description,
-        dealer: product.dealer,
-        href: product.href,
-        image_url: product.image_url,
-        id: product.uri,
-        value: getProductValue(product),
-      };
-    case "shopgun":
-      return {
-        value: getProductValue(product),
-        title: product.heading,
-        price: product.pricing.price,
-        subtitle: product.dealer,
-        description: product.description,
-        dealer: product.dealer,
-        href: product.href,
-        image_url: product.image_url,
-        id: product.uri,
-      };
-    case "meny":
-      return {
-        value: getProductValue(product),
-        title: product.heading,
-        price: product.pricing.price,
-        subtitle: product.description,
-        description: product.description,
-        dealer: product.dealer,
-        href: product.href,
-        image_url: product.image_url,
-        id: product.uri,
-      };
-    case "europris":
-      return {
-        value: getProductValue(product),
-        title: product.heading,
-        price: product.pricing.price,
-        subtitle: product.description,
-        description: product.description,
-        dealer: product.dealer,
-        href: product.href,
-        image_url: product.image_url,
-        id: product.uri,
-      };
-    case "strapi":
-      return {
-        title: product.heading,
-        price: product.price,
-        subtitle: product.dealer_name,
-        description: product.dealer_name,
-        dealer: product.dealer_name,
-        href: getShopgunOfferCatalogUrl(product),
-        image_url: product.image_url,
-        id: product.shopgun_id,
-      };
-    case "custom":
+    case provenanceTypes.CUSTOM:
       return {
         title: product.heading,
         price: product.pricing.price || product.pricing.text || "",
@@ -124,9 +65,19 @@ export const getStandardProduct = (product) => {
         description: product.description,
         href: "#",
         image_url: product.image_url,
-        id: product.id || product._id,
+        id: product.uri || product._id,
       };
     default:
-      return product;
+      return {
+        title: product.heading,
+        price: product.pricing.price,
+        subtitle: product.description,
+        description: product.description,
+        dealer: product.dealer,
+        href: product.href,
+        image_url: product.image_url,
+        id: product.uri,
+        value: getProductValue(product),
+      };
   }
 };
