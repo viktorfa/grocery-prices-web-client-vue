@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import _ from "lodash";
+import sortBy from "lodash/sortBy";
 import ProductList from "./ProductList";
 import { getStandardProduct } from "../lib";
 
@@ -41,7 +41,7 @@ const isOffer = (result) =>
 const isKolonial = (result) => result.provenance === "kolonial";
 const isMeny = (result) => result.provenance === "meny";
 const isEuropris = (result) => result.provenance === "europris";
-const sortResults = (results) => _.sortBy(results, (result) => -result.score);
+const sortResults = (results) => sortBy(results, (result) => -result.score);
 
 export default {
   name: "SearchResults",

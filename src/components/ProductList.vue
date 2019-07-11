@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import _ from "lodash";
+import take from "lodash/take";
 import ProductListItem from "./ProductListItem";
 
 export default {
@@ -37,7 +37,7 @@ export default {
       return this.products.length > this.limit;
     },
     _products() {
-      return _.take(this.products, this.limit);
+      return take(this.products, this.limit);
     },
   },
   methods: {

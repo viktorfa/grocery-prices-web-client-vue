@@ -1,8 +1,9 @@
-import _ from "lodash";
+import isNil from "lodash/isNil";
+import isNumber from "lodash/isNumber";
 import { provenanceTypes } from "./enums";
 
 export const formatPrice = (price, suffix = ",-") => {
-  if (_.isNumber(price)) {
+  if (isNumber(price)) {
     return `${price.toFixed(2).replace(".", ",")}${suffix}`;
   } else {
     return price;
@@ -36,7 +37,7 @@ export const getProductValue = ({
   quantity,
   pricing,
 }) => {
-  if (_.isNil(quantity)) return "";
+  if (isNil(quantity)) return "";
   if (quantity_value)
     return formatPrice(
       quantity_value.value,
