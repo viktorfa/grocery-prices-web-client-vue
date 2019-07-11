@@ -1,17 +1,17 @@
 <template>
-  <div v-if="product">
+  <div>
     <v-toolbar color="indigo" dark fixed app>
       <v-btn icon @click.stop="handleClickMenu">
         <v-icon>arrow_back</v-icon>
       </v-btn>
-      <v-toolbar-title>{{ product.title }}</v-toolbar-title>
+      <v-toolbar-title v-if="product">{{ product.title }}</v-toolbar-title>
     </v-toolbar>
-    <v-layout row wrap class="text-xs-center">
+    <v-layout row wrap class="text-xs-center" v-if="product">
       <v-flex xs12>
         <v-layout row wrap>
           <v-flex xs12>
             <v-card flat>
-              <v-img :src="product.image_url" aspect-ratio="2.0" contain :alt="product.title"></v-img>
+              <v-img :src="product.image_url" aspect-ratio="2.4" contain :alt="product.title"></v-img>
               <v-card-title primary-title>
                 <v-flex>
                   <h3 class="headline mb-0">{{ formatPrice(product.price) }}</h3>
@@ -43,6 +43,9 @@
         <ProductList :products="similarProducts" />
       </v-flex>
     </v-layout>
+    <div v-else class="flex align-center justify-center vh50 my-flex">
+      <v-progress-circular :size="70" :width="7" color="purple" indeterminate></v-progress-circular>
+    </div>
   </div>
 </template>
 
@@ -98,11 +101,13 @@ export default {
   },
   watch: {
     detailProduct(newValue) {
-      this.product = getStandardProduct(newValue);
-      this.$store.dispatch("EXECUTE_SEARCH_QUERY", {
-        queryString: this.product.title,
-        setUrl: false,
-      });
+      if (newValue) {
+        this.product = getStandardProduct(newValue);
+        this.$store.dispatch("EXECUTE_SEARCH_QUERY", {
+          queryString: this.product.title,
+          setUrl: false,
+        });
+      }
     },
     $route(to) {
       if (to.params.id) {

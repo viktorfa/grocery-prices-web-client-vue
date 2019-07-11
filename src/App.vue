@@ -142,4 +142,12 @@ body {
   height: 100%;
   text-align: center;
 }
+
+.vh50 {
+  height: 50vh;
+}
+
+.my-flex {
+  display: flex;
+}
 </style>

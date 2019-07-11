@@ -99,6 +99,7 @@ export const actions = {
       // This is a product URI, should be in loaded products
       const localPromise = getProduct(id);
       const apiPromise = getGroceryOffer(id);
+      commit(productMutations.setDetailProduct, null);
       localPromise.then(({ ok, data, error }) => {
         if (ok) {
           commit(productMutations.setDetailProduct, data);
