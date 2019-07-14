@@ -1,15 +1,12 @@
 <template>
   <v-layout class="result-list-item" column>
     <router-link :to="`/tilbud/${id}`" class="search-result-link flex flex-col justify-between">
-      <div>
-        <v-img
+      <div v-lazyload>
+        <img
           v-if="showDealerLogo && dealerLogoSrc"
           class="dealer-logo-image"
-          :src="dealerLogoSrc"
-          :alt="subtitle"
-          contain
-          max-width="160"
-          max-height="32"
+          :data-url="dealerLogoSrc"
+          :alt="dealer"
         />
         <p v-else-if="showDealerLogo" class="font-semibold">{{dealer}}</p>
         <h3 class="text-xl font-semibold">{{ title }}</h3>
@@ -18,9 +15,9 @@
           <strong>{{ formattedPrice }}</strong>
         </p>
       </div>
-      <v-layout column justify-center>
-        <v-img class="result-list-item-image" contain v-bind:src="image_url" v-bind:alt="title" />
-      </v-layout>
+      <div v-lazyload>
+        <img class="result-list-item-image" :data-url="image_url" :alt="title" />
+      </div>
       <div>
         <p>{{ value }}</p>
       </div>
@@ -65,6 +62,8 @@ export default {
 <style>
 .dealer-logo-image {
   margin: auto;
+  max-height: 32px;
+  max-width: 160px;
 }
 .result-list-item {
   width: calc(50vw - 0.6rem);
