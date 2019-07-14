@@ -1,12 +1,12 @@
 <template>
   <div>
     <div v-if="offers.length > 0" class="text-xs-center offer-search-results">
-      <h1 class="offer-search-results-header">{{ offers.length }} tilbud</h1>
+      <h1 class="offer-search-results-header text-3xl">{{ offers.length }} tilbud</h1>
       <ProductList :products="offers" :showSubtitle="false" />
       <br />
     </div>
     <div v-if="kolonialProducts.length > 0" class="text-xs-center kolonial-search-results">
-      <h1 class="kolonial-search-results-header">
+      <h1 class="kolonial-search-results-header text-3xl">
         {{ kolonialProducts.length }}
         {{ `${kolonialProducts.length > 1 ? "varer" : "vare"}` }} fra
         kolonial.no
@@ -14,14 +14,14 @@
       <ProductList :products="kolonialProducts" :showDealerLogo="false" />
     </div>
     <div v-if="menyProducts.length > 0" class="text-xs-center meny-search-results">
-      <h1 class="meny-search-results-header">
+      <h1 class="meny-search-results-header text-3xl">
         {{ menyProducts.length }}
         {{ `${menyProducts.length > 1 ? "varer" : "vare"}` }} fra meny.no
       </h1>
       <ProductList :products="menyProducts" :showDealerLogo="false" />
     </div>
     <div v-if="europrisProducts.length > 0" class="text-xs-center europris-search-results">
-      <h1 class="europris-search-results-header">
+      <h1 class="europris-search-results-header text-3xl">
         {{ europrisProducts.length }}
         {{ `${europrisProducts.length > 1 ? "varer" : "vare"}` }} fra
         europris.no

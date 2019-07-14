@@ -36,7 +36,7 @@
       <SearchResults v-bind:results="searchResults" />
     </div>
     <div v-show="!showSearchResults" class="text-xs-center offer-search-results">
-      <h1 class="offer-search-results-header">Utvalgte tilbud</h1>
+      <h1 class="offer-search-results-header text-3xl">Utvalgte tilbud</h1>
       <PromotedProducts v-bind:products="promotedProducts" />
     </div>
   </div>

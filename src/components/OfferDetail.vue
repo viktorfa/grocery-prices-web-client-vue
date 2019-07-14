@@ -9,11 +9,11 @@
     <v-layout row wrap class="text-xs-center" v-if="product">
       <v-flex xs12>
         <v-layout row wrap>
-          <v-flex xs12>
-            <v-card flat>
+          <v-flex xs12 class="flex justify-center">
+            <v-card flat class="w-full">
               <v-img :src="product.image_url" aspect-ratio="2.4" contain :alt="product.title"></v-img>
               <v-card-title primary-title>
-                <v-flex>
+                <v-flex class="flex flex-col">
                   <h3 class="headline mb-0">{{ formatPrice(product.price) }}</h3>
                   <div>{{ product.description }}</div>
                   <div>{{ product.value }}</div>
@@ -23,7 +23,7 @@
                     :src="dealerLogoSrc"
                     :alt="dealer"
                     contain
-                    max-width="160"
+                    width="160"
                     max-height="32"
                   />
                   <div v-else>{{ product.dealer }}</div>
@@ -36,9 +36,7 @@
           </v-flex>
         </v-layout>
       </v-flex>
-      <v-flex xs12 v-if="similarProducts.length > 0">
-        <h2>Lignende varer</h2>
-      </v-flex>
+      <h2 v-if="similarProducts.length > 0" class="text-2xl m-4 w-full text-center">Lignende varer</h2>
       <v-flex xs12>
         <ProductList :products="similarProducts" />
       </v-flex>

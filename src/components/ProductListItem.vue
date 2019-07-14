@@ -11,7 +11,8 @@
           max-width="160"
           max-height="32"
         />
-        <h3>{{ title }}</h3>
+        <p v-else-if="dealer" class="font-semibold">{{dealer}}</p>
+        <h3 class="text-xl font-semibold">{{ title }}</h3>
         <p v-if="showSubtitle">{{ subtitle }}</p>
         <p v-if="formattedPrice">
           <strong>{{ formattedPrice }}</strong>
