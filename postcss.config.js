@@ -12,9 +12,17 @@ module.exports = {
     //Only add purgecss in production
     process.env.NODE_ENV === "production"
       ? purgecss({
+          whitelistPatterns: [/^v-/, /^theme--/, /--text$/],
           defaultExtractor: (content) =>
             content.match(/[A-Za-z0-9-_:/]+/g) || [],
-          content: ["./src/**/*.html", "./src/**/*.vue"],
+          content: [
+            "./src/**/*.html",
+            "./src/**/*.vue",
+            "./public/**/*.html",
+            "./node_modules/vuetify/src/**/*.js",
+          ].filter(function(f) {
+            return !/\/$/.test(f);
+          }),
         })
       : "",
   ],
