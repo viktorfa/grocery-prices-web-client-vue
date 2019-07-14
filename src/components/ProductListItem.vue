@@ -1,6 +1,6 @@
 <template>
   <v-layout class="result-list-item" column>
-    <router-link :to="`/tilbud/${id}`" class="search-result-link">
+    <router-link :to="`/tilbud/${id}`" class="search-result-link flex flex-col justify-between">
       <div>
         <v-img
           v-if="showDealerLogo && dealerLogoSrc"
@@ -72,7 +72,7 @@ export default {
   border-width: 0;
   border-style: solid;
   border-bottom-width: 2px;
-  height: 100%;
+  height: 420px;
   display: flex;
   flex-grow: initial;
 }
