@@ -3,7 +3,7 @@
     <router-link :to="`/tilbud/${id}`" class="search-result-link">
       <div>
         <v-img
-          v-if="dealerLogoSrc"
+          v-if="showDealerLogo && dealerLogoSrc"
           class="dealer-logo-image"
           :src="dealerLogoSrc"
           :alt="subtitle"
@@ -11,7 +11,7 @@
           max-width="160"
           max-height="32"
         />
-        <p v-else-if="dealer" class="font-semibold">{{dealer}}</p>
+        <p v-else-if="showDealerLogo" class="font-semibold">{{dealer}}</p>
         <h3 class="text-xl font-semibold">{{ title }}</h3>
         <p v-if="showSubtitle">{{ subtitle }}</p>
         <p v-if="formattedPrice">
