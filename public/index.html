@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- DNS prefetch tags -->
+    <link rel="dns-preconnect" href="<%= VUE_APP_STATIC_DNS_PREFETCH_HOST %>" />
+    <link rel="dns-prefetch" href="<%= VUE_APP_API_DNS_PREFETCH_HOST %>" />
+    <link rel="dns-preconnect" href="<%= VUE_APP_STRAPI_DNS_PREFETCH_HOST %>" />
+    <!-- END DNS prefetch tags -->
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script
       async
