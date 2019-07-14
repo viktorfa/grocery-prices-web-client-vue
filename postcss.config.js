@@ -12,6 +12,8 @@ module.exports = {
     //Only add purgecss in production
     process.env.NODE_ENV === "production"
       ? purgecss({
+          defaultExtractor: (content) =>
+            content.match(/[A-Za-z0-9-_:/]+/g) || [],
           content: ["./src/**/*.html", "./src/**/*.vue"],
         })
       : "",
