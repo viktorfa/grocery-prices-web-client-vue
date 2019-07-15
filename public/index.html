@@ -67,5 +67,31 @@
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
+    <div
+      id="splash"
+      style="
+        height: 100vh;
+        width: 100vw;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+        background: purple;
+        color: white;
+        font-family: serif;
+      "
+    >
+      <p>allematpriser.no</p>
+    </div>
+  </body>
+  <script>
+    const splashElement = document.getElementById("splash");
+    window.onload = function() {
+      console.log("window.onload");
+      splashElement.style.display = "none";
+    };
+  </script>
   </body>
 </html>
