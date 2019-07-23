@@ -9,8 +9,8 @@ Vue.use(Vuex);
 const initialState = {
   promotedProducts: [],
   isSearching: false,
-  isLoadingProducts: true,
   queryString: "",
+  isLoadingPromotedProducts: true,
   searchResults: [],
   showPromotedProducts: true,
   errorMessage: "",

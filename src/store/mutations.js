@@ -2,6 +2,7 @@ export const productMutations = {
   setQueryString: "setQueryString",
   setIsSearching: "setIsSearching",
   setIsLoading: "setIsLoading",
+  setIsLoadingPromotedProducts: "setIsLoadingPromotedProducts",
   setShowPromotedProducts: "setShowPromotedProducts",
   loadSearchResults: "loadSearchResults",
   clearSearchResults: "clearSearchResults",
@@ -35,6 +36,12 @@ export const mutations = {
   },
   [productMutations.loadPromotedProducts](state, promotedProducts) {
     state.promotedProducts = promotedProducts;
+  },
+  [productMutations.setIsLoadingPromotedProducts](
+    state,
+    isLoadingPromotedProducts,
+  ) {
+    state.isLoadingPromotedProducts = isLoadingPromotedProducts;
   },
   [productMutations.setErrorMessage](state, errorMessage) {
     state.errorMessage = errorMessage;

@@ -29,6 +29,7 @@ export const actions = {
     } else {
       commit(productMutations.setErrorMessage, error);
     }
+    commit(productMutations.setIsLoadingPromotedProducts, false);
     console.log("LOAD_PROMOTED_PRODUCTS finish");
   },
   async [productActions.EXECUTE_SEARCH_QUERY](
