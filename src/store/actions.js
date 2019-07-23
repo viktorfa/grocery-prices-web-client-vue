@@ -14,6 +14,7 @@ export const productActions = {
   EXECUTE_SEARCH_QUERY: "EXECUTE_SEARCH_QUERY",
   LOAD_PROMOTED_PRODUCTS: "LOAD_PROMOTED_PRODUCTS",
   LOAD_DETAIL_PRODUCT: "LOAD_DETAIL_PRODUCT",
+  LOAD_SIMILAR_PRODUCTS: "LOAD_SIMILAR_PRODUCTS",
 };
 
 export const actions = {
@@ -38,26 +39,22 @@ export const actions = {
   ) {
     commit(productMutations.setIsSearching, true);
     commit(productMutations.clearSearchResults);
-    console.log("EXECUTE_SEARCH_QUERY");
-    console.log(queryString);
+    console.log(`EXECUTE_SEARCH_QUERY for ${queryString}`);
 
-    const lambdaPromise = searchGroceryOffers(queryString);
+    const { data, error } = await searchGroceryOffers(queryString);
 
-    lambdaPromise.then(({ ok, data, error }) => {
-      if (ok) {
-        commit(productMutations.setShowPromotedProducts, false);
-        commit(productMutations.loadSearchResults, data);
-        if (setUrl !== false) {
-          setQueryStringInPage(queryString);
-        }
-      } else {
-        commit(productMutations.setErrorMessage, error);
+    if (data) {
+      commit(productMutations.setShowPromotedProducts, false);
+      commit(productMutations.loadSearchResults, data);
+      commit(productMutations.setSearchQuery, queryString);
+      if (setUrl !== false) {
+        setQueryStringInPage(queryString);
       }
-    });
-
-    Promise.all([lambdaPromise]).then(() => {
-      commit(productMutations.setIsSearching, false);
-    });
+    } else {
+      commit(productMutations.setErrorMessage, error);
+      console.error(error);
+    }
+    commit(productMutations.setIsSearching, false);
   },
   async [productActions.LOAD_DETAIL_PRODUCT]({ commit }, { id }) {
     if (isProductUri(id)) {
@@ -81,5 +78,16 @@ export const actions = {
         commit(productMutations.setErrorMessage, error);
       }
     }
+  },
+  async [productActions.LOAD_SIMILAR_PRODUCTS]({ commit }, { product }) {
+    commit(productMutations.isLoadingSimilarProducts, true);
+    const { data, error } = await searchGroceryOffers(product.heading);
+    if (data) {
+      commit(productMutations.similarProducts, data);
+    } else {
+      console.error(error);
+      commit(productMutations.setErrorMessage, error);
+    }
+    commit(productMutations.isLoadingSimilarProducts, false);
   },
 };

@@ -39,9 +39,21 @@
           </v-flex>
         </v-layout>
       </v-flex>
-      <h2 v-if="similarProducts.length > 0" class="text-2xl m-4 w-full text-center">Lignende varer</h2>
+      <h2
+        v-show="_similarProducts.length > 0"
+        class="text-2xl m-4 w-full text-center"
+      >Lignende varer</h2>
       <v-flex xs12>
-        <ProductList :products="similarProducts" />
+        <div
+          v-show="isLoadingSimilarProducts"
+          class="flex align-center justify-center vh50 my-flex"
+        >
+          <v-progress-circular :size="40" :width="7" color="purple" indeterminate></v-progress-circular>
+        </div>
+        <ProductList
+          v-show="!isLoadingSimilarProducts && _similarProducts"
+          :products="_similarProducts"
+        />
       </v-flex>
     </v-layout>
   </div>
@@ -68,12 +80,12 @@ export default {
   computed: {
     ...mapState([
       "detailProduct",
-      "searchResults",
-      "queryString",
+      "similarProducts",
+      "isLoadingSimilarProducts",
       "isLoadingDetailProduct",
     ]),
-    similarProducts() {
-      return this.searchResults
+    _similarProducts() {
+      return this.similarProducts
         .filter((offer) => offer.uri !== this.offerId)
         .map(getStandardProduct);
     },
@@ -96,9 +108,8 @@ export default {
     detailProduct(newValue) {
       if (newValue) {
         this.product = getStandardProduct(newValue);
-        this.$store.dispatch("EXECUTE_SEARCH_QUERY", {
-          queryString: this.product.title,
-          setUrl: false,
+        this.$store.dispatch("LOAD_SIMILAR_PRODUCTS", {
+          product: newValue,
         });
       }
     },

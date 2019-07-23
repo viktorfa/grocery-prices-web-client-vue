@@ -1,5 +1,12 @@
+export const simpleSetters = {
+  isLoadingSimilarProducts: "isLoadingSimilarProducts",
+  similarProducts: "similarProducts",
+};
+
 export const productMutations = {
+  ...simpleSetters,
   setQueryString: "setQueryString",
+  setSearchQuery: "setSearchQuery",
   setIsSearching: "setIsSearching",
   setIsLoading: "setIsLoading",
   setIsLoadingPromotedProducts: "setIsLoadingPromotedProducts",
@@ -17,8 +24,19 @@ export const uiMutations = {
 };
 
 export const mutations = {
+  ...Object.values(simpleSetters).reduce((acc, key) => {
+    return {
+      ...acc,
+      [key]: function(state, newValue) {
+        state[key] = newValue;
+      },
+    };
+  }, {}),
   [productMutations.setQueryString](state, queryString) {
     state.queryString = queryString;
+  },
+  [productMutations.setSearchQuery](state, searchQuery) {
+    state.searchQuery = searchQuery;
   },
   [productMutations.setIsSearching](state, isSearching) {
     state.isSearching = isSearching;
