@@ -24,7 +24,7 @@
                     v-if="dealerLogoSrc"
                     class="dealer-logo-image"
                     :src="dealerLogoSrc"
-                    :alt="dealer"
+                    :alt="product.dealer"
                     contain
                     width="160"
                     max-height="32"
@@ -62,6 +62,7 @@ export default {
   data() {
     return {
       offerId: this.$route.params.id,
+      product: null,
     };
   },
   computed: {
@@ -71,24 +72,13 @@ export default {
       "queryString",
       "isLoadingDetailProduct",
     ]),
-    product: {
-      get() {
-        return (
-          (this.detailProduct && getStandardProduct(this.detailProduct)) || null
-        );
-      },
-      set() {},
-    },
     similarProducts() {
       return this.searchResults
         .filter((offer) => offer.uri !== this.offerId)
         .map(getStandardProduct);
     },
-    dealerLogoSrc: {
-      get() {
-        return this.product ? getDealerLogoSrc(this.product.dealer) : "";
-      },
-      set() {},
+    dealerLogoSrc() {
+      return this.product ? getDealerLogoSrc(this.product.dealer) : "";
     },
   },
   methods: {
