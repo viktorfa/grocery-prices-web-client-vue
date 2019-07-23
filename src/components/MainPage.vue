@@ -33,11 +33,12 @@
       <strong>{{ queryInput }}</strong>
     </div>
     <div v-show="showSearchResults">
-      <SearchResults v-bind:results="searchResults" />
+      <SearchResults :results="searchResults" />
     </div>
     <div v-show="!showSearchResults" class="text-xs-center offer-search-results">
       <h1 class="offer-search-results-header text-3xl">Utvalgte tilbud</h1>
-      <PromotedProducts v-bind:products="promotedProducts" />
+      <ProductListLoading v-if="isLoadingPromotedProducts" />
+      <PromotedProducts v-else :products="promotedProducts" />
     </div>
   </div>
 </template>
@@ -49,12 +50,14 @@ import { getHints } from "@/autocomplete";
 
 import SearchResults from "./SearchResults.vue";
 import PromotedProducts from "./PromotedProducts.vue";
+import ProductListLoading from "./ProductListLoading.vue";
 
 export default {
   name: "MainPage",
   components: {
     SearchResults,
     PromotedProducts,
+    ProductListLoading,
   },
   data() {
     return {
@@ -69,7 +72,7 @@ export default {
       "showPromotedProducts",
       "searchResults",
       "isSearching",
-      "isLoadingProducts",
+      "isLoadingPromotedProducts",
     ]),
     showSearchResults() {
       return !!this.queryInput;
