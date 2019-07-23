@@ -1,5 +1,6 @@
 import { strapiUrl, apiUrl } from "@/config/vars";
 import { getJsonFetchOption, getFullFileUrl } from "./util";
+import cache from "./cache";
 
 export const getIndex = async () => {
   const fileName = "product-lunr-index-latest.json";
@@ -55,7 +56,14 @@ export const getPromotedOffers = async (offerLimit = 30) => {
 };
 
 export const searchGroceryOffers = async (query) => {
+  const cachedResponse = cache.get(query.toLowerCase());
+  if (cachedResponse) {
+    console.log("using cache");
+    return cachedResponse;
+  }
   const url = `${apiUrl}/offers/search/${encodeURIComponent(query)}`;
   const response = await fetch(url);
-  return getJsonFetchOption(response);
+  const fetchOption = await getJsonFetchOption(response);
+  cache.set(query.toLowerCase(), fetchOption);
+  return fetchOption;
 };
