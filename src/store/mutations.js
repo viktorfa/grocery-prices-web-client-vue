@@ -3,6 +3,7 @@ export const productMutations = {
   setIsSearching: "setIsSearching",
   setIsLoading: "setIsLoading",
   setIsLoadingPromotedProducts: "setIsLoadingPromotedProducts",
+  setIsLoadingDetailProduct: "setIsLoadingDetailProduct",
   setShowPromotedProducts: "setShowPromotedProducts",
   loadSearchResults: "loadSearchResults",
   clearSearchResults: "clearSearchResults",
@@ -48,6 +49,9 @@ export const mutations = {
   },
   [productMutations.setDetailProduct](state, detailProduct) {
     state.detailProduct = detailProduct;
+  },
+  [productMutations.setIsLoadingDetailProduct](state, isLoadingDetailProduct) {
+    state.isLoadingDetailProduct = isLoadingDetailProduct;
   },
   [uiMutations.setShowDrawer](state, showDrawer) {
     state.showDrawer = showDrawer;

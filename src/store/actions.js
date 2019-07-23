@@ -61,17 +61,17 @@ export const actions = {
   },
   async [productActions.LOAD_DETAIL_PRODUCT]({ commit }, { id }) {
     if (isProductUri(id)) {
-      const apiPromise = getGroceryOffer(id);
+      commit(productMutations.setIsLoadingDetailProduct, true);
 
-      apiPromise.then(({ ok, data, error }) => {
-        if (ok) {
-          commit(productMutations.setDetailProduct, data);
-          return;
-        } else {
-          console.warn(`Could not fetch product with uri: ${id}`);
-          commit(productMutations.setErrorMessage, error);
-        }
-      });
+      const { ok, data, error } = await getGroceryOffer(id);
+
+      if (ok) {
+        commit(productMutations.setDetailProduct, data);
+      } else {
+        console.warn(`Could not fetch product with uri: ${id}`);
+        commit(productMutations.setErrorMessage, error);
+      }
+      commit(productMutations.setIsLoadingDetailProduct, false);
     } else {
       // Not product uri, needs to be fetched from Strapi
       const { ok, data, error } = await getCustomProduct(id);

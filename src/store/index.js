@@ -11,6 +11,7 @@ const initialState = {
   isSearching: false,
   queryString: "",
   isLoadingPromotedProducts: true,
+  isLoadingDetailProduct: false,
   searchResults: [],
   showPromotedProducts: true,
   errorMessage: "",

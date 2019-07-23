@@ -6,7 +6,10 @@
       </v-btn>
       <v-toolbar-title v-if="product">{{ product.title }}</v-toolbar-title>
     </v-toolbar>
-    <v-layout row wrap class="text-xs-center" v-if="product">
+    <div v-show="isLoadingDetailProduct" class="flex align-center justify-center vh50 my-flex">
+      <v-progress-circular :size="70" :width="7" color="purple" indeterminate></v-progress-circular>
+    </div>
+    <v-layout row wrap class="text-xs-center" v-show="!isLoadingDetailProduct" v-if="product">
       <v-flex xs12>
         <v-layout row wrap>
           <v-flex xs12 class="flex justify-center">
@@ -41,9 +44,6 @@
         <ProductList :products="similarProducts" />
       </v-flex>
     </v-layout>
-    <div v-else class="flex align-center justify-center vh50 my-flex">
-      <v-progress-circular :size="70" :width="7" color="purple" indeterminate></v-progress-circular>
-    </div>
   </div>
 </template>
 
@@ -65,7 +65,12 @@ export default {
     };
   },
   computed: {
-    ...mapState(["detailProduct", "searchResults", "queryString"]),
+    ...mapState([
+      "detailProduct",
+      "searchResults",
+      "queryString",
+      "isLoadingDetailProduct",
+    ]),
     product: {
       get() {
         return (
