@@ -71,12 +71,6 @@ export default {
   components: {
     ProductList,
   },
-  data() {
-    return {
-      offerId: this.$route.params.id,
-      product: null,
-    };
-  },
   computed: {
     ...mapState([
       "detailProduct",
@@ -91,6 +85,15 @@ export default {
     },
     dealerLogoSrc() {
       return this.product ? getDealerLogoSrc(this.product.dealer) : "";
+    },
+    product() {
+      if (this.detailProduct) {
+        return getStandardProduct(this.detailProduct);
+      }
+      return null;
+    },
+    offerId() {
+      return this.$route.params.id;
     },
   },
   methods: {
@@ -107,16 +110,10 @@ export default {
   watch: {
     detailProduct(newValue) {
       if (newValue) {
-        this.product = getStandardProduct(newValue);
         this.$store.dispatch("LOAD_SIMILAR_PRODUCTS", {
           product: newValue,
         });
         setPageTitle(`${newValue.heading}`);
-      }
-    },
-    $route(to) {
-      if (to.params.id) {
-        this.offerId = to.params.id;
       }
     },
     offerId(newValue) {
