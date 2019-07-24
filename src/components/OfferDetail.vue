@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-toolbar color="indigo" dark fixed app>
+    <v-toolbar color="purple" dark fixed app>
       <v-btn icon @click.stop="handleClickMenu">
         <v-icon>arrow_back</v-icon>
       </v-btn>
