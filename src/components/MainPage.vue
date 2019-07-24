@@ -59,6 +59,14 @@ export default {
   watch: {
     searchQuery(newValue) {
       setQueryStringInPage(newValue);
+      if (window.ga && newValue && newValue.length && newValue.length > 0) {
+        console.log(`Sending GA search event.`);
+        window.ga("send", "event", {
+          eventCategory: "interaction",
+          eventAction: "search",
+          eventLabel: newValue,
+        });
+      }
     },
   },
   methods: {
