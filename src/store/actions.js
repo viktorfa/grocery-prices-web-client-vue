@@ -5,7 +5,6 @@ import {
   getGroceryOffer,
   searchGroceryOffers,
 } from "@/api";
-import { setQueryStringInPage } from "@/lib";
 import { isProductUri } from "@/helpers";
 
 import { productMutations } from "./mutations";
@@ -33,10 +32,7 @@ export const actions = {
     commit(productMutations.setIsLoadingPromotedProducts, false);
     console.log("LOAD_PROMOTED_PRODUCTS finish");
   },
-  async [productActions.EXECUTE_SEARCH_QUERY](
-    { commit },
-    { queryString, setUrl },
-  ) {
+  async [productActions.EXECUTE_SEARCH_QUERY]({ commit }, { queryString }) {
     commit(productMutations.setIsSearching, true);
     commit(productMutations.clearSearchResults);
     console.log(`EXECUTE_SEARCH_QUERY for ${queryString}`);
@@ -47,9 +43,6 @@ export const actions = {
       commit(productMutations.setShowPromotedProducts, false);
       commit(productMutations.loadSearchResults, data);
       commit(productMutations.setSearchQuery, queryString);
-      if (setUrl !== false) {
-        setQueryStringInPage(queryString);
-      }
     } else {
       commit(productMutations.setErrorMessage, error);
       console.error(error);

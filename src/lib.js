@@ -23,12 +23,20 @@ const intitialTitleText =
   document.querySelector("title") && document.querySelector("title").text;
 export const setQueryStringInPage = (query) => {
   if (query && query.length > 0) {
-    window.history.pushState({}, null, `/sok/${query}`);
-    document.querySelector("title").text = `Priser på "${query}"`;
+    setSearchPath(query);
+    setPageTitle(`Priser på "${query}"`);
   } else {
     window.history.pushState({}, null, "/");
-    document.querySelector("title").text = intitialTitleText;
+    setPageTitle(intitialTitleText);
   }
+};
+
+export const setPageTitle = (title) => {
+  document.querySelector("title").text = title;
+};
+
+export const setSearchPath = (query) => {
+  window.history.pushState({}, null, `/sok/${query}`);
 };
 
 export const getProductValue = ({

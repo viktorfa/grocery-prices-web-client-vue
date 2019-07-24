@@ -63,7 +63,7 @@
 import { mapState } from "vuex";
 
 import ProductList from "./ProductList";
-import { getStandardProduct, formatPrice } from "../lib";
+import { getStandardProduct, formatPrice, setPageTitle } from "../lib";
 import { getDealerLogoSrc } from "@/helpers";
 
 export default {
@@ -111,6 +111,7 @@ export default {
         this.$store.dispatch("LOAD_SIMILAR_PRODUCTS", {
           product: newValue,
         });
+        setPageTitle(`${newValue.heading}`);
       }
     },
     $route(to) {

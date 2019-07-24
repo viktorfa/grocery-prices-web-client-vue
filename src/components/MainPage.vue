@@ -32,6 +32,7 @@ import SearchResults from "./SearchResults.vue";
 import PromotedProducts from "./PromotedProducts.vue";
 import ProductListLoading from "./ProductListLoading.vue";
 import SearchBarComponent from "./SearchBarComponent.vue";
+import { setQueryStringInPage, setPageTitle } from "../lib";
 
 export default {
   name: "MainPage",
@@ -48,10 +49,16 @@ export default {
       "searchResults",
       "isSearching",
       "queryString",
+      "searchQuery",
       "isLoadingPromotedProducts",
     ]),
     showSearchResults() {
       return !this.isSearching && !!this.searchResults;
+    },
+  },
+  watch: {
+    searchQuery(newValue) {
+      setQueryStringInPage(newValue);
     },
   },
   methods: {
@@ -59,6 +66,9 @@ export default {
       this.$store.commit("setShowDrawer", !this.$store.state.showDrawer);
       this.$refs.searchInput.blur();
     },
+  },
+  mounted() {
+    setQueryStringInPage(this.searchQuery);
   },
 };
 </script>
