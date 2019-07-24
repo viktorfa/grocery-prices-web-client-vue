@@ -32,7 +32,7 @@ import SearchResults from "./SearchResults.vue";
 import PromotedProducts from "./PromotedProducts.vue";
 import ProductListLoading from "./ProductListLoading.vue";
 import SearchBarComponent from "./SearchBarComponent.vue";
-import { setQueryStringInPage, setPageTitle } from "../lib";
+import { setQueryStringInPage } from "../lib";
 
 export default {
   name: "MainPage",
