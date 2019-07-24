@@ -1,0 +1,34 @@
+{
+  "provenance": "shopgun",
+  "heading": "Schweppes",
+  "description": "lemon /tonicwater/tonic zero, 1l + pant",
+  "run_from": "2019-07-21T22:00:00.000Z",
+  "run_till": "2019-07-28T21:59:59.000Z",
+  "quantity": {
+    "unit": {
+      "symbol": "l",
+      "type": "quantity",
+      "si": { "symbol": "l", "factor": 1 }
+    },
+    "size": { "min": 1, "max": 1 },
+    "pieces": { "min": null, "max": null }
+  },
+  "location": "",
+  "provenance_id": "8e602YDT",
+  "dealer": "SPAR",
+  "href": "https://shopgun.com/publications/paged/09fduyF/pages/7",
+  "brand": null,
+  "image_url": "https://d3ikkoqs9ddhdl.cloudfront.net/img/offer/crop/zoom/8e602YDT.jpg?m=0",
+  "uri": "shopgun:product:8e602YDT",
+  "pricing": { "price": 29.9, "pre_price": null, "currency": "NOK" },
+  "piece_value": null,
+  "quantity_value": null,
+  "type": "none",
+  "_id": "5d35e2dbffc45556ec6468ef",
+  "unit": { "symbol": "l", "si": { "symbol": "l", "factor": 1 } },
+  "size": { "from": 1, "to": 1 },
+  "pieces": { "from": 1, "to": 1 },
+  "is_promoted": true,
+  "select_method": "auto",
+  "id": "5d35e2dbffc45556ec6468ef"
+}
