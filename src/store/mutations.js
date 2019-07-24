@@ -1,6 +1,7 @@
 export const simpleSetters = {
   isLoadingSimilarProducts: "isLoadingSimilarProducts",
   similarProducts: "similarProducts",
+  detailProductNotFound: "detailProductNotFound",
 };
 
 export const productMutations = {

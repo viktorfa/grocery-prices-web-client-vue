@@ -20,6 +20,7 @@ const initialState = {
   errorMessage: "",
   showDrawer: false,
   detailProduct: null,
+  detailProductNotFound: false,
 };
 
 export default new Store({

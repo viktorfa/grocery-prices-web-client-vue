@@ -9,6 +9,15 @@
     <div v-show="isLoadingDetailProduct" class="flex align-center justify-center vh50 my-flex">
       <v-progress-circular :size="70" :width="7" color="purple" indeterminate></v-progress-circular>
     </div>
+    <div
+      v-show="!isLoadingDetailProduct && detailProductNotFound"
+      class="flex flex-col align-center justify-center vh50 my-flex text-xl"
+    >
+      <p>Fant ikke tilbud. Mulig varen ikke finnes lenger.</p>
+      <p>
+        <router-link to="/" replace>Tilbake</router-link>
+      </p>
+    </div>
     <v-layout row wrap class="text-xs-center" v-show="!isLoadingDetailProduct" v-if="product">
       <v-flex xs12>
         <v-layout row wrap>
@@ -84,6 +93,7 @@ export default {
       "similarProducts",
       "isLoadingSimilarProducts",
       "isLoadingDetailProduct",
+      "detailProductNotFound",
     ]),
     _similarProducts() {
       return this.similarProducts

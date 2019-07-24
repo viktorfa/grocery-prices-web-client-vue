@@ -56,9 +56,11 @@ export const actions = {
       const { ok, data, error } = await getGroceryOffer(id);
 
       if (ok) {
+        commit(productMutations.detailProductNotFound, false);
         commit(productMutations.setDetailProduct, data);
       } else {
         console.warn(`Could not fetch product with uri: ${id}`);
+        commit(productMutations.detailProductNotFound, true);
         commit(productMutations.setErrorMessage, error);
       }
       commit(productMutations.setIsLoadingDetailProduct, false);
