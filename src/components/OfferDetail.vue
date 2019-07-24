@@ -63,13 +63,20 @@
 import { mapState } from "vuex";
 
 import ProductList from "./ProductList";
-import { getStandardProduct, formatPrice, setPageTitle } from "../lib";
+import { getStandardProduct, formatPrice } from "../lib";
 import { getDealerLogoSrc } from "@/helpers";
+import { getAllMetaInfoForProduct } from "../meta-tags";
 
 export default {
   name: "OfferDetail",
   components: {
     ProductList,
+  },
+  metaInfo() {
+    if (this.product) {
+      const metaInfo = getAllMetaInfoForProduct(this.product);
+      return { ...metaInfo, titleTemplate: "%s - allematpriser.no" };
+    }
   },
   computed: {
     ...mapState([
@@ -113,7 +120,6 @@ export default {
         this.$store.dispatch("LOAD_SIMILAR_PRODUCTS", {
           product: newValue,
         });
-        setPageTitle(`${newValue.heading}`);
       }
     },
     offerId(newValue) {
