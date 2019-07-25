@@ -1,6 +1,7 @@
-import { strapiUrl, apiUrl } from "@/config/vars";
-import { getJsonFetchOption, getFullFileUrl } from "./util";
+import { strapiUrl, apiUrl, shopgunToken } from "@/config/vars";
+import { getJsonFetchOption, getFullFileUrl, optionFetch } from "./util";
 import cache from "./cache";
+import { shopgunOfferToAmpOffer } from "../helpers";
 
 export const getIndex = async () => {
   const fileName = "product-lunr-index-latest.json";
@@ -28,13 +29,46 @@ export const getCustomProduct = async (id) => {
 
 export const getGroceryOffer = async (uri) => {
   const strapiCollectionName = "groceryoffers";
-  const response = await fetch(
+  // Some offers are not in our database, but the pages show up on Google searches.
+  // So we find the offer with Shopgun instead, so that visitors don't see an empty page.
+  if (shopgunToken && uri.startsWith("shopgun")) {
+    const shopgunPath = `/offers/${uri.split(":")[2]}`;
+    const shopgunOptions = {
+      headers: { "X-Token": shopgunToken, Accept: "application/json" },
+      method: "GET",
+    };
+    const shopgunOptionPromise = optionFetch(
+      `https://api.etilbudsavis.dk/v2${shopgunPath}`,
+      shopgunOptions,
+    );
+    const strapiOptionPromise = optionFetch(
+      `${strapiUrl}/${strapiCollectionName}?uri=${uri}&_limit=1`,
+    );
+    return new Promise(async (resolve) => {
+      const {
+        data: strapiResponse,
+        error: strapiError,
+      } = await strapiOptionPromise;
+      if (strapiResponse && strapiResponse[0]) {
+        resolve({ ok: true, data: strapiResponse[0] });
+      }
+      const {
+        data: shopgunResponse,
+        error: shopgunError,
+      } = await shopgunOptionPromise;
+      if (shopgunResponse) {
+        resolve({ ok: true, data: shopgunOfferToAmpOffer(shopgunResponse) });
+      }
+      resolve({ ok: false, error: strapiError || shopgunError });
+    });
+  }
+  // END Using Shopgun fallback.
+  const { data, error } = await optionFetch(
     `${strapiUrl}/${strapiCollectionName}?uri=${uri}&_limit=1`,
   );
-  const { ok, data, error } = await getJsonFetchOption(response);
-  if (ok && data.length > 0) {
+  if (data && data[0]) {
     return {
-      ok,
+      ok: true,
       data: data[0],
     };
   } else {
