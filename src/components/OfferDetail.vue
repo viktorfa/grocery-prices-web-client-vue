@@ -47,6 +47,7 @@
               </v-card-title>
               <v-card-actions>
                 <v-btn outline flat color="orange" :href="product.href" target="_blank">Se annonse</v-btn>
+                <ProductShareDialog :product="product" />
               </v-card-actions>
             </v-card>
           </v-flex>
@@ -76,6 +77,7 @@
 import { mapState } from "vuex";
 
 import ProductList from "./ProductList";
+import ProductShareDialog from "./ProductShareDialog";
 import { getStandardProduct, formatPrice } from "../lib";
 import { getDealerLogoSrc } from "@/helpers";
 import { getAllMetaInfoForProduct } from "../meta-tags";
@@ -84,6 +86,7 @@ export default {
   name: "OfferDetail",
   components: {
     ProductList,
+    ProductShareDialog,
   },
   metaInfo() {
     if (this.product) {

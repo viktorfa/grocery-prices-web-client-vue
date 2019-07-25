@@ -54,6 +54,9 @@ export const shopgunOfferToAmpOffer = (shopgunOffer) => {
     image_url: shopgunOffer.images.zoom,
     href: getShopgunOfferCatalogUrl(shopgunOffer),
     dealer: shopgunOffer.branding.name,
-    id: `shopgun:product:${shopgunOffer.id}`
+    id: `shopgun:product:${shopgunOffer.id}`,
   };
 };
+
+export const getAmpShareUrlForProduct = ({ id }) =>
+  `https://del.allematpriser.no/tilbud/${id}`;
