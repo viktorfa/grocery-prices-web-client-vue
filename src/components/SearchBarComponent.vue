@@ -54,8 +54,7 @@ export default {
       }
     },
     /** Communicates the current query with the router. */
-    queryInput(newValue, oldValue) {
-      console.info(`queryInput change to ${newValue} from ${oldValue}`);
+    queryInput(newValue) {
       if (newValue && newValue.length > 0) {
         if (this.$route.path.startsWith("/sok/")) {
           this.$router.replace(`/sok/${newValue}`);
@@ -63,6 +62,15 @@ export default {
           this.$router.push(`/sok/${newValue}`);
         }
       }
+      this.$nextTick(() => {
+        this.$refs.searchInput.blur();
+      });
+    },
+    /**
+     * Kinda hacky way to not focus search bar when clicking the buttons on the search bar.
+     * But cannot find a cleaner way that works.
+     */
+    $route() {
       this.$nextTick(() => {
         this.$refs.searchInput.blur();
       });
