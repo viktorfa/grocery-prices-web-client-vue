@@ -29,7 +29,6 @@ const defaultAutocomplete = [
   "norvegia",
   "smågodt",
   "laks",
-  ...autocompleteData.tokens,
 ];
 
 export const getHints = (
@@ -40,7 +39,7 @@ export const getHints = (
   else if (query.lastIndexOf(" ") !== -1) {
     return [...fullgrams, ...bigrams];
   } else {
-    return tokens;
+    return [...defaultAutocomplete, ...tokens];
   }
 };
 
