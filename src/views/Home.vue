@@ -13,12 +13,16 @@ import { mapState } from "vuex";
 
 import PromotedProducts from "../components/PromotedProducts.vue";
 import ProductListLoading from "../components/ProductListLoading.vue";
+import { getAllMetaInfo } from "../meta-tags";
 
 export default {
   name: "MainPage",
   components: {
     PromotedProducts,
     ProductListLoading,
+  },
+  metaInfo: {
+    ...getAllMetaInfo(),
   },
   computed: {
     ...mapState(["promotedProducts", "isLoadingPromotedProducts"]),

@@ -1,5 +1,15 @@
 import { formatPrice } from "./lib";
 
+const baseUrl = "https://allematpriser.no";
+
+const defaults = {
+  title: "Finn priser på dagligvarer",
+  description:
+    "Se hva som er på tilbud og hva som er vanlig pris på dagligvarer i Norge.",
+  image_url: `${baseUrl}/logo-512x512.png`,
+  site_url: `${baseUrl}/`,
+};
+
 export const imageTags = [
   {
     key: "image",
@@ -106,13 +116,36 @@ export const getProductDescription = ({ description, price, dealer }) => {
   return `${resultStrings.join(" – ")}. Finn priser på alle varer og tilbud.`;
 };
 
+export const getAllMetaInfo = ({
+  title = defaults.title,
+  description = defaults.description,
+  image_url = defaults.image_url,
+  site_url = defaults.site_url,
+  path,
+} = defaults) => {
+  let _site_url;
+  if (path) {
+    _site_url = `${baseUrl}${path}`;
+  } else {
+    _site_url = site_url;
+  }
+  return {
+    title,
+    titleTemplate: "%s – allematpriser.no",
+    description,
+    meta: getAllMetaTags({
+      title,
+      description,
+      image_url,
+      site_url: _site_url,
+    }),
+  };
+};
+
 export const getAllMetaInfoForProduct = (product) => {
   const title = product.title;
   const description = getProductDescription(product);
   const image_url = product.image_url;
-  const site_url = `https://allematpriser.no/tilbud/${product.id}`;
-  return {
-    title,
-    meta: getAllMetaTags({ title, description, image_url, site_url }),
-  };
+  const path = `/tilbud/${product.id}`;
+  return getAllMetaInfo({ title, description, image_url, path });
 };

@@ -20,12 +20,18 @@
 <script>
 import { mapState } from "vuex";
 
+import { getAllMetaInfo } from "../meta-tags";
 import SearchResults from "../components/SearchResults.vue";
 
 export default {
   name: "Search",
   components: {
     SearchResults,
+  },
+  metaInfo() {
+    return getAllMetaInfo({
+      title: this.searchQuery ? `Tilbud på "${this.searchQuery}"` : undefined,
+    });
   },
   computed: {
     ...mapState(["searchResults", "isSearching", "searchQuery"]),
