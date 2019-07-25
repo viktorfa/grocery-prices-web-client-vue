@@ -22,3 +22,24 @@ export const getJsonFetchOption = async (response) => {
     };
   }
 };
+export const optionFetch = async (...args) => {
+  const response = await fetch(...args);
+  if (response.ok) {
+    try {
+      return {
+        ok: true,
+        data: await response.json(),
+      };
+    } catch (error) {
+      return {
+        ok: false,
+        error,
+      };
+    }
+  } else {
+    return {
+      ok: false,
+      error: response.error,
+    };
+  }
+};
