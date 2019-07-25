@@ -10,7 +10,7 @@
         />
         <p v-else-if="showDealerLogo" class="font-semibold">{{dealer}}</p>
         <h3 class="text-xl font-semibold">{{ title }}</h3>
-        <p v-if="showSubtitle">{{ subtitle }}</p>
+        <p v-if="showSubtitle">{{ truncatedSubtitle }}</p>
         <p v-if="formattedPrice">
           <strong>{{ formattedPrice }}</strong>
         </p>
@@ -49,6 +49,17 @@ export default {
         return getDealerLogoSrc(this.dealer);
       }
       return "";
+    },
+    truncatedSubtitle() {
+      const maxLength = 56;
+      if (
+        this.showSubtitle &&
+        this.subtitle &&
+        this.subtitle.length > maxLength
+      ) {
+        return `${this.subtitle.substring(0, maxLength - 3)}...`;
+      }
+      return this.subtitle;
     },
   },
   data: function() {
