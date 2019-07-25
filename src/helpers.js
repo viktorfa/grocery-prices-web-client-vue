@@ -47,3 +47,13 @@ export const isMobileOrTablet = () => {
 export const getDealerLogoSrc = (dealerName) => {
   return dealerLogos[dealerName];
 };
+
+export const shopgunOfferToAmpOffer = (shopgunOffer) => {
+  return {
+    ...shopgunOffer,
+    image_url: shopgunOffer.images.zoom,
+    href: getShopgunOfferCatalogUrl(shopgunOffer),
+    dealer: shopgunOffer.branding.name,
+    id: `shopgun:product:${shopgunOffer.id}`
+  };
+};
