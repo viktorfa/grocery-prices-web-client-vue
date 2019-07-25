@@ -2,7 +2,11 @@
   <v-app class="app">
     <v-content>
       <NavigationDrawer />
-      <SearchBarComponent :handleClickMenu="handleClickMenu" />
+      <SearchBarComponent>
+        <template v-slot:prepend-inner>
+          <TopMenuButton />
+        </template>
+      </SearchBarComponent>
       <router-view></router-view>
     </v-content>
   </v-app>
@@ -13,16 +17,13 @@ import Vue from "vue";
 
 import NavigationDrawer from "./components/NavigationDrawer";
 import SearchBarComponent from "./components/SearchBarComponent";
+import TopMenuButton from "./components/TopMenuButton";
 
 export default Vue.component("app", {
   components: {
     NavigationDrawer,
     SearchBarComponent,
-  },
-  methods: {
-    handleClickMenu: function() {
-      this.$store.commit("setShowDrawer", !this.$store.state.showDrawer);
-    },
+    TopMenuButton,
   },
 });
 </script>

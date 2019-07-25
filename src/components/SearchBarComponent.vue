@@ -1,15 +1,12 @@
 <template>
   <v-combobox
     ref="searchInput"
-    @focus="handleFocus"
     v-model="queryInput"
     :search-input.sync="searchInput"
     label="Søk i 3 nettbutikker og alle tilbud"
     type="search"
     solo
     clearable
-    prepend-inner-icon="menu"
-    @click:prepend-inner="handleClickMenu"
     :loading="isSearching === true"
     class="search-input"
     :items="autocomplete"
@@ -18,7 +15,11 @@
         closeOnContentClick: false,
         openOnClick: false,
       }"
-  />
+  >
+    <template v-slot:prepend-inner>
+      <slot name="prepend-inner"></slot>
+    </template>
+  </v-combobox>
 </template>
 
 <script>
@@ -28,9 +29,6 @@ import { getHints } from "@/autocomplete";
 
 export default {
   name: "SearchBarComponent",
-  props: {
-    handleClickMenu: { type: Function, required: true },
-  },
   data() {
     return {
       /**
@@ -59,7 +57,11 @@ export default {
     queryInput(newValue, oldValue) {
       console.info(`queryInput change to ${newValue} from ${oldValue}`);
       if (newValue && newValue.length > 0) {
-        this.$router.replace(`/sok/${newValue}`);
+        if (this.$route.path.startsWith("/sok/")) {
+          this.$router.replace(`/sok/${newValue}`);
+        } else {
+          this.$router.push(`/sok/${newValue}`);
+        }
       }
       this.$nextTick(() => {
         this.$refs.searchInput.blur();
@@ -69,13 +71,6 @@ export default {
     showDrawer(newValue) {
       if (newValue === true) {
         this.$refs.searchInput.blur();
-      }
-    },
-  },
-  methods: {
-    handleFocus() {
-      if (!this.$route.path.startsWith("/sok/")) {
-        this.$router.push("/sok/");
       }
     },
   },

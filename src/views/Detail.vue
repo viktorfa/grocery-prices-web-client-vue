@@ -1,11 +1,5 @@
 <template>
   <div>
-    <v-toolbar color="purple" dark fixed app>
-      <v-btn icon @click.stop="handleClickMenu">
-        <v-icon>arrow_back</v-icon>
-      </v-btn>
-      <v-toolbar-title v-if="product">{{ product.title }}</v-toolbar-title>
-    </v-toolbar>
     <div v-show="isLoadingDetailProduct" class="flex align-center justify-center vh50 my-flex">
       <v-progress-circular :size="70" :width="7" color="purple" indeterminate></v-progress-circular>
     </div>
@@ -19,6 +13,7 @@
       </p>
     </div>
     <v-layout row wrap class="text-xs-center" v-show="!isLoadingDetailProduct" v-if="product">
+      <h1 class="text-3xl text-center w-full">{{product.title}}</h1>
       <v-flex xs12>
         <v-layout row wrap>
           <v-flex xs12 class="flex justify-center">
