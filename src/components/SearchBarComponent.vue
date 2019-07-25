@@ -1,11 +1,11 @@
 <template>
   <v-combobox
     ref="searchInput"
+    @focus="handleFocus"
     v-model="queryInput"
     :search-input.sync="searchInput"
     label="Søk i 3 nettbutikker og alle tilbud"
     type="search"
-    autofocus
     solo
     clearable
     prepend-inner-icon="menu"
@@ -13,7 +13,6 @@
     :loading="isSearching === true"
     class="search-input"
     :items="autocomplete"
-    @change="handleAutocompleteChange"
     :menu-props="{
         closeOnClick: false,
         closeOnContentClick: false,
@@ -26,7 +25,6 @@
 import { mapState } from "vuex";
 
 import { getHints } from "@/autocomplete";
-import { setQueryStringInPage } from "../lib";
 
 export default {
   name: "SearchBarComponent",
@@ -35,32 +33,39 @@ export default {
   },
   data() {
     return {
+      /**
+       * The actual selected query term that should execute a search query on change.
+       * Should be global through router.
+       */
       queryInput: this.$route.params.query || this.$store.state.searchQuery,
+      /** The input to the combobox that should only determine hints for autocomplete. Should be local state. */
       searchInput: "",
-      autocomplete: getHints(),
     };
   },
   computed: {
-    ...mapState(["isSearching", "showDrawer"]),
+    ...mapState(["isSearching", "showDrawer", "searchResults"]),
+    autocomplete() {
+      return getHints(this.searchInput);
+    },
   },
   watch: {
-    queryInput: function(newValue, oldValue) {
-      if (newValue && newValue.length > 0 && newValue !== oldValue) {
-        this.$store.commit("setQueryString", newValue);
-        this.$store.dispatch("EXECUTE_SEARCH_QUERY", {
-          queryString: newValue,
-        });
-      } else if (!newValue || (newValue && newValue.length === 0)) {
-        this.$store.commit("setShowPromotedProducts", true);
-        this.$store.commit("setQueryString", "");
-        setQueryStringInPage("");
+    /** Focus input if search result is empty. */
+    searchResults(newValue) {
+      if (newValue.length === 0) {
+        this.$refs.searchInput.focus();
       }
     },
-    searchInput(newValue, oldValue) {
-      if (newValue !== oldValue) {
-        this.autocomplete = getHints(newValue);
+    /** Communicates the current query with the router. */
+    queryInput(newValue, oldValue) {
+      console.info(`queryInput change to ${newValue} from ${oldValue}`);
+      if (newValue && newValue.length > 0) {
+        this.$router.replace(`/sok/${newValue}`);
       }
+      this.$nextTick(() => {
+        this.$refs.searchInput.blur();
+      });
     },
+    /** Dropdown in search box should go away when opening side menu. */
     showDrawer(newValue) {
       if (newValue === true) {
         this.$refs.searchInput.blur();
@@ -68,22 +73,11 @@ export default {
     },
   },
   methods: {
-    handleAutocompleteChange(newValue, oldValue) {
-      if (newValue && newValue.length > 0 && newValue !== oldValue) {
-        this.queryInput = newValue;
-        // when selecting from the autoselect, it will go back to the old query on blur, so we must wait for next tick
-        this.$nextTick(() => {
-          this.$refs.searchInput.blur();
-        });
+    handleFocus() {
+      if (!this.$route.path.startsWith("/sok/")) {
+        this.$router.push("/sok/");
       }
     },
-  },
-  mounted() {
-    if (this.queryInput && this.queryInput.length > 0) {
-      this.$store.dispatch("EXECUTE_SEARCH_QUERY", {
-        queryString: this.queryInput,
-      });
-    }
   },
 };
 </script>

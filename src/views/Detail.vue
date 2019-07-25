@@ -130,12 +130,7 @@ export default {
   },
   methods: {
     handleClickMenu: function() {
-      const query = this.queryString;
-      if (query) {
-        this.$router.push({ name: "search", params: { query } });
-      } else {
-        this.$router.push({ name: "home" });
-      }
+      this.$router.go(-1);
     },
     formatPrice,
   },
