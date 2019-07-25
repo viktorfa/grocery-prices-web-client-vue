@@ -1,49 +1,8 @@
 <template>
   <v-app class="app">
-    <v-navigation-drawer v-model="showDrawer" fixed clipped class="grey lighten-4" app>
-      <v-list dense class="grey lighten-4">
-        <v-list-tile avatar>
-          <v-list-tile-avatar>
-            <img src="/logo-256x256.png" />
-          </v-list-tile-avatar>
-          <v-list-tile-content>
-            <v-list-tile-title>
-              <router-link to="/">allematpriser.no</router-link>
-            </v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-        <v-divider />
-        <v-list-tile>
-          <v-list-tile-action>
-            <v-icon>settings</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title class="grey--text">Instillinger</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-        <v-list-tile href="https://crowdsource.allematpriser.no">
-          <v-list-tile-action>
-            <v-icon>add</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title class="grey--text text--darken-4">Legg til tilbud</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
-      <div>
-        <v-list dense>
-          <v-list-tile>
-            <v-list-tile-content :style="{'align-items': 'center'}">{{commitSha.substring(0, 8)}}</v-list-tile-content>
-          </v-list-tile>
-          <v-list-tile>
-            <v-list-tile-content
-              :style="{'align-items': 'center'}"
-            >© allematpriser.no {{now.getUTCFullYear()}}</v-list-tile-content>
-          </v-list-tile>
-        </v-list>
-      </div>
-    </v-navigation-drawer>
     <v-content>
+      <NavigationDrawer />
+      <SearchBarComponent :handleClickMenu="handleClickMenu" />
       <router-view></router-view>
     </v-content>
   </v-app>
@@ -52,23 +11,17 @@
 <script>
 import Vue from "vue";
 
-import { commitSha } from "@/config/vars";
+import NavigationDrawer from "./components/NavigationDrawer";
+import SearchBarComponent from "./components/SearchBarComponent";
 
 export default Vue.component("app", {
-  data() {
-    return {
-      now: new Date(),
-      commitSha,
-    };
+  components: {
+    NavigationDrawer,
+    SearchBarComponent,
   },
-  computed: {
-    showDrawer: {
-      get() {
-        return this.$store.state.showDrawer;
-      },
-      set(newValue) {
-        return this.$store.commit("setShowDrawer", newValue);
-      },
+  methods: {
+    handleClickMenu: function() {
+      this.$store.commit("setShowDrawer", !this.$store.state.showDrawer);
     },
   },
 });

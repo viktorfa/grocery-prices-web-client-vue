@@ -41,7 +41,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["isSearching"]),
+    ...mapState(["isSearching", "showDrawer"]),
   },
   watch: {
     queryInput: function(newValue, oldValue) {
@@ -59,6 +59,11 @@ export default {
     searchInput(newValue, oldValue) {
       if (newValue !== oldValue) {
         this.autocomplete = getHints(newValue);
+      }
+    },
+    showDrawer(newValue) {
+      if (newValue === true) {
+        this.$refs.searchInput.blur();
       }
     },
   },
