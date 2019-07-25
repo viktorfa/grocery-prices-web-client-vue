@@ -24,6 +24,10 @@
           <v-flex xs12 class="flex justify-center">
             <v-card flat class="w-full">
               <v-img :src="product.image_url" aspect-ratio="2.4" contain :alt="product.title"></v-img>
+              <p
+                class="text-red-500 text-lg"
+                v-if="offerExpired"
+              >Dette tilbudet er dessverre utgått.</p>
               <v-card-title primary-title>
                 <v-flex class="flex flex-col">
                   <h3 class="headline mb-0">{{ formatPrice(product.price) }}</h3>
@@ -111,6 +115,14 @@ export default {
     },
     offerId() {
       return this.$route.params.id;
+    },
+    offerExpired() {
+      const now = new Date();
+      const expiryDate = new Date(this.detailProduct.run_till);
+      if (expiryDate < now) {
+        return true;
+      }
+      return false;
     },
   },
   methods: {
