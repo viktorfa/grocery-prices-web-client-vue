@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="no_NB">
   <head>
     <!-- DNS prefetch tags -->
     <link rel="dns-preconnect" href="<%= VUE_APP_STATIC_DNS_PREFETCH_HOST %>" />
@@ -28,25 +28,52 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
-    <!-- COMMON TAGS -->
-    <meta charset="utf-8" />
-    <title>Finn priser på dagligvarer</title>
-    <!-- Search Engine -->
+
+    <!-- BEGIN SOCIAL TAGS -->
+    <!-- Primary Meta Tags -->
+    <title>Finn priser på dagligvarer – allematpriser.no</title>
+    <meta
+      name="title"
+      content="Finn priser på dagligvarer – allematpriser.no"
+    />
     <meta
       name="description"
-      content="Se hva som er på tilbud og hva som er vanlig pris på dagligvarer i Norge."
+      content="Vi har oversikt over alle tilbud i tillegg til priser fra 3 nettbutikker. Norges beste fullstendige oversikt over priser på dagligvarer."
     />
-    <meta name="image" content="<%= BASE_URL %>logo-512x512.png" />
-    <!-- Schema.org for Google -->
-    <meta itemprop="name" content="Finn priser på dagligvarer" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://allematpriser.no/" />
     <meta
-      itemprop="description"
-      content="Se hva som er på tilbud og hva som er vanlig pris på dagligvarer i Norge."
+      property="og:title"
+      content="Finn priser på dagligvarer – allematpriser.no"
     />
-    <meta itemprop="image" content="<%= BASE_URL %>logo-512x512.png" />
-    <!-- Open Graph general (Facebook, Pinterest & Google+) -->
-    <meta property="og:image" content="<%= BASE_URL %>logo-512x512.png" />
+    <meta
+      property="og:description"
+      content="Vi har oversikt over alle tilbud i tillegg til priser fra 3 nettbutikker. Norges beste fullstendige oversikt over priser på dagligvarer."
+    />
+    <meta
+      property="og:image"
+      content="https://allematpriser.no/logo-512x512.png"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://allematpriser.no/" />
+    <meta
+      property="twitter:title"
+      content="Finn priser på dagligvarer – allematpriser.no"
+    />
+    <meta
+      property="twitter:description"
+      content="Vi har oversikt over alle tilbud i tillegg til priser fra 3 nettbutikker. Norges beste fullstendige oversikt over priser på dagligvarer."
+    />
+    <meta
+      property="twitter:image"
+      content="https://allematpriser.no/logo-512x512.png"
+    />
     <!-- END SOCIAL TAGS -->
+
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
@@ -75,7 +102,10 @@
       style="
         height: 100vh;
         width: 100vw;
-        margin: auto;
+        top: 0;
+        left: 0;
+        position: fixed;
+        margin: 0;
         display: flex;
         flex-direction: column;
         justify-content: center;
