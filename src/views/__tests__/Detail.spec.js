@@ -3,7 +3,7 @@ import Vuex from "vuex";
 import VueRouter from "vue-router";
 import Vuetify from "vuetify";
 
-import OfferDetail from "../OfferDetail.vue";
+import OfferDetail from "../Detail.vue";
 import exampleOffer from "../../../tests/assets/amp-offer.json";
 
 describe("OfferDetail", () => {
