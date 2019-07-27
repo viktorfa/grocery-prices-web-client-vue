@@ -1,31 +1,32 @@
 <template>
   <div>
     <div v-if="offers.length > 0" class="offer-search-results">
-      <h1 class="offer-search-results-header text-3xl text-center">{{ offers.length }} tilbud</h1>
+      <ProductListBanner class="bg-amp-purple text-white">{{ offers.length }} tilbud</ProductListBanner>
       <ProductList :products="offers" :showSubtitle="false" />
       <br />
     </div>
     <div v-if="kolonialProducts.length > 0" class="kolonial-search-results">
-      <h1 class="kolonial-search-results-header text-3xl text-center">
+      <ProductListBanner class="bg-kolonial-yellow text-white">
         {{ kolonialProducts.length }}
         {{ `${kolonialProducts.length > 1 ? "varer" : "vare"}` }} fra
         kolonial.no
-      </h1>
+      </ProductListBanner>
       <ProductList :products="kolonialProducts" :showDealerLogo="false" />
     </div>
     <div v-if="menyProducts.length > 0" class="meny-search-results">
-      <h1 class="meny-search-results-header text-3xl text-center">
+      <ProductListBanner class="bg-meny-red text-white">
         {{ menyProducts.length }}
-        {{ `${menyProducts.length > 1 ? "varer" : "vare"}` }} fra meny.no
-      </h1>
+        {{ `${menyProducts.length > 1 ? "varer" : "vare"}` }} fra
+        meny.no
+      </ProductListBanner>
       <ProductList :products="menyProducts" :showDealerLogo="false" />
     </div>
     <div v-if="europrisProducts.length > 0" class="europris-search-results">
-      <h1 class="europris-search-results-header text-3xl text-center">
+      <ProductListBanner class="bg-europris-green text-white">
         {{ europrisProducts.length }}
         {{ `${europrisProducts.length > 1 ? "varer" : "vare"}` }} fra
         europris.no
-      </h1>
+      </ProductListBanner>
       <ProductList :products="europrisProducts" :showDealerLogo="false" />
     </div>
   </div>
@@ -34,6 +35,7 @@
 <script>
 import sortBy from "lodash/sortBy";
 import ProductList from "./ProductList";
+import ProductListBanner from "../components/ProductListBanner.vue";
 import { getStandardProduct } from "../lib";
 
 const isOffer = (result) =>
@@ -47,6 +49,7 @@ export default {
   name: "SearchResults",
   components: {
     ProductList,
+    ProductListBanner,
   },
   props: {
     results: Array,
