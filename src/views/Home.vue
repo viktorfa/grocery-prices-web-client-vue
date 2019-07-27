@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="text-xs-center offer-search-results">
-      <h1 class="offer-search-results-header text-3xl">Utvalgte tilbud</h1>
+      <h1 class="offer-search-results-header text-3xl text-center">Utvalgte tilbud</h1>
       <ProductListLoading v-if="isLoadingPromotedProducts" />
       <PromotedProducts v-else :products="promotedProducts" />
     </div>

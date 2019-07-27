@@ -1,6 +1,6 @@
 <template>
   <v-app class="v-application">
-    <v-content>
+    <v-content class="container">
       <NavigationDrawer />
       <SearchBarComponent>
         <template v-slot:prepend-inner>

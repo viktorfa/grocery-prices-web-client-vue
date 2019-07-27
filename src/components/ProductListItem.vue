@@ -1,5 +1,5 @@
 <template>
-  <v-layout class="result-list-item" column>
+  <div class="result-list-item flex flex-col text-center">
     <router-link :to="`/tilbud/${id}`" class="search-result-link flex flex-col justify-between">
       <div v-lazyload>
         <img
@@ -22,7 +22,7 @@
         <p>{{ value }}</p>
       </div>
     </router-link>
-  </v-layout>
+  </div>
 </template>
 
 <script>
@@ -88,7 +88,7 @@ export default {
 }
 .result-list-item-image {
   width: calc(50vw - 0.6rem);
-  height: calc((50vw - 0.6rem) * 1.4);
+  height: 220px;
   object-fit: contain;
   object-position: center;
 }

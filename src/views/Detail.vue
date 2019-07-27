@@ -1,58 +1,49 @@
 <template>
   <div>
-    <div v-show="isLoadingDetailProduct" class="flex align-center justify-center vh50 my-flex">
+    <div v-show="isLoadingDetailProduct" class="flex align-center justify-center vh50">
       <v-progress-circular :size="70" :width="7" color="purple" indeterminate></v-progress-circular>
     </div>
     <div
       v-show="!isLoadingDetailProduct && detailProductNotFound"
-      class="flex flex-col align-center justify-center vh50 my-flex text-xl"
+      class="flex flex-col align-center justify-center vh50 text-xl"
     >
       <p>Fant ikke tilbud. Mulig varen ikke finnes lenger.</p>
       <p>
         <router-link to="/" replace>Tilbake</router-link>
       </p>
     </div>
-    <v-layout row wrap class="text-xs-center" v-show="!isLoadingDetailProduct" v-if="product">
-      <h1 class="text-3xl text-center w-full">{{product.title}}</h1>
-      <v-flex xs12>
-        <v-layout row wrap>
-          <v-flex xs12 class="flex justify-center">
-            <v-card text class="w-full">
-              <v-img :src="product.image_url" aspect-ratio="2.4" contain :alt="product.title"></v-img>
-              <p
-                class="text-red-500 text-lg"
-                v-if="offerExpired"
-              >Dette tilbudet er dessverre utgått.</p>
-              <v-card-title primary-title>
-                <v-flex class="flex flex-col">
-                  <h3 class="headline mb-0">{{ formatPrice(product.price) }}</h3>
-                  <div>{{ product.description }}</div>
-                  <div>{{ product.value }}</div>
-                  <v-img
-                    v-if="dealerLogoSrc"
-                    class="dealer-logo-image"
-                    :src="dealerLogoSrc"
-                    :alt="product.dealer"
-                    contain
-                    width="160"
-                    max-height="32"
-                  />
-                  <div v-else>{{ product.dealer }}</div>
-                </v-flex>
-              </v-card-title>
-              <v-card-actions>
-                <v-btn outlined text color="orange" :href="product.href" target="_blank">Se annonse</v-btn>
-                <ProductShareDialog :product="product" />
-              </v-card-actions>
-            </v-card>
-          </v-flex>
-        </v-layout>
-      </v-flex>
+    <div class="text-xs-center" v-show="!isLoadingDetailProduct" v-if="product">
+      <div class="flex justify-center">
+        <v-card text class="w-full">
+          <h1 class="text-3xl text-center w-full">{{product.title}}</h1>
+          <v-img :src="product.image_url" aspect-ratio="2.4" contain :alt="product.title"></v-img>
+          <p class="text-red-500 text-lg" v-if="offerExpired">Dette tilbudet er dessverre utgått.</p>
+          <div class="flex flex-col items-center">
+            <h3 class="headline mb-0">{{ formatPrice(product.price) }}</h3>
+            <div>{{ product.description }}</div>
+            <div>{{ product.value }}</div>
+            <v-img
+              v-if="dealerLogoSrc"
+              class="dealer-logo-image"
+              :src="dealerLogoSrc"
+              :alt="product.dealer"
+              contain
+              width="160"
+              max-height="32"
+            />
+            <div v-else>{{ product.dealer }}</div>
+          </div>
+          <v-card-actions>
+            <v-btn outlined text color="orange" :href="product.href" target="_blank">Se annonse</v-btn>
+            <ProductShareDialog :product="product" />
+          </v-card-actions>
+        </v-card>
+      </div>
       <h2
         v-show="_similarProducts.length > 0"
         class="text-2xl m-4 w-full text-center"
       >Lignende varer</h2>
-      <v-flex xs12>
+      <div>
         <div
           v-show="isLoadingSimilarProducts"
           class="flex align-center justify-center vh50 my-flex"
@@ -63,8 +54,8 @@
           v-show="!isLoadingSimilarProducts && _similarProducts"
           :products="_similarProducts"
         />
-      </v-flex>
-    </v-layout>
+      </div>
+    </div>
   </div>
 </template>
 
