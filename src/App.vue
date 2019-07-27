@@ -1,6 +1,6 @@
 <template>
   <v-app class="v-application">
-    <v-content class="container">
+    <v-content class="container mx-auto">
       <NavigationDrawer />
       <SearchBarComponent>
         <template v-slot:prepend-inner>
@@ -33,52 +33,21 @@ export default Vue.component("app", {
 <style>
 :root {
   --kolonial-color: #f19500;
-  --offer-color: rgb(189, 27, 189);
+  --offer-color: #bd1bbd;
   --meny-color: #ce0029;
   --europris-color: #393;
   --max-width: 1024px;
   --background-color: #fafafa;
 }
 
-.v-navigation-drawer {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-body {
-  background-color: var(--background-color);
-}
-
-.app {
-  margin: auto;
-  max-width: var(--max-width);
-}
-
-.offer-search-results-header {
-  background-color: var(--offer-color);
-  color: white;
-}
 .offer-search-results .result-list-item {
   border-color: var(--offer-color);
-}
-.kolonial-search-results-header {
-  background-color: var(--kolonial-color);
-  color: white;
 }
 .kolonial-search-results .result-list-item {
   border-color: var(--kolonial-color);
 }
-.meny-search-results-header {
-  background-color: var(--meny-color);
-  color: white;
-}
 .meny-search-results .result-list-item {
   border-color: var(--meny-color);
-}
-.europris-search-results-header {
-  background-color: var(--europris-color);
-  color: white;
 }
 .europris-search-results .result-list-item {
   border-color: var(--europris-color);
@@ -90,20 +59,5 @@ body {
 }
 .v-input__slot {
   border-radius: 12px !important;
-}
-
-.center-box {
-  margin: auto;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-}
-
-.vh50 {
-  height: 50vh;
-}
-
-.my-flex {
-  display: flex;
 }
 </style>

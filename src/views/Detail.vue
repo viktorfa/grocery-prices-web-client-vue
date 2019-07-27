@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div v-show="isLoadingDetailProduct" class="flex align-center justify-center vh50">
+    <div v-show="isLoadingDetailProduct" class="flex align-center justify-center">
       <v-progress-circular :size="70" :width="7" color="purple" indeterminate></v-progress-circular>
     </div>
     <div
       v-show="!isLoadingDetailProduct && detailProductNotFound"
-      class="flex flex-col align-center justify-center vh50 text-xl"
+      class="flex flex-col align-center justify-center text-xl"
     >
       <p>Fant ikke tilbud. Mulig varen ikke finnes lenger.</p>
       <p>
@@ -14,7 +14,7 @@
     </div>
     <div class="text-xs-center" v-show="!isLoadingDetailProduct" v-if="product">
       <div class="flex justify-center">
-        <v-card text class="w-full">
+        <v-card text class="w-full max-w-4xl">
           <h1 class="text-3xl text-center w-full">{{product.title}}</h1>
           <v-img :src="product.image_url" aspect-ratio="2.4" contain :alt="product.title"></v-img>
           <p class="text-red-500 text-lg" v-if="offerExpired">Dette tilbudet er dessverre utgått.</p>
@@ -44,10 +44,7 @@
         class="text-2xl m-4 w-full text-center"
       >Lignende varer</h2>
       <div>
-        <div
-          v-show="isLoadingSimilarProducts"
-          class="flex align-center justify-center vh50 my-flex"
-        >
+        <div v-show="isLoadingSimilarProducts" class="flex align-center justify-center mt-4">
           <v-progress-circular :size="40" :width="7" color="purple" indeterminate></v-progress-circular>
         </div>
         <ProductList

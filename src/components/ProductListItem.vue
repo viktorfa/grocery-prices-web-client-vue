@@ -8,18 +8,19 @@
           :data-url="dealerLogoSrc"
           :alt="dealer"
         />
-        <p v-else-if="showDealerLogo" class="font-semibold">{{dealer}}</p>
-        <h3 class="text-xl font-semibold">{{ title }}</h3>
-        <p v-if="showSubtitle">{{ truncatedSubtitle }}</p>
-        <p v-if="formattedPrice">
-          <strong>{{ formattedPrice }}</strong>
-        </p>
-      </div>
-      <div v-lazyload>
-        <img class="result-list-item-image" :data-url="image_url" :alt="title" />
+        <div v-else-if="showDealerLogo" class="font-semibold">{{dealer}}</div>
+        <div class="text-lg font-semibold result-list-item-heading">{{ title }}</div>
+        <div v-if="showSubtitle" class="result-list-item-subtitle">{{ truncatedSubtitle }}</div>
       </div>
       <div>
-        <p>{{ value }}</p>
+        <div v-lazyload>
+          <img class="result-list-item-image" :data-url="image_url" :alt="title" />
+        </div>
+        <div v-if="formattedPrice" class="result-list-item-price my-0">
+          <strong>{{ formattedPrice }}</strong>
+        </div>
+        <div v-if="value">{{ value }}</div>
+        <div v-else :style="{visibility: 'hidden'}">_</div>
       </div>
     </router-link>
   </div>
@@ -82,12 +83,12 @@ export default {
   border-width: 0;
   border-style: solid;
   border-bottom-width: 2px;
-  height: 420px;
+  height: 390px;
   display: flex;
   flex-grow: initial;
 }
 .result-list-item-image {
-  height: 220px;
+  height: 180px;
   object-fit: contain;
   object-position: center;
 }
@@ -99,12 +100,15 @@ export default {
   }
   .result-list-item-image {
     width: 160px;
-    height: 240px;
   }
 }
 
 .search-result-link {
-  color: inherit;
+  color: inherit !important;
   text-decoration: none;
+}
+.result-list-item-subtitle {
+  white-space: pre;
+  overflow: hidden;
 }
 </style>
