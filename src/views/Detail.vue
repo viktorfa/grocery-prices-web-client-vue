@@ -17,7 +17,7 @@
       <v-flex xs12>
         <v-layout row wrap>
           <v-flex xs12 class="flex justify-center">
-            <v-card flat class="w-full">
+            <v-card text class="w-full">
               <v-img :src="product.image_url" aspect-ratio="2.4" contain :alt="product.title"></v-img>
               <p
                 class="text-red-500 text-lg"
@@ -41,7 +41,7 @@
                 </v-flex>
               </v-card-title>
               <v-card-actions>
-                <v-btn outline flat color="orange" :href="product.href" target="_blank">Se annonse</v-btn>
+                <v-btn outlined text color="orange" :href="product.href" target="_blank">Se annonse</v-btn>
                 <ProductShareDialog :product="product" />
               </v-card-actions>
             </v-card>

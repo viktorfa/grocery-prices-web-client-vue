@@ -1,7 +1,9 @@
 <template>
   <v-dialog v-model="dialog">
-    <template slot="activator" value="dialog">
-      <slot name="activator"></slot>
+    <template v-slot:activator="{ on }">
+      <slot name="activator">
+        <v-btn outlined text color="orange" v-on="on">Del</v-btn>
+      </slot>
     </template>
     <v-card class="flex flex-col items-center">
       <div class="text-2xl my-2">{{title}}</div>

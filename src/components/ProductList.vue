@@ -10,7 +10,7 @@
         />
       </template>
     </v-layout>
-    <v-btn @click="showMore" v-if="isMore" color="info" block flat>mer</v-btn>
+    <v-btn @click="showMore" v-if="isMore" color="info" block text>mer</v-btn>
     <br v-else />
   </div>
 </template>

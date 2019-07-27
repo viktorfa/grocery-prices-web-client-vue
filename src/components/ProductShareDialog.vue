@@ -1,9 +1,5 @@
 <template>
-  <ShareDialog :socialLinkData="socialLinkData" :title="product.title" :url="url">
-    <template v-slot:activator>
-      <v-btn outline flat color="orange">Del</v-btn>
-    </template>
-  </ShareDialog>
+  <ShareDialog :socialLinkData="socialLinkData" :title="product.title" :url="url" />
 </template>
 
 <script>
