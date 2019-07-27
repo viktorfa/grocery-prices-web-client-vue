@@ -8,6 +8,7 @@ import exampleOffer from "../../../tests/assets/amp-offer.json";
 
 describe("OfferDetail", () => {
   let localVue;
+  let vuetify;
   let store;
   let actions;
   let state;
@@ -22,6 +23,7 @@ describe("OfferDetail", () => {
     actions = {
       anus: jest.fn(),
     };
+    vuetify = new Vuetify();
     store = new Vuex.Store({ actions, state });
     router = new VueRouter();
     window.scrollTo = jest.fn(() => {
@@ -33,6 +35,7 @@ describe("OfferDetail", () => {
       store,
       localVue,
       router,
+      vuetify,
     });
     expect(mountedComponent).toBeTruthy();
   });
@@ -41,6 +44,7 @@ describe("OfferDetail", () => {
       store,
       localVue,
       router,
+      vuetify,
     });
     expect(mountedComponent.vm.detailProduct).toBeTruthy();
     console.log("vm.product");
