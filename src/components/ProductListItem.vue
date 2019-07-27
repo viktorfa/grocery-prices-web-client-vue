@@ -77,7 +77,7 @@ export default {
   max-width: 160px;
 }
 .result-list-item {
-  width: calc(50vw - 0.6rem);
+  width: calc(50% - 0.6rem);
   margin: 0.5rem 0.3rem;
   border-width: 0;
   border-style: solid;
@@ -87,7 +87,6 @@ export default {
   flex-grow: initial;
 }
 .result-list-item-image {
-  width: calc(50vw - 0.6rem);
   height: 220px;
   object-fit: contain;
   object-position: center;

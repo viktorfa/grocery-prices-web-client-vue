@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-layout row wrap justify-space-around align-end>
+    <div class="flex flex-wrap justify-around">
       <template v-for="product in _products">
         <ProductListItem
           :key="product.id"
@@ -9,7 +9,7 @@
           :showSubtitle="showSubtitle"
         />
       </template>
-    </v-layout>
+    </div>
     <v-btn @click="showMore" v-if="isMore" color="info" block text>mer</v-btn>
     <br v-else />
   </div>

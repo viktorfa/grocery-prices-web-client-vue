@@ -7,7 +7,9 @@
           <TopMenuButton />
         </template>
       </SearchBarComponent>
-      <router-view></router-view>
+      <div class="mx-1 sm:mx-0">
+        <router-view></router-view>
+      </div>
     </v-content>
   </v-app>
 </template>
