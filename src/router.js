@@ -21,7 +21,7 @@ export default new Router({
       component: Detail,
     },
     {
-      path: "/",
+      path: "(/|/tilbud)",
       name: "home",
       component: Home,
     },
