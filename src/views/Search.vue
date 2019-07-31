@@ -46,7 +46,7 @@ export default {
     searchQuery(newValue) {
       if (window.ga && newValue && newValue.length && newValue.length > 0) {
         console.log(`Sending GA search event.`);
-        window.ga("send", "event", {
+        window.ga("gtag_UA_132355293_1.send", "event", {
           eventCategory: "interaction",
           eventAction: "search",
           eventLabel: newValue,
