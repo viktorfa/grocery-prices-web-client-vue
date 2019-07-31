@@ -1,5 +1,5 @@
 <template>
-  <ProductList :products="this._products" :showSubtitle="false" />
+  <ProductList :products="this._products" :showSubtitle="false" :pageSize="16" />
 </template>
 
 <script>

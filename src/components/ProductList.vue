@@ -26,13 +26,17 @@ export default {
     products: Array,
     showSubtitle: { type: Boolean, default: true },
     showDealerLogo: { type: Boolean, default: true },
+    pageSize: { type: Number, default: 10 },
   },
-  data: function() {
+  data() {
     return {
-      limit: 10,
+      pageNumber: 1,
     };
   },
   computed: {
+    limit() {
+      return this.pageSize * this.pageNumber;
+    },
     isMore() {
       return this.products.length > this.limit;
     },
@@ -42,7 +46,7 @@ export default {
   },
   methods: {
     showMore: function() {
-      this.limit += 10;
+      this.pageNumber += 1;
     },
   },
 };
