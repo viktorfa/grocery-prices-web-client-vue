@@ -1,16 +1,14 @@
 <template>
-  <div>
-    <v-layout row wrap justify-space-around align-end>
-      <template v-for="(product, index) in _products">
-        <ProductListItem
-          class="loading-product-list-item"
-          :key="index"
-          v-bind="product"
-          :showDealerLogo="showDealerLogo"
-          :showSubtitle="showSubtitle"
-        />
-      </template>
-    </v-layout>
+  <div class="flex flex-wrap justify-around">
+    <template v-for="(product, index) in _products">
+      <ProductListItem
+        class="loading-product-list-item"
+        :key="index"
+        v-bind="product"
+        :showDealerLogo="showDealerLogo"
+        :showSubtitle="showSubtitle"
+      />
+    </template>
   </div>
 </template>
 
