@@ -1,13 +1,10 @@
 <template>
   <div class="result-list-item flex flex-col text-center">
     <router-link :to="`/tilbud/${id}`" class="search-result-link flex flex-col justify-between">
-      <div v-lazyload>
-        <img
-          v-if="showDealerLogo && dealerLogoSrc"
-          class="dealer-logo-image"
-          :data-url="dealerLogoSrc"
-          :alt="dealer"
-        />
+      <div>
+        <div v-lazyload v-if="showDealerLogo && dealerLogoSrc">
+          <img class="dealer-logo-image" :data-url="dealerLogoSrc" :alt="dealer" />
+        </div>
         <div v-else-if="showDealerLogo" class="font-semibold">{{dealer}}</div>
         <div class="text-lg font-semibold result-list-item-heading">{{ title }}</div>
         <div v-if="showSubtitle" class="result-list-item-subtitle">{{ truncatedSubtitle }}</div>
@@ -89,17 +86,15 @@ export default {
 }
 .result-list-item-image {
   height: 180px;
+  margin-right: auto;
+  margin-left: auto;
   object-fit: contain;
-  object-position: center;
 }
 
 @media only screen and (min-width: 481px) {
   .result-list-item {
-    width: 160px;
+    width: 200px;
     margin: 0.5rem;
-  }
-  .result-list-item-image {
-    width: 160px;
   }
 }
 
