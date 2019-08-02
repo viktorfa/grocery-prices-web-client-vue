@@ -132,7 +132,6 @@ export const getAllMetaInfo = ({
   return {
     title,
     titleTemplate: "%s – allematpriser.no",
-    description,
     meta: getAllMetaTags({
       title,
       description,
