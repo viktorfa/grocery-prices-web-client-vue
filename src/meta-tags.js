@@ -5,7 +5,7 @@ const baseUrl = "https://allematpriser.no";
 const defaults = {
   title: "Finn priser på dagligvarer",
   description:
-    "Se hva som er på tilbud og hva som er vanlig pris på dagligvarer i Norge.",
+    "Vi har oversikt over alle tilbud i tillegg til priser fra 3 nettbutikker. Norges beste fullstendige oversikt over priser på dagligvarer.",
   image_url: `${baseUrl}/logo-512x512.png`,
   site_url: `${baseUrl}/`,
 };
