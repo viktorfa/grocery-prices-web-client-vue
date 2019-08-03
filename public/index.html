@@ -120,10 +120,18 @@
     </div>
     <script>
       const splashElement = document.getElementById("splash");
-      window.onload = function() {
-        console.log("window.onload");
+      const handleLoaded = () => {
         splashElement.style.display = "none";
       };
+      window.onload = function() {
+        console.log("window.onload");
+        handleLoaded();
+      };
+      document.addEventListener("DOMContentLoaded", function(event) {
+        console.log("DOMContentLoaded");
+        handleLoaded();
+        document.removeEventListener("DOMContentLoaded", handleLoaded);
+      });
     </script>
   </body>
 </html>
