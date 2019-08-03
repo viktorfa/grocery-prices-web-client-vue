@@ -17,14 +17,18 @@
 <script>
 import Vue from "vue";
 
-import NavigationDrawer from "./components/NavigationDrawer";
-import SearchBarComponent from "./components/SearchBarComponent";
 import TopMenuButton from "./components/TopMenuButton";
 
 export default Vue.component("app", {
   components: {
-    NavigationDrawer,
-    SearchBarComponent,
+    SearchBarComponent: () =>
+      import(
+        /* webpackChunkName: "SearchBarComponent" */ "./components/SearchBarComponent.vue"
+      ),
+    NavigationDrawer: () =>
+      import(
+        /* webpackChunkName: "NavigationDrawer" */ "./components/NavigationDrawer.vue"
+      ),
     TopMenuButton,
   },
 });

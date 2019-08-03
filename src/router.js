@@ -1,8 +1,11 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./views/Home.vue";
-import Detail from "./views/Detail.vue";
-import Search from "./views/Search.vue";
+
+const Home = () => import(/* webpackChunkName: "Home" */ "./views/Home.vue");
+const Detail = () =>
+  import(/* webpackChunkName: "Detail" */ "./views/Detail.vue");
+const Search = () =>
+  import(/* webpackChunkName: "Search" */ "./views/Search.vue");
 
 Vue.use(Router);
 
