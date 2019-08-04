@@ -3,10 +3,10 @@ import Vuex from "vuex";
 import VueRouter from "vue-router";
 import Vuetify from "vuetify";
 
-import OfferDetail from "../Detail.vue";
+import DetailPage from "../Detail.vue";
 import exampleOffer from "./amp-offer.json";
 
-describe("OfferDetail", () => {
+describe("DetailPage", () => {
   let localVue;
   let vuetify;
   let store;
@@ -31,7 +31,7 @@ describe("OfferDetail", () => {
     });
   });
   it("should render", () => {
-    const mountedComponent = shallowMount(OfferDetail, {
+    const mountedComponent = shallowMount(DetailPage, {
       store,
       localVue,
       router,
@@ -40,7 +40,7 @@ describe("OfferDetail", () => {
     expect(mountedComponent).toBeTruthy();
   });
   it("should have a product property", () => {
-    const mountedComponent = shallowMount(OfferDetail, {
+    const mountedComponent = shallowMount(DetailPage, {
       store,
       localVue,
       router,

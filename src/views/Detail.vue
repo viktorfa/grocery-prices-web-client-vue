@@ -44,7 +44,7 @@ import { getStandardProduct } from "@/util/products/convert";
 import { getAllMetaInfoForProduct } from "@/util/meta-tags";
 
 export default {
-  name: "OfferDetail",
+  name: "DetailPage",
   components: {
     ProductList,
     ProductDetail,
