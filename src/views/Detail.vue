@@ -14,37 +14,9 @@
     </div>
     <div class="text-xs-center" v-show="!isLoadingDetailProduct" v-if="product">
       <div class="flex justify-center">
-        <v-card text class="w-full max-w-4xl">
-          <h1 class="text-3xl text-center w-full">{{product.title}}</h1>
-          <v-img :src="product.image_url" aspect-ratio="2.4" contain :alt="product.title"></v-img>
-          <p class="text-red-500 text-lg" v-if="offerExpired">Dette tilbudet er dessverre utgått.</p>
-          <div class="flex flex-col items-center">
-            <h3 class="headline mb-0">{{ formatPrice(product.price) }}</h3>
-            <div>{{ product.description }}</div>
-            <div>{{ product.value }}</div>
-            <v-img
-              v-if="dealerLogoSrc"
-              class="dealer-logo-image"
-              :src="dealerLogoSrc"
-              :alt="product.dealer"
-              contain
-              width="160"
-              max-height="32"
-            />
-            <div v-else>{{ product.dealer }}</div>
-          </div>
-          <v-card-actions>
-            <v-btn
-              outlined
-              text
-              color="orange"
-              :href="product.href"
-              target="_blank"
-              rel="noopener"
-            >Se annonse</v-btn>
-            <ProductShareDialog :product="product" />
-          </v-card-actions>
-        </v-card>
+        <div class="w-full max-w-4xl">
+          <ProductDetail :product="product" />
+        </div>
       </div>
       <h2
         v-show="_similarProducts.length > 0"
@@ -67,8 +39,7 @@
 import { mapState } from "vuex";
 
 import ProductList from "../components/ProductList";
-import ProductShareDialog from "../components/ProductShareDialog";
-import { formatPrice, getDealerLogoSrc } from "@/util/products";
+import ProductDetail from "../components/ProductDetail";
 import { getStandardProduct } from "@/util/products/convert";
 import { getAllMetaInfoForProduct } from "@/util/meta-tags";
 
@@ -76,7 +47,7 @@ export default {
   name: "OfferDetail",
   components: {
     ProductList,
-    ProductShareDialog,
+    ProductDetail,
   },
   metaInfo() {
     if (this.product) {
@@ -97,9 +68,6 @@ export default {
         .filter((offer) => offer.uri !== this.offerId)
         .map(getStandardProduct);
     },
-    dealerLogoSrc() {
-      return this.product ? getDealerLogoSrc(this.product.dealer) : "";
-    },
     product() {
       if (this.detailProduct) {
         return getStandardProduct(this.detailProduct);
@@ -109,20 +77,11 @@ export default {
     offerId() {
       return this.$route.params.id;
     },
-    offerExpired() {
-      const now = new Date();
-      const expiryDate = new Date(this.detailProduct.run_till);
-      if (expiryDate < now) {
-        return true;
-      }
-      return false;
-    },
   },
   methods: {
     handleClickMenu: function() {
       this.$router.go(-1);
     },
-    formatPrice,
   },
   watch: {
     detailProduct(newValue) {
