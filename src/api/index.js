@@ -63,9 +63,19 @@ export const getGroceryOffer = async (uri) => {
 
 // TODO use date and not exact time for better caching.
 export const getPromotedOffers = async (offerLimit = 30) => {
-  const isoNow = new Date().toISOString();
+  const earliestToday = new Date();
+  earliestToday.setUTCMilliseconds(0);
+  earliestToday.setUTCSeconds(0);
+  earliestToday.setUTCMinutes(0);
+  earliestToday.setUTCHours(0);
+  const latestToday = new Date();
+  latestToday.setUTCMilliseconds(999);
+  latestToday.setUTCSeconds(59);
+  latestToday.setUTCMinutes(59);
+  latestToday.setUTCHours(23);
+
   const strapiCollectionName = "groceryoffers";
-  const strapiUrlParameterString = `run_till_gt=${isoNow}&run_from_lt=${isoNow}&_limit=${offerLimit}&_sort=select_method:DESC&is_promoted=true`;
+  const strapiUrlParameterString = `run_till_gt=${earliestToday.toISOString()}&run_from_lt=${latestToday.toISOString()}&_limit=${offerLimit}&_sort=select_method:DESC&is_promoted=true`;
   const response = await fetch(
     `${strapiUrl}/${strapiCollectionName}?${strapiUrlParameterString}`,
   );
