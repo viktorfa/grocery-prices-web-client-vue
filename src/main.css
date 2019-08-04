@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.v-input__append-inner:last-child {
+  /* Remove the dropdown icon on search bar */
+  display: none !important;
+}
