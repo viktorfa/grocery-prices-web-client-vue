@@ -1,7 +1,6 @@
 import uniqBy from "lodash/uniqBy";
 import {
   getPromotedOffers,
-  getCustomProduct,
   getGroceryOffer,
   searchGroceryOffers,
 } from "@/api";
@@ -65,13 +64,7 @@ export const actions = {
       }
       commit(productMutations.setIsLoadingDetailProduct, false);
     } else {
-      // Not product uri, needs to be fetched from Strapi
-      const { ok, data, error } = await getCustomProduct(id);
-      if (ok) {
-        commit(productMutations.setDetailProduct, data);
-      } else {
-        commit(productMutations.setErrorMessage, error);
-      }
+      console.error(`Loading detail product needs an ID.`);
     }
   },
   async [productActions.LOAD_SIMILAR_PRODUCTS]({ commit }, { product }) {

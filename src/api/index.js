@@ -3,27 +3,9 @@ import { getJsonFetchOption, getFullFileUrl, optionFetch } from "./util";
 import cache from "./cache";
 import { shopgunOfferToAmpOffer } from "@/util/products/convert";
 
-export const getIndex = async () => {
-  const fileName = "product-lunr-index-latest.json";
-  const response = await fetch(getFullFileUrl(fileName));
-  return getJsonFetchOption(response);
-};
-
 export const getAutocompleteData = async () => {
   const fileName = "autocomplete-data-latest.json";
   const response = await fetch(getFullFileUrl(fileName));
-  return getJsonFetchOption(response);
-};
-
-export const getObjects = async () => {
-  const fileName = "product-map-latest.json";
-  const response = await fetch(getFullFileUrl(fileName));
-  return getJsonFetchOption(response);
-};
-
-export const getCustomProduct = async (id) => {
-  const strapiCollectionName = "groceryoffers";
-  const response = await fetch(`${strapiUrl}/${strapiCollectionName}/${id}`);
   return getJsonFetchOption(response);
 };
 
@@ -79,6 +61,7 @@ export const getGroceryOffer = async (uri) => {
   }
 };
 
+// TODO use date and not exact time for better caching.
 export const getPromotedOffers = async (offerLimit = 30) => {
   const isoNow = new Date().toISOString();
   const strapiCollectionName = "groceryoffers";
