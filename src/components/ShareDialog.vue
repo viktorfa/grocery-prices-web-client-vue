@@ -2,7 +2,7 @@
   <v-dialog v-model="dialog">
     <template v-slot:activator="{ on }">
       <slot name="activator">
-        <v-btn outlined text color="orange" v-on="on">Del</v-btn>
+        <v-btn outlined text color="blue darken-4" v-on="on">Del</v-btn>
       </slot>
     </template>
     <v-card class="flex flex-col items-center">
@@ -15,7 +15,7 @@
         :id="`${_uid}share-url-input`"
       />
       <v-card-actions class="flex justify-center">
-        <v-btn large icon @click="handleClickCopy">
+        <v-btn large icon @click="handleClickCopy" name="Kopier link" aria-label="Kopier link">
           <v-icon size="xx-large" color="grey">mdi-content-copy</v-icon>
         </v-btn>
         <v-btn

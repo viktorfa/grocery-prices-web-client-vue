@@ -3,9 +3,9 @@
     <div class="flex flex-col justify-between h-full">
       <v-list dense>
         <v-list-item>
-          <router-link to="/" class="w-full flex">
+          <router-link to="/" class="w-full flex" title="Hjem">
             <v-list-item-avatar>
-              <img src="/logo-256x256.png" />
+              <img src="/logo-256x256.png" alt="logo" />
             </v-list-item-avatar>
             <v-list-item-content>
               <v-list-item-title>

@@ -22,7 +22,7 @@
       <v-btn
         outlined
         text
-        color="orange"
+        color="blue darken-4"
         :href="product.href"
         target="_blank"
         rel="noopener"
