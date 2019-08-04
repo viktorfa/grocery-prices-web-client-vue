@@ -61,7 +61,6 @@ export const getGroceryOffer = async (uri) => {
   }
 };
 
-// TODO use date and not exact time for better caching.
 export const getPromotedOffers = async (offerLimit = 30) => {
   const earliestToday = new Date();
   earliestToday.setUTCMilliseconds(0);
