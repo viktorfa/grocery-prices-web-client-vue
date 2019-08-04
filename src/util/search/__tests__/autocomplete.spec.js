@@ -1,6 +1,6 @@
-import autocompleteDataResponse from "../assets/autocomplete-data.json";
+import autocompleteDataResponse from "./autocomplete-data.json";
 
-import { getHints } from "@/autocomplete";
+import { getHints } from "../autocomplete";
 
 const autocompleteData = {
   tokens: autocompleteDataResponse.heading_tokens,

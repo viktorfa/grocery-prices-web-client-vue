@@ -1,4 +1,4 @@
-import { formatPrice } from "./lib";
+import { formatPrice } from "@/util/products";
 
 const baseUrl = "https://allematpriser.no";
 

@@ -4,8 +4,8 @@
 
 <script>
 import ShareDialog from "./ShareDialog";
-import { getSocialLinkDataForProduct } from "../sharing";
-import { getAmpShareUrlForProduct } from "../helpers";
+import { getSocialLinkDataForProduct } from "@/util/sharing";
+import { getAmpShareUrlForProduct } from "@/util/products";
 export default {
   name: "ProductShareDialog",
   components: {

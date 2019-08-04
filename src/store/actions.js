@@ -5,7 +5,7 @@ import {
   getGroceryOffer,
   searchGroceryOffers,
 } from "@/api";
-import { isProductUri } from "@/helpers";
+import { isProductUri } from "@/util/products";
 
 import { productMutations } from "./mutations";
 

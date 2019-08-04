@@ -1,7 +1,7 @@
 import { strapiUrl, apiUrl, shopgunToken } from "@/config/vars";
 import { getJsonFetchOption, getFullFileUrl, optionFetch } from "./util";
 import cache from "./cache";
-import { shopgunOfferToAmpOffer } from "../helpers";
+import { shopgunOfferToAmpOffer } from "@/util/products/convert";
 
 export const getIndex = async () => {
   const fileName = "product-lunr-index-latest.json";

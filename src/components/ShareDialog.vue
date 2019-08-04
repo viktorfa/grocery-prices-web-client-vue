@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import { getSocialLinkData } from "../sharing";
+import { getSocialLinkData } from "@/util/sharing";
 
 export default {
   name: "ShareDialog",

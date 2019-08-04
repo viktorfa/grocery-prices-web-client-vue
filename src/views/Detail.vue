@@ -68,9 +68,9 @@ import { mapState } from "vuex";
 
 import ProductList from "../components/ProductList";
 import ProductShareDialog from "../components/ProductShareDialog";
-import { getStandardProduct, formatPrice } from "../lib";
-import { getDealerLogoSrc } from "../helpers";
-import { getAllMetaInfoForProduct } from "../meta-tags";
+import { formatPrice, getDealerLogoSrc } from "@/util/products";
+import { getStandardProduct } from "@/util/products/convert";
+import { getAllMetaInfoForProduct } from "@/util/meta-tags";
 
 export default {
   name: "OfferDetail",

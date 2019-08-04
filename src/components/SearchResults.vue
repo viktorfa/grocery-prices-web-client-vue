@@ -36,7 +36,7 @@
 import sortBy from "lodash/sortBy";
 import ProductList from "./ProductList";
 import ProductListBanner from "../components/ProductListBanner.vue";
-import { getStandardProduct } from "../lib";
+import { getStandardProduct } from "@/util/products/convert";
 
 const isOffer = (result) =>
   result.provenance === "shopgun" || result.provenance === "custom";

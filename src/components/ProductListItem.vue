@@ -24,8 +24,7 @@
 </template>
 
 <script>
-import { formatPrice } from "@/lib";
-import { getDealerLogoSrc } from "@/helpers";
+import { formatPrice, getDealerLogoSrc } from "@/util/products";
 export default {
   name: "ProductListItem",
   props: {

@@ -4,7 +4,7 @@
 
 <script>
 import ProductList from "./ProductList";
-import { getStandardProduct } from "../lib";
+import { getStandardProduct } from "@/util/products/convert";
 
 export default {
   name: "PromotedProducts",

@@ -25,7 +25,7 @@
 <script>
 import { mapState } from "vuex";
 
-import { getHints } from "@/autocomplete";
+import { getHints } from "@/util/search/autocomplete";
 
 export default {
   name: "SearchBarComponent",

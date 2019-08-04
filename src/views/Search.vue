@@ -20,7 +20,7 @@
 <script>
 import { mapState } from "vuex";
 
-import { getAllMetaInfo } from "../meta-tags";
+import { getAllMetaInfo } from "@/util/meta-tags";
 import SearchResults from "../components/SearchResults.vue";
 
 export default {

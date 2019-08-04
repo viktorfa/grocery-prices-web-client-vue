@@ -4,7 +4,7 @@ import {
   getProductDescription,
   getAllMetaInfo,
 } from "../meta-tags";
-import exampleProduct from "../../tests/assets/standard-product.json";
+import exampleProduct from "./standard-product.json";
 
 test("getAllMetaTags", () => {
   const argument = {

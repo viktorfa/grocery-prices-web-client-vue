@@ -1,4 +1,5 @@
-import { getAmpShareUrlForProduct, isMobileOrTablet } from "./helpers";
+import { isMobileOrTablet } from "@/util/helpers";
+import { getAmpShareUrlForProduct } from "@/util/products";
 
 export const getSocialLinkDataForProduct = (product) => {
   const ampUrl = getAmpShareUrlForProduct(product);

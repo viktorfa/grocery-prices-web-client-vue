@@ -14,7 +14,7 @@ import { mapState } from "vuex";
 import PromotedProducts from "../components/PromotedProducts.vue";
 import ProductListLoading from "../components/ProductListLoading.vue";
 import ProductListBanner from "../components/ProductListBanner.vue";
-import { getAllMetaInfo } from "../meta-tags";
+import { getAllMetaInfo } from "@/util/meta-tags";
 
 export default {
   name: "MainPage",
