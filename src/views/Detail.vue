@@ -34,7 +34,14 @@
             <div v-else>{{ product.dealer }}</div>
           </div>
           <v-card-actions>
-            <v-btn outlined text color="orange" :href="product.href" target="_blank">Se annonse</v-btn>
+            <v-btn
+              outlined
+              text
+              color="orange"
+              :href="product.href"
+              target="_blank"
+              rel="noopener"
+            >Se annonse</v-btn>
             <ProductShareDialog :product="product" />
           </v-card-actions>
         </v-card>
