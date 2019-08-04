@@ -36,6 +36,7 @@
 
 <script>
 import { getSocialLinkData } from "../sharing";
+
 export default {
   name: "ShareDialog",
   props: {
@@ -45,7 +46,7 @@ export default {
   },
   data() {
     return {
-      dialog: false,
+      dialog: true,
       showCopySuccessMessage: false,
     };
   },
@@ -67,7 +68,11 @@ export default {
       inputElement.contentEditable = true;
       inputElement.readOnly = false;
       const range = document.createRange();
-      range.selectNodeContents(inputElement);
+      if (window.chrome) {
+        range.selectNode(inputElement);
+      } else {
+        range.selectNodeContents(inputElement);
+      }
       const selection = window.getSelection();
       selection.removeAllRanges();
       selection.addRange(range);
@@ -83,6 +88,8 @@ export default {
         setTimeout(() => {
           this.showCopySuccessMessage = false;
         }, 3000);
+      } else {
+        console.warn("Could not copy.");
       }
     },
   },
