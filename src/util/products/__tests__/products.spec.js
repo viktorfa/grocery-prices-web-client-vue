@@ -1,4 +1,4 @@
-import { getProductValue, isProductUri } from "../";
+import { getProductValue, isProductUri, formatPrice } from "../";
 
 describe("getProductValue", () => {
   test("should return a string", () => {
@@ -6,14 +6,17 @@ describe("getProductValue", () => {
   });
   test("should find existing quantity value", () => {
     const product = {
+      pricing: {},
       quantity: {},
-      quantity_value: {
-        value: 10.0,
-        unit: {
-          symbol: "kg",
-          si: {
+      value: {
+        size: {
+          amount: { min: 10.0, max: 10.0 },
+          unit: {
             symbol: "kg",
-            factor: 1,
+            si: {
+              symbol: "kg",
+              factor: 1,
+            },
           },
         },
       },
@@ -24,11 +27,14 @@ describe("getProductValue", () => {
   });
   test("should find existing pieces value", () => {
     const product = {
+      pricing: {},
       quantity: {},
-      piece_value: {
-        value: 5,
-        unit: {
-          symbol: "boks",
+      value: {
+        pieces: {
+          amount: { min: 5.0, max: 5.0 },
+          unit: {
+            symbol: "boks",
+          },
         },
       },
     };
@@ -40,14 +46,16 @@ describe("getProductValue", () => {
     const product = {
       quantity: {
         size: {
-          max: 100,
-          min: 100,
-        },
-        unit: {
-          symbol: "g",
-          si: {
-            symbol: "kg",
-            factor: 0.001,
+          amount: {
+            max: 100,
+            min: 100,
+          },
+          unit: {
+            symbol: "g",
+            si: {
+              symbol: "kg",
+              factor: 0.001,
+            },
           },
         },
       },
@@ -63,10 +71,12 @@ describe("getProductValue", () => {
     const product = {
       quantity: {
         pieces: {
-          max: 4,
-          min: 4,
+          amount: {
+            max: 4,
+            min: 4,
+          },
+          unit: { symbol: "stk" },
         },
-        size: {},
       },
       pricing: {
         price: 100.0,
@@ -88,4 +98,13 @@ describe("isProductUri", () => {
   test("should return false if mongodb id format", () => {
     expect(isProductUri("5c4b1284aa871b0010bee398")).toBeFalsy();
   });
+});
+
+test("formatPrice", () => {
+  expect(formatPrice(20)).toEqual("20,00,-");
+  expect(formatPrice(20.1)).toEqual("20,10,-");
+  expect(formatPrice(20.123)).toEqual("20,12,-");
+  expect(formatPrice(20.123, "")).toEqual("20,12");
+  expect(formatPrice("per")).toEqual("per");
+  expect(formatPrice(null)).toEqual(null);
 });

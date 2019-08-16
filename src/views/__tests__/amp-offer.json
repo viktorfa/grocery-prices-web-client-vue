@@ -5,13 +5,13 @@
   "run_from": "2019-07-21T22:00:00.000Z",
   "run_till": "2019-07-28T21:59:59.000Z",
   "quantity": {
-    "unit": {
-      "symbol": "l",
-      "type": "quantity",
-      "si": { "symbol": "l", "factor": 1 }
-    },
-    "size": { "min": 1, "max": 1 },
-    "pieces": { "min": null, "max": null }
+    "size": {
+      "unit": {
+        "symbol": "l",
+        "si": { "symbol": "l", "factor": 1 }
+      },
+      "amount": { "min": 1, "max": 1 }
+    }
   },
   "location": "",
   "provenance_id": "8e602YDT",

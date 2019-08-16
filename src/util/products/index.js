@@ -1,38 +1,60 @@
-import isNumber from "lodash/isNumber";
-import isNil from "lodash/isNil";
-
 import { dealerLogos } from "@/constants/images";
 import { SHOPGUN_URL } from "@/constants";
 
 export const formatPrice = (price, suffix = ",-") => {
-  if (isNumber(price)) {
+  if (price && price.toFixed) {
     return `${price.toFixed(2).replace(".", ",")}${suffix}`;
   } else {
     return price;
   }
 };
 
-export const getProductValue = ({
-  quantity_value,
-  piece_value,
-  quantity,
-  pricing,
-}) => {
-  if (isNil(quantity)) return "";
-  if (quantity_value)
-    return formatPrice(
-      quantity_value.value,
-      ` kr/${quantity_value.unit.symbol}`,
-    );
-  if (piece_value)
-    return formatPrice(piece_value.value, ` kr/${piece_value.unit.symbol}`);
-  else if (quantity.size.max)
-    return formatPrice(
-      pricing.price / (quantity.size.max * quantity.unit.si.factor),
-      ` kr/${quantity.unit.si.symbol}`,
-    );
-  else if (quantity.pieces.max)
-    return formatPrice(pricing.price / quantity.pieces.max, " kr/stk");
+export const getValueString = ({ amount, unit }) => {
+  if (!amount.max) {
+    return "";
+  }
+  if (unit) {
+    return `${formatPrice(amount.max, "")} kr/${unit.symbol}`;
+  }
+  return `${formatPrice(amount.max, "")} kr/stk`;
+};
+
+export const calculateValue = ({ amount, unit, pricing }) => {
+  if (unit && unit.si) {
+    return {
+      amount: {
+        max: pricing.price / (amount.max * unit.si.factor),
+        min: pricing.price / (amount.min * unit.si.factor),
+      },
+      unit: unit.si,
+    };
+  }
+  return {
+    amount: {
+      max: pricing.price / amount.max,
+      min: pricing.price / amount.min,
+    },
+    unit,
+  };
+};
+
+export const getProductValue = ({ quantity, value, pricing }) => {
+  if (value) {
+    if (value.size && value.size.amount) {
+      return getValueString(value.size);
+    } else if (value.pieces && value.pieces.amount) {
+      return getValueString(value.pieces);
+    }
+  }
+  if (pricing) {
+    if (quantity) {
+      if (quantity.size && quantity.size.amount) {
+        return getValueString(calculateValue({ ...quantity.size, pricing }));
+      } else if (quantity.pieces && quantity.pieces.amount) {
+        return getValueString(calculateValue({ ...quantity.pieces, pricing }));
+      }
+    }
+  }
   return "";
 };
 
