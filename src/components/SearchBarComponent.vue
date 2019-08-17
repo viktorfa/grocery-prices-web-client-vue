@@ -25,6 +25,7 @@
 <script>
 import { mapState } from "vuex";
 
+import { getAutocompleteData } from "../api";
 import { getHints } from "@/util/search/autocomplete";
 
 export default {
@@ -38,12 +39,17 @@ export default {
       queryInput: this.$route.params.query || this.$store.state.searchQuery,
       /** The input to the combobox that should only determine hints for autocomplete. Should be local state. */
       searchInput: "",
+      autocompleteData: {
+        tokens: [],
+        bigrams: [],
+        fullgrams: [],
+      },
     };
   },
   computed: {
     ...mapState(["isSearching", "showDrawer", "searchResults"]),
     autocomplete() {
-      return getHints(this.searchInput);
+      return getHints(this.searchInput, this.autocompleteData);
     },
   },
   watch: {
@@ -81,6 +87,20 @@ export default {
         this.$refs.searchInput.blur();
       }
     },
+  },
+  async mounted() {
+    const { data, error } = await getAutocompleteData();
+    if (data) {
+      const autocompleteData = {
+        tokens: data.heading_tokens,
+        bigrams: data.heading_bigrams,
+        fullgrams: data.heading_fullgrams,
+      };
+      this.autocompleteData = autocompleteData;
+    } else {
+      console.warn("Could not load autocomplete data");
+      console.error(error);
+    }
   },
 };
 </script>
