@@ -46,7 +46,7 @@ export const mutations = {
     (acc, [setterName, stateKey]) => {
       return {
         ...acc,
-        [setterName]: function(state, newValue) {
+        [setterName]: (state, newValue) => {
           state[stateKey] = newValue;
         },
       };
